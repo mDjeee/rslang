@@ -7,6 +7,7 @@ import { SprintComponent } from './pages/sprint/sprint.component';
 import { AudiocallComponent } from './pages/audiocall/audiocall.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { NavigationComponent } from './pages/header/header-components/navigation/navigation.component';
+import { LogoComponent } from './pages/header/header-components/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NavigationComponent } from './pages/header/header-components/navigation
     SprintComponent,
     AudiocallComponent,
     HeaderComponent,
-    NavigationComponent
+    NavigationComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,

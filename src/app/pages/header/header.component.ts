@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LogoComponent } from './header-components/logo/logo.component';
 import { NavigationComponent } from './header-components/navigation/navigation.component';
 
 @Component({
@@ -11,7 +12,6 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    NavigationComponent
   }
 
 }
