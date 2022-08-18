@@ -8,6 +8,7 @@ import { AudiocallComponent } from './pages/audiocall/audiocall.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { NavigationComponent } from './pages/header/header-components/navigation/navigation.component';
 import { LogoComponent } from './pages/header/header-components/logo/logo.component';
+import { AuthorizationBtnComponent } from './pages/header/header-components/authorization-btn/authorization-btn.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LogoComponent } from './pages/header/header-components/logo/logo.compon
     AudiocallComponent,
     HeaderComponent,
     NavigationComponent,
-    LogoComponent
+    LogoComponent,
+    AuthorizationBtnComponent
   ],
   imports: [
     BrowserModule,
