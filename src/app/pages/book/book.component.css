@@ -1,0 +1,133 @@
+.nav {
+  margin-bottom: 20px;
+  max-width: 1200px;
+}
+
+.item {
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #fff3e0;
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.a1 {
+  background-color: #ff6d00;
+}
+
+.a2 {
+  background-color: #ffab00;
+}
+
+.b1 {
+  background-color: #aeea00;
+}
+
+.b2 {
+  background-color: #64dd17;
+}
+
+.c1 {
+  background-color: #00bfa5;
+}
+
+.c2 {
+  background-color: #00b8d4;
+}
+
+.list {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: last baseline;
+  gap: 5%;
+  list-style-type: none;
+}
+
+.words {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  gap: 10px;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.word {
+  background-color: rgb(230, 236, 220);
+  border-radius: 5px;
+  width: 350px;
+  height: 400px;
+}
+
+.top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.word-image {
+  height: 100px;
+}
+
+.book-words {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.no-margin {
+  margin: 0;
+  color: #2c2647;
+}
+
+.en {
+  font-weight: 700;
+  align-self: baseline;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+.book-descriptions {
+  display: flex;
+  flex-direction: column;
+}
+
+.en-meaning, .ru-meaning {
+  margin: 5px 0;
+}
+
+.transcript {
+  display: flex;
+  gap: 5px;
+}
+
+.play {
+  cursor: pointer;
+  font-size: 20px;
+  color: #ff3d00;
+}
+
+.bottom-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+h4 {
+  margin: 5px 0
+}
+
+.example {
+  margin: 5px 0;
+}
+
+.svg {
+  width: 20px;
+}

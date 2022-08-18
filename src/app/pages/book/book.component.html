@@ -1,1 +1,78 @@
-<p>book works!</p>
+<nav class="nav">
+  <ul class="list">
+    <li class="item a1" (click)="changeLevel(0)">Beginner</li>
+    <li class="item a2" (click)="changeLevel(1)">Elementary</li>
+    <li class="item b1" (click)="changeLevel(2)">Pre intermediate</li>
+    <li class="item b2" (click)="changeLevel(3)">Intermediate</li>
+    <li class="item c1" (click)="changeLevel(4)">Upper intermediate</li>
+    <li class="item c2" (click)="changeLevel(5)">Advanced</li>
+  </ul>
+</nav>
+<div class="words">
+
+  <div class="word" *ngFor="let word of words">
+
+    <div class="top-section">
+      <div class="book-words">
+        <div class="transcript">
+          <p class="no-margin en">{{ word.word }}</p>
+          <span class="play" (click)="play(word.audio)">
+            <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+              <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+              <g><g><path d="M638.4,885.2c0,22.1-12.8,42.2-32.8,51.6c-7.7,3.7-16,5.4-24.3,5.4c-13,0-25.9-4.5-36.4-13.1L233.1,670.7H67.1c-31.5,0-57.1-25.5-57.1-57V386.4c0-31.5,25.5-57.1,57.1-57.1h166.1L545,70.9c17-14.1,40.7-17.1,60.7-7.7c20,9.4,32.8,29.5,32.8,51.6L638.4,885.2L638.4,885.2z M857.6,796c-1.4,0.1-2.7,0.2-4.1,0.2c-15.1,0-29.6-5.9-40.3-16.7l-7.6-7.7c-20-20-22.3-51.6-5.5-74.3c42.7-57.6,65.3-125.9,65.3-197.5c0-77-25.6-149.3-74-209c-18.4-22.7-16.7-55.6,3.9-76.3l7.6-7.6c11.4-11.4,26.7-17.6,43.2-16.6c16.1,0.8,31.1,8.4,41.3,20.9c67.2,82.2,102.7,182,102.7,288.6c0,99.3-31.4,193.8-90.8,273.3C889.3,786.6,874.1,794.9,857.6,796z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+              </svg>
+          </span>
+        </div>
+        <p class="no-margin transcript-word">{{ word.transcription }}</p>
+        <p class="no-margin ru">{{ word.wordTranslate }}</p>
+      </div>
+      <img class="word-image" [src]="baseImg + word.image" alt="img">
+    </div>
+
+    <div class="bottom-section">
+
+      <h4>Description</h4>
+
+      <div class="book-descriptions">
+        <p class="no-margin en-meaning">
+
+          <span class="play" (click)="play(word.audioMeaning)">
+            <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+              <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+              <g><g><path d="M638.4,885.2c0,22.1-12.8,42.2-32.8,51.6c-7.7,3.7-16,5.4-24.3,5.4c-13,0-25.9-4.5-36.4-13.1L233.1,670.7H67.1c-31.5,0-57.1-25.5-57.1-57V386.4c0-31.5,25.5-57.1,57.1-57.1h166.1L545,70.9c17-14.1,40.7-17.1,60.7-7.7c20,9.4,32.8,29.5,32.8,51.6L638.4,885.2L638.4,885.2z M857.6,796c-1.4,0.1-2.7,0.2-4.1,0.2c-15.1,0-29.6-5.9-40.3-16.7l-7.6-7.7c-20-20-22.3-51.6-5.5-74.3c42.7-57.6,65.3-125.9,65.3-197.5c0-77-25.6-149.3-74-209c-18.4-22.7-16.7-55.6,3.9-76.3l7.6-7.6c11.4-11.4,26.7-17.6,43.2-16.6c16.1,0.8,31.1,8.4,41.3,20.9c67.2,82.2,102.7,182,102.7,288.6c0,99.3-31.4,193.8-90.8,273.3C889.3,786.6,874.1,794.9,857.6,796z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+              </svg>
+          </span>
+
+          {{ word.textMeaning }}
+        </p>
+
+        <p class="no-margin ru-meaning">{{ word.textMeaningTranslate }}</p>
+      </div>
+
+      <h4>Examples</h4>
+
+      <div class="examples">
+
+        <p class="example no-margin example-en">
+
+          <span class="play" (click)="play(word.audioExample)">
+            <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+              <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+              <g><g><path d="M638.4,885.2c0,22.1-12.8,42.2-32.8,51.6c-7.7,3.7-16,5.4-24.3,5.4c-13,0-25.9-4.5-36.4-13.1L233.1,670.7H67.1c-31.5,0-57.1-25.5-57.1-57V386.4c0-31.5,25.5-57.1,57.1-57.1h166.1L545,70.9c17-14.1,40.7-17.1,60.7-7.7c20,9.4,32.8,29.5,32.8,51.6L638.4,885.2L638.4,885.2z M857.6,796c-1.4,0.1-2.7,0.2-4.1,0.2c-15.1,0-29.6-5.9-40.3-16.7l-7.6-7.7c-20-20-22.3-51.6-5.5-74.3c42.7-57.6,65.3-125.9,65.3-197.5c0-77-25.6-149.3-74-209c-18.4-22.7-16.7-55.6,3.9-76.3l7.6-7.6c11.4-11.4,26.7-17.6,43.2-16.6c16.1,0.8,31.1,8.4,41.3,20.9c67.2,82.2,102.7,182,102.7,288.6c0,99.3-31.4,193.8-90.8,273.3C889.3,786.6,874.1,794.9,857.6,796z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+              </svg>
+          </span>
+
+          {{ word.textExample }}
+        </p>
+
+        <p class="example no-margin example-ru">{{ word.textExampleTranslate }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-paginator [length]="length"
+              [pageSize]="pageSize"
+              (page)="pageEvent = movePage($event)"
+              aria-label="Select page">
+</mat-paginator>

@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+}
+
+.book {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: rgb(136, 179, 179);
+  padding: 20px;
+}
