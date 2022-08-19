@@ -17,6 +17,8 @@ export class BookComponent implements OnInit {
   page = 0;
   baseImg = baseUrl + "/";
 
+  currentLevel = 0;
+
   length = 600;
   pageSize = 20;
   pageEvent: PageEvent | undefined;
@@ -41,6 +43,7 @@ export class BookComponent implements OnInit {
 
   changeLevel(group: number) {
     this.group = group;
+    this.currentLevel = group;
     this.fetchWords(this.group, this.page);
   }
 

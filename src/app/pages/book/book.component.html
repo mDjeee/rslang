@@ -1,11 +1,11 @@
 <nav class="nav">
   <ul class="list">
-    <li class="item a1" (click)="changeLevel(0)">Beginner</li>
-    <li class="item a2" (click)="changeLevel(1)">Elementary</li>
-    <li class="item b1" (click)="changeLevel(2)">Pre intermediate</li>
-    <li class="item b2" (click)="changeLevel(3)">Intermediate</li>
-    <li class="item c1" (click)="changeLevel(4)">Upper intermediate</li>
-    <li class="item c2" (click)="changeLevel(5)">Advanced</li>
+    <li class="item a1" (click)="changeLevel(0)" [class]="currentLevel === 0 ? 'visible' : 'opacity'">Beginner</li>
+    <li class="item a2" (click)="changeLevel(1)" [class]="currentLevel === 1 ? 'visible' : 'opacity'">Elementary</li>
+    <li class="item b1" (click)="changeLevel(2)" [class]="currentLevel === 2 ? 'visible' : 'opacity'">Pre intermediate</li>
+    <li class="item b2" (click)="changeLevel(3)" [class]="currentLevel === 3 ? 'visible' : 'opacity'">Intermediate</li>
+    <li class="item c1" (click)="changeLevel(4)" [class]="currentLevel === 4 ? 'visible' : 'opacity'">Upper intermediate</li>
+    <li class="item c2" (click)="changeLevel(5)" [class]="currentLevel === 5 ? 'visible' : 'opacity'">Advanced</li>
   </ul>
 </nav>
 <div class="words">
@@ -74,5 +74,6 @@
 <mat-paginator [length]="length"
               [pageSize]="pageSize"
               (page)="pageEvent = movePage($event)"
-              aria-label="Select page">
+              aria-label="Select page"
+              class="pagination">
 </mat-paginator>

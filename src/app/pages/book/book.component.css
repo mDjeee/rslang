@@ -10,6 +10,19 @@
   color: #fff3e0;
   cursor: pointer;
   margin: 5px 0;
+  transition: filter 0.3s ease;
+}
+
+.item:hover {
+  filter: brightness(100%) saturate(100%);
+}
+
+.visible {
+  filter: brightness(100%) saturate(100%);
+}
+
+.opacity {
+  filter: brightness(60%) saturate(0%);
 }
 
 .a1 {
@@ -57,10 +70,10 @@
 }
 
 .word {
-  background-color: rgb(230, 236, 220);
+  background-color: #eceff1;
   border-radius: 5px;
   width: 350px;
-  height: 400px;
+  height: 420px;
 }
 
 .top-section {
@@ -130,4 +143,8 @@ h4 {
 
 .svg {
   width: 20px;
+}
+
+.pagination {
+  margin-top: 10px;
 }

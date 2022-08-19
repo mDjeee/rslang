@@ -5,6 +5,6 @@ body {
 .book {
   max-width: 1200px;
   margin: 0 auto;
-  background-color: rgb(136, 179, 179);
+  background-color: #607d8b;
   padding: 20px;
 }
