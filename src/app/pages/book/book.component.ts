@@ -36,7 +36,6 @@ export class BookComponent implements OnInit {
 
   private fetchWords(group: number, page: number){
     this._Subscription = this.api.getWords(group, page).subscribe(books => {
-      console.log(books);
       this.words = books;
     })
   }
@@ -44,6 +43,7 @@ export class BookComponent implements OnInit {
   changeLevel(group: number) {
     this.group = group;
     this.currentLevel = group;
+    this.movePage({pageIndex: 0})
     this.fetchWords(this.group, this.page);
   }
 
