@@ -9,16 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/header/header-components/navigation/navigation.component';
 import { LogoComponent } from './components/header/header-components/logo/logo.component';
 import { AuthorizationBtnComponent } from './components/header/header-components/authorization-btn/authorization-btn.component';
-import { RouterModule, Routes } from '@angular/router';
-
-const appRoutes: Routes = [
-  // { path: '', component: AppComponent },
-  { path: 'textbook', component: BookComponent },
-  { path: 'gams/audiocall', component: AudiocallComponent },
-  { path: 'games/sprint', component: SprintComponent },
-  // { path: 'authorization', component: NotFoundPage },
-  // { path: '**', component: NotFoundComponent },
-]
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +24,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
