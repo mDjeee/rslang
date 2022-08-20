@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './pages/main/main.component';
 import { CapabilitiesComponent } from './components/capabilities/capabilities.component';
 import { TeamComponent } from './components/team/team.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TeamComponent } from './components/team/team.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
