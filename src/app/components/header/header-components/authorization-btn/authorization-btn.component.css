@@ -1,0 +1,18 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  border: none;
+}
+
+.authorization__button {
+  background-color: transparent;
+  padding: 5px 30px;
+  border: 2px solid olive;
+  border-radius: 20px;
+  font-size: 1.5rem;line-height: 100%;
+}
+
+.authorization__button:hover {
+  background-color: lime;
+}
