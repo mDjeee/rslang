@@ -11,6 +11,7 @@ import { LogoComponent } from './components/header/header-components/logo/logo.c
 import { AuthorizationBtnComponent } from './components/header/header-components/authorization-btn/authorization-btn.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './pages/main/main.component';
+import { CapabilitiesComponent } from './components/capabilities/capabilities.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MainComponent } from './pages/main/main.component';
     NavigationComponent,
     LogoComponent,
     AuthorizationBtnComponent,
-    MainComponent
+    MainComponent,
+    CapabilitiesComponent
   ],
   imports: [
     BrowserModule,

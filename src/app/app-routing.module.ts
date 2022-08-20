@@ -4,9 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { BookComponent } from './pages/book/book.component';
 import { AudiocallComponent } from './pages/audiocall/audiocall.component';
 import { SprintComponent } from './pages/sprint/sprint.component';
+import { MainComponent } from './pages/main/main.component';
 
 const appRoutes: Routes = [
-  // { path: '', component: MainComponent },
+  { path: '', component: MainComponent },
   { path: 'textbook', component: BookComponent },
   { path: 'gams/audiocall', component: AudiocallComponent },
   { path: 'games/sprint', component: SprintComponent },
