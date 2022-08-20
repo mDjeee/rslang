@@ -9,7 +9,7 @@ import { MainComponent } from './pages/main/main.component';
 const appRoutes: Routes = [
   { path: '', component: MainComponent },
   { path: 'textbook', component: BookComponent },
-  { path: 'gams/audiocall', component: AudiocallComponent },
+  { path: 'games/audiocall', component: AudiocallComponent },
   { path: 'games/sprint', component: SprintComponent },
   // { path: 'authorization', component: NotFoundPage },
   // { path: '**', component: NotFoundComponent },
