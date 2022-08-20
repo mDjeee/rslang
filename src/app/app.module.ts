@@ -10,6 +10,7 @@ import { NavigationComponent } from './components/header/header-components/navig
 import { LogoComponent } from './components/header/header-components/logo/logo.component';
 import { AuthorizationBtnComponent } from './components/header/header-components/authorization-btn/authorization-btn.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MainComponent } from './pages/main/main.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderComponent,
     NavigationComponent,
     LogoComponent,
-    AuthorizationBtnComponent
+    AuthorizationBtnComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
