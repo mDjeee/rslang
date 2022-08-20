@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BookComponent } from './pages/book/book.component';
 import { RssLogoComponent } from './components/rss-logo/rss-logo.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RssLogoComponent } from './components/rss-logo/rss-logo.component';
     MainComponent,
     CapabilitiesComponent,
     TeamComponent,
-    RssLogoComponent
+    RssLogoComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,
