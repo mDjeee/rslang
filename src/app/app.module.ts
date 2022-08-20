@@ -11,6 +11,7 @@ import { MainComponent } from './pages/main/main.component';
 import { CapabilitiesComponent } from './components/capabilities/capabilities.component';
 import { TeamComponent } from './components/team/team.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { ShareModule } from './share/share.module';
 import { CoreModule } from './core/core.module';
 
@@ -21,6 +22,8 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule
     BrowserAnimationsModule
     ShareModule,
     CoreModule
