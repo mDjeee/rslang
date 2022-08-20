@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Jost;
+  src: url("/assets/font/Jost-Black.ttf") format("opentype");
+}
+@font-face {
+  font-family: Jost-k;
+  src: url("/assets/font/Jost-Light.ttf") format("opentype");
+}
