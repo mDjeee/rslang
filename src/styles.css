@@ -6,3 +6,6 @@
   font-family: Jost-k;
   src: url("/assets/font/Jost-Light.ttf") format("opentype");
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
