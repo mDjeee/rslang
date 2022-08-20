@@ -14,6 +14,7 @@ import { TeamComponent } from './components/team/team.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BookComponent } from './pages/book/book.component';
+import { RssLogoComponent } from './components/rss-logo/rss-logo.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BookComponent } from './pages/book/book.component';
     AuthorizationBtnComponent,
     MainComponent,
     CapabilitiesComponent,
-    TeamComponent
+    TeamComponent,
+    RssLogoComponent
   ],
   imports: [
     AppRoutingModule,
