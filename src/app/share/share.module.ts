@@ -15,6 +15,7 @@ import {RssLogoComponent} from "../components/rss-logo/rss-logo.component";
 import {FooterComponent} from "../components/footer/footer.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {AppRoutingModule} from "../app-routing.module";
 
 
 @NgModule({
@@ -36,7 +37,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AppRoutingModule,
+
   ],
   exports: [
     TimerComponent,
