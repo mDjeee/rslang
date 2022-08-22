@@ -10,7 +10,8 @@
   justify-content: space-around;
   align-items: center;
   padding: 1rem;
-  background-color: firebrick;
+  background-color: #010851
+  ;
 }
 
 .column {
@@ -20,6 +21,19 @@
   gap: 1rem;
 }
 
+.column__subtitle,
 .column__link {
-  color: black;
+  font-family: 'Jost-k';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 140%;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.8);
 }
+
+.column__subtitle {
+  color: rgba(255, 255, 255, 1);
+  font-weight: 700;
+}
+
