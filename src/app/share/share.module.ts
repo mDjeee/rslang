@@ -10,7 +10,6 @@ import { LogoComponent } from '../components/header/header-components/logo/logo.
 import { NavigationComponent } from '../components/header/header-components/navigation/navigation.component';
 import { MainComponent } from '../pages/main/main.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LevelComponent } from '../pages/sprint/level/level.component';
 
 
 @NgModule({
@@ -24,7 +23,6 @@ import { LevelComponent } from '../pages/sprint/level/level.component';
     MainComponent,
     CapabilitiesComponent,
     TeamComponent,
-    LevelComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +39,6 @@ import { LevelComponent } from '../pages/sprint/level/level.component';
     CapabilitiesComponent,
     TeamComponent,
     HttpClientModule,
-    LevelComponent
   ]
 })
 export class ShareModule { }

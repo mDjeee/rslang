@@ -8,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sprint.component.css']
 })
 export class SprintComponent implements OnInit {
-
-  constructor() { }
+  condition: boolean = true
+  Score!: number
+  constructor() {
+    this.Score = 0;
+  }
 
   startGame() {
-    
+    this.condition = !this.condition
   }
   ngOnInit(): void {
 
