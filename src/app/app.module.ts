@@ -6,16 +6,18 @@ import { ShareModule } from './share/share.module';
 import { CoreModule } from './core/core.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     AppRoutingModule,
     ShareModule,
     CoreModule,
+
   ],
   exports: [AppRoutingModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
