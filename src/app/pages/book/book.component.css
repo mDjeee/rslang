@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Jost';
+  src: url(../../../assets/font/Jost-Black.ttf) format("opentype");
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,6 +12,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  font-family: 'Jost';
 }
 
 .book-header {
