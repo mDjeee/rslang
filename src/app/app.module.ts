@@ -1,13 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { NavigationComponent } from './components/header/header-components/navigation/navigation.component';
 import { AppLogoComponent } from './components/appLogo/appLogo.component';
-import { AuthorizationBtnComponent } from './components/header/header-components/authorization-btn/authorization-btn.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ShareModule } from './share/share.module';
+import { CoreModule } from './core/core.module';
 import { MainComponent } from './pages/main/main.component';
 import { CapabilitiesComponent } from './components/capabilities/capabilities.component';
 import { TeamComponent } from './components/team/team.component';
@@ -20,11 +17,8 @@ import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     BookComponent,
-    NavigationComponent,
     AppLogoComponent,
-    AuthorizationBtnComponent,
     MainComponent,
     CapabilitiesComponent,
     TeamComponent,
@@ -32,9 +26,10 @@ import { FooterComponent } from './components/footer/footer.component';
     FooterComponent
   ],
   imports: [
-    AppRoutingModule,
     BrowserModule,
-    HttpClientModule,
+    AppRoutingModule,
+    ShareModule,
+    CoreModule
     BrowserAnimationsModule,
     MatPaginatorModule
   ],
