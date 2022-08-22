@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LogoComponent } from './logo.component';
+import { RssLogoComponent } from './rss-logo.component';
 
-describe('LogoComponent', () => {
-  let component: LogoComponent;
-  let fixture: ComponentFixture<LogoComponent>;
+describe('RssLogoComponent', () => {
+  let component: RssLogoComponent;
+  let fixture: ComponentFixture<RssLogoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LogoComponent ]
+      declarations: [ RssLogoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LogoComponent);
+    fixture = TestBed.createComponent(RssLogoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

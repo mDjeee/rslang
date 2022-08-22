@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LogoComponent } from './header-components/logo/logo.component';
+import { AppLogoComponent } from '../appLogo/appLogo.component';
 import { NavigationComponent } from './header-components/navigation/navigation.component';
 
 @Component({
