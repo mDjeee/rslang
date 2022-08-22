@@ -6,10 +6,15 @@ import { TeamComponent } from '../components/team/team.component';
 import { AuthorizationBtnComponent } from '../components/header/header-components/authorization-btn/authorization-btn.component';
 import { CapabilitiesComponent } from '../components/capabilities/capabilities.component';
 import { HeaderComponent } from '../components/header/header.component';
-import { LogoComponent } from '../components/header/header-components/logo/logo.component';
 import { NavigationComponent } from '../components/header/header-components/navigation/navigation.component';
 import { MainComponent } from '../pages/main/main.component';
 import { HttpClientModule } from '@angular/common/http';
+import {BookComponent} from "../pages/book/book.component";
+import {AppLogoComponent} from "../components/appLogo/appLogo.component";
+import {RssLogoComponent} from "../components/rss-logo/rss-logo.component";
+import {FooterComponent} from "../components/footer/footer.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -18,27 +23,37 @@ import { HttpClientModule } from '@angular/common/http';
     SprintComponent,
     HeaderComponent,
     NavigationComponent,
-    LogoComponent,
     AuthorizationBtnComponent,
     MainComponent,
     CapabilitiesComponent,
     TeamComponent,
+    BookComponent,
+    AppLogoComponent,
+    RssLogoComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   exports: [
     TimerComponent,
     SprintComponent,
     HeaderComponent,
     NavigationComponent,
-    LogoComponent,
     AuthorizationBtnComponent,
     MainComponent,
     CapabilitiesComponent,
     TeamComponent,
     HttpClientModule,
+    BookComponent,
+    AppLogoComponent,
+    RssLogoComponent,
+    FooterComponent,
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ]
 })
 export class ShareModule { }
