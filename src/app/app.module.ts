@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -12,22 +13,29 @@ import { CapabilitiesComponent } from './components/capabilities/capabilities.co
 import { TeamComponent } from './components/team/team.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { ShareModule } from './share/share.module';
-import { CoreModule } from './core/core.module';
+import { BookComponent } from './pages/book/book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    BookComponent,
+    NavigationComponent,
+    LogoComponent,
+    AuthorizationBtnComponent,
+    MainComponent,
+    CapabilitiesComponent,
+    TeamComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatPaginatorModule
-    BrowserAnimationsModule
-    ShareModule,
-    CoreModule
   ],
+  exports: [AppRoutingModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
