@@ -1,1 +1,100 @@
-<p>book works!</p>
+<div class="book-wrapper">
+
+  <div class="book-header">
+    <h1 class="book-title">Учебник</h1>
+    <div class="show-translate">
+      <div class="show-translate_set" (click)="showConfig=!showConfig">
+        <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+          <polygon fill=#ED80FD stroke-width=0></polygon><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"></path></svg>
+      </div>
+      <div class="show-translate_wrapper" [class]="showConfig ? 'show-width' : 'hide-width'">
+        <input *ngIf="showConfig" type="checkbox" name="show" id="show" [checked]="showTranslate" (change)="showTranslate = !showTranslate">
+        <label *ngIf="showConfig" class="show-label" for="show">Показать перевод</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="level-header">
+    <h3 class="level-title">Уровни сложности</h3>
+  </div>
+
+  <nav class="nav">
+    <ul class="list">
+      <li class="item a1" (click)="changeLevel(0)" [class]="currentLevel === 0 ? 'visible' : 'opacity'">Beginner</li>
+      <li class="item a2" (click)="changeLevel(1)" [class]="currentLevel === 1 ? 'visible' : 'opacity'">Elementary</li>
+      <li class="item b1" (click)="changeLevel(2)" [class]="currentLevel === 2 ? 'visible' : 'opacity'">Pre intermediate</li>
+      <li class="item b2" (click)="changeLevel(3)" [class]="currentLevel === 3 ? 'visible' : 'opacity'">Intermediate</li>
+      <li class="item c1" (click)="changeLevel(4)" [class]="currentLevel === 4 ? 'visible' : 'opacity'">Upper intermediate</li>
+      <li class="item c2" (click)="changeLevel(5)" [class]="currentLevel === 5 ? 'visible' : 'opacity'">Advanced</li>
+    </ul>
+  </nav>
+
+  <div class="words-container">
+
+    <div class="word-container" *ngFor="let word of words">
+      <div class="word-image">
+        <img class="image" [src]="baseImg + word.image">
+      </div>
+
+        <div class="word-description">
+          <div class="word">
+            <h3 class="word_en">{{ word.word }}</h3>
+            <h3 class="word_transcript">{{ word.transcription }}</h3>
+            <span class="play" (click)="play(word.audio)">
+              <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+                <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                <g><g><path d="M638.4,885.2c0,22.1-12.8,42.2-32.8,51.6c-7.7,3.7-16,5.4-24.3,5.4c-13,0-25.9-4.5-36.4-13.1L233.1,670.7H67.1c-31.5,0-57.1-25.5-57.1-57V386.4c0-31.5,25.5-57.1,57.1-57.1h166.1L545,70.9c17-14.1,40.7-17.1,60.7-7.7c20,9.4,32.8,29.5,32.8,51.6L638.4,885.2L638.4,885.2z M857.6,796c-1.4,0.1-2.7,0.2-4.1,0.2c-15.1,0-29.6-5.9-40.3-16.7l-7.6-7.7c-20-20-22.3-51.6-5.5-74.3c42.7-57.6,65.3-125.9,65.3-197.5c0-77-25.6-149.3-74-209c-18.4-22.7-16.7-55.6,3.9-76.3l7.6-7.6c11.4-11.4,26.7-17.6,43.2-16.6c16.1,0.8,31.1,8.4,41.3,20.9c67.2,82.2,102.7,182,102.7,288.6c0,99.3-31.4,193.8-90.8,273.3C889.3,786.6,874.1,794.9,857.6,796z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+                </svg>
+            </span>
+            <h3 class="word_ru" *ngIf="showTranslate">{{ word.wordTranslate }}</h3>
+          </div>
+
+          <div class="word-meaning">
+            <h3 class="word-meaning_header">Description
+
+              <span class="play" (click)="play(word.audioMeaning)">
+                <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+                  <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                  <g><g><path d="M638.4,885.2c0,22.1-12.8,42.2-32.8,51.6c-7.7,3.7-16,5.4-24.3,5.4c-13,0-25.9-4.5-36.4-13.1L233.1,670.7H67.1c-31.5,0-57.1-25.5-57.1-57V386.4c0-31.5,25.5-57.1,57.1-57.1h166.1L545,70.9c17-14.1,40.7-17.1,60.7-7.7c20,9.4,32.8,29.5,32.8,51.6L638.4,885.2L638.4,885.2z M857.6,796c-1.4,0.1-2.7,0.2-4.1,0.2c-15.1,0-29.6-5.9-40.3-16.7l-7.6-7.7c-20-20-22.3-51.6-5.5-74.3c42.7-57.6,65.3-125.9,65.3-197.5c0-77-25.6-149.3-74-209c-18.4-22.7-16.7-55.6,3.9-76.3l7.6-7.6c11.4-11.4,26.7-17.6,43.2-16.6c16.1,0.8,31.1,8.4,41.3,20.9c67.2,82.2,102.7,182,102.7,288.6c0,99.3-31.4,193.8-90.8,273.3C889.3,786.6,874.1,794.9,857.6,796z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+                  </svg>
+              </span>
+            </h3>
+
+            <div class="word-meaning_text">
+              <p class="word-meaning_en" [innerHtml]="word.textMeaning"></p>
+              <p class="word-meaning_ru" *ngIf="showTranslate">{{ word.textMeaningTranslate }}</p>
+            </div>
+          </div>
+
+          <div class="word-example">
+            <h3 class="word-example_header">Example
+
+              <span class="play" (click)="play(word.audioExample)">
+                <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+                  <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                  <g><g><path d="M638.4,885.2c0,22.1-12.8,42.2-32.8,51.6c-7.7,3.7-16,5.4-24.3,5.4c-13,0-25.9-4.5-36.4-13.1L233.1,670.7H67.1c-31.5,0-57.1-25.5-57.1-57V386.4c0-31.5,25.5-57.1,57.1-57.1h166.1L545,70.9c17-14.1,40.7-17.1,60.7-7.7c20,9.4,32.8,29.5,32.8,51.6L638.4,885.2L638.4,885.2z M857.6,796c-1.4,0.1-2.7,0.2-4.1,0.2c-15.1,0-29.6-5.9-40.3-16.7l-7.6-7.7c-20-20-22.3-51.6-5.5-74.3c42.7-57.6,65.3-125.9,65.3-197.5c0-77-25.6-149.3-74-209c-18.4-22.7-16.7-55.6,3.9-76.3l7.6-7.6c11.4-11.4,26.7-17.6,43.2-16.6c16.1,0.8,31.1,8.4,41.3,20.9c67.2,82.2,102.7,182,102.7,288.6c0,99.3-31.4,193.8-90.8,273.3C889.3,786.6,874.1,794.9,857.6,796z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+                  </svg>
+              </span>
+            </h3>
+
+            <div class="word-example_text">
+              <p class="word-example_en" [innerHtml]="word.textExample"></p>
+              <p class="word-example_ru" *ngIf="showTranslate">{{ word.textExampleTranslate }}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+
+  <div class="pagination">
+    <!-- <mat-paginator length=600
+                  pageSize=20
+                  (page)="pageEvent = movePage($event)"
+                  aria-label="Select page"
+                  hidePageSize = true
+                  showFirstLastButtons = true>
+    </mat-paginator> -->
+  </div>
+</div>
