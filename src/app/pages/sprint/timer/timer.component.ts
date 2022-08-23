@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
+import {Subscription, timer} from 'rxjs';
 
 @Component({
   selector: 'app-timer',
@@ -7,15 +7,27 @@ import { timer } from 'rxjs';
   styleUrls: ['./timer.component.css']
 })
 export class TimerComponent implements OnInit {
-  seconds:number = 0
+  seconds!:number | string
+  public subscription!: Subscription;
   constructor() {}
+
   ngOnInit() {
-
-    const numbers = timer(1000, 1000);
-    numbers.subscribe((x)=> {
-      this.seconds = (x);
+    this.subscription = timer(0, 1000).subscribe(t => {
+      this.seconds = (t)
+      this.setFormData();
     });
-
   }
 
-}
+  private setFormData() {
+    if (this.seconds >= 60 ) {
+      this.subscription.unsubscribe();
+      this.seconds = 'Время вышло';
+    }
+
+  }
+  }
+
+
+
+
+
