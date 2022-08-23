@@ -21,6 +21,7 @@ import { FormsModule }   from '@angular/forms';
 import { LevelSelectionComponent } from '../components/level-selection/level-selection.component';
 import { LevelComponent } from '../pages/sprint/level/level.component';
 import { AudiocallComponent } from '../pages/audiocall/audiocall.component';
+import { GameTitleComponent } from '../components/game-title/game-title.component';
 
 
 
@@ -41,7 +42,8 @@ import { AudiocallComponent } from '../pages/audiocall/audiocall.component';
     AuthComponent,,
     LevelSelectionComponent,
     LevelComponent,
-    AudiocallComponent
+    AudiocallComponent,
+    GameTitleComponent
   ],
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ import { AudiocallComponent } from '../pages/audiocall/audiocall.component';
     MatPaginatorModule,
     LevelSelectionComponent,
     LevelComponent,
-    AudiocallComponent
+    AudiocallComponent,
+    GameTitleComponent
   ]
 })
 export class ShareModule { }
