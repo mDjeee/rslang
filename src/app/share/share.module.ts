@@ -16,6 +16,7 @@ import {FooterComponent} from "../components/footer/footer.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {AppRoutingModule} from "../app-routing.module";
+import {LevelComponent} from "../pages/sprint/level/level.component";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {AppRoutingModule} from "../app-routing.module";
     BookComponent,
     AppLogoComponent,
     RssLogoComponent,
-    FooterComponent
+    FooterComponent,
+    LevelComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,8 @@ import {AppRoutingModule} from "../app-routing.module";
     RssLogoComponent,
     FooterComponent,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    LevelComponent
   ]
 })
 export class ShareModule { }
