@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   { path: 'textbook', component: BookComponent },
   { path: 'games/audiocall', component: AudiocallComponent },
   { path: 'games/sprint', component: SprintComponent },
-  { path: 'games/sprint/level', component: LevelComponent}
+  { path: 'games/sprint/level/:id', component: LevelComponent}
   // { path: 'authorization', component: NotFoundPage },
   // { path: '**', component: NotFoundComponent },
 ]
