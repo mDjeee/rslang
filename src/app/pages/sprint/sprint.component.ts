@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {IWordGame} from "../../../types/IWord";
+import {ApiService} from "../../core/api.service";
+import {group} from "@angular/animations";
 
 
 
@@ -8,15 +12,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sprint.component.css']
 })
 export class SprintComponent implements OnInit {
-  condition: boolean = true
   Score!: number
-  constructor() {
+  public  level!: IWordGame[];
+  constructor(private router: Router,private api: ApiService) {
     this.Score = 0;
   }
+  choiceLevel() {
 
-  startGame() {
-    this.condition = !this.condition
-  }
+}
   ngOnInit(): void {
 
   }
