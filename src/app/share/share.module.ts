@@ -18,6 +18,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {AppRoutingModule} from "../app-routing.module";
 import { AuthComponent } from '../pages/auth/auth.component';
 import { FormsModule }   from '@angular/forms';
+import { LevelSelectionComponent } from '../components/level-selection/level-selection.component';
+import { LevelComponent } from '../pages/sprint/level/level.component';
+import { AudiocallComponent } from '../pages/audiocall/audiocall.component';
+
 
 
 @NgModule({
@@ -34,7 +38,10 @@ import { FormsModule }   from '@angular/forms';
     AppLogoComponent,
     RssLogoComponent,
     FooterComponent,
-    AuthComponent,
+    AuthComponent,,
+    LevelSelectionComponent,
+    LevelComponent,
+    AudiocallComponent
   ],
   imports: [
     CommonModule,
@@ -62,6 +69,9 @@ import { FormsModule }   from '@angular/forms';
     FooterComponent,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    LevelSelectionComponent,
+    LevelComponent,
+    AudiocallComponent
   ]
 })
 export class ShareModule { }

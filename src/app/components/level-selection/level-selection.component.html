@@ -1,12 +1,12 @@
 <div class="level">
-  <h3>Выберите уровень</h3>
+  <h3>Выберите уровень:</h3>
   <div class="level__list">
-    <div class="level__item">A1</div>
-    <div class="level__item">A1</div>
-    <div class="level__item">B1</div>
-    <div class="level__item">B2</div>
-    <div class="level__item">B3</div>
-    <div class="level__item">B4</div>
+    <button class="level__item" (click)="onChangeLevel($event, 0)">A1</button>
+    <button class="level__item" (click)="onChangeLevel($event, 1)">A2</button>
+    <button class="level__item" (click)="onChangeLevel($event, 2)">B1</button>
+    <button class="level__item" (click)="onChangeLevel($event, 3)">B2</button>
+    <button class="level__item" (click)="onChangeLevel($event, 4)">C1</button>
+    <button class="level__item" (click)="onChangeLevel($event, 5)">C2</button>
   </div>
-  <button class="level__btn">Начать</button>
+  <button class="start__btn" disabled (click)="onStart()">Начать</button>
 </div>
