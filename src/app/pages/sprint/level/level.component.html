@@ -1,19 +1,24 @@
-<div class="wrapper_game">
+<button class="button button_song" (click)="stopSong()">🔊</button>
+<!--<button class="button" (click)="playSong()">🔇</button>-->
+<div class="wrapper_game" >
   <div class="image-run">
-    <img id="run-girl" src="./assets/run.jpg" />
+    <img alt="some" id="run-girl" src="./assets/run.jpg" />
   </div>
-  <div class="wrap-game">
-    <p id="score">Score</p>
+  <div class="wrap-game" >
+    <div class="score-time">
+    <app-timer></app-timer>
+    <p id="score" >{{score}}</p>
+  </div>
     <div class="words">
-    <p class="test">
-      <b>{{ "СЛОВА" }}</b>
-    </p>
-    <p class="test">
-      <b>-</b>
-    </p>
-    <p class="test">
-      <b>{{ "СЛОВА" }}</b>
-    </p>
+      <p class="test">
+        <b>{{ wordEN }}</b>
+      </p>
+      <p class="test">
+        <b>-</b>
+      </p>
+      <p class="test">
+        <b>{{ wordRU }}</b>
+      </p>
     </div>
     <div class="control">
       <button class="button button_false">Неправильно</button>
@@ -21,6 +26,5 @@
     </div>
   </div>
   <div class="timer">
-    <app-timer></app-timer>
   </div>
 </div>

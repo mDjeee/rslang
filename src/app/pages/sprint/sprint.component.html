@@ -1,41 +1,16 @@
 <div class="wrapper">
-  <div *ngIf="condition" class="level">
+  <div  class="level">
     <p>Выберете уровень</p>
     <div class="buttons_level">
-    <button (click)="startGame()" class="button_level button_A1">A1</button>
-    <button (click)="startGame()" class="button_level button_A2">A2</button>
-    <button (click)="startGame()" class="button_level button_B1">B1</button>
-    <button (click)="startGame()" class="button_level button_B2">B2</button>
-    <button (click)="startGame()" class="button_level button_C1">C1</button>
-    <button (click)="startGame()" class="button_level button_C2">C2</button>
+    <button class="button_level button_A1" routerLink="/games/sprint/level/0" (click)="choiceLevel()">A1</button>
+    <button class="button_level button_A2" routerLink="/games/sprint/level/1" (click)="choiceLevel()">A2</button>
+    <button class="button_level button_B1" routerLink="/games/sprint/level/2" (click)="choiceLevel()">B1</button>
+    <button class="button_level button_B2" routerLink="/games/sprint/level/3" (click)="choiceLevel()">B2</button>
+    <button class="button_level button_C1" routerLink="/games/sprint/level/4" (click)="choiceLevel()">C1</button>
+    <button class="button_level button_C2" routerLink="/games/sprint/level/5" (click)="choiceLevel()">C2</button>
   </div>
 </div>
-  <div class="wrapper_game" *ngIf="!condition">
-    <div class="image-run">
-      <img id="run-girl" src="./assets/run.jpg" />
-    </div>
-    <div class="wrap-game">
-      <p id="score">Score {{Score}}</p>
-      <app-timer></app-timer>
-      <div class="words">
-      <p class="test">
-        <b>{{ "СЛОВА" }}</b>
-      </p>
-      <p class="test">
-        <b>-</b>
-      </p>
-      <p class="test">
-        <b>{{ "СЛОВА" }}</b>
-      </p>
-      </div>
-      <div class="control">
-        <button class="button button_false">Неправильно</button>
-        <button class="button button_true">Правильно</button>
-      </div>
-    </div>
-    <div class="timer">
-    </div>
-  </div>
+
 </div>
 
 
