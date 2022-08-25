@@ -24,6 +24,12 @@ export class ApiService {
       email: email,
       password: password
     });
+  }
 
+  signInUser(email: string, password: string): Observable<any> {
+    return this.http.post(`${baseUrl}/signin`, {
+      email: email,
+      password: password
+    });
   }
 }
