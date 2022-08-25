@@ -16,6 +16,8 @@ import {FooterComponent} from "../components/footer/footer.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {AppRoutingModule} from "../app-routing.module";
+import { AuthComponent } from '../pages/auth/auth.component';
+import { FormsModule }   from '@angular/forms';
 
 
 @NgModule({
@@ -31,11 +33,13 @@ import {AppRoutingModule} from "../app-routing.module";
     BookComponent,
     AppLogoComponent,
     RssLogoComponent,
-    FooterComponent
+    FooterComponent,
+    AuthComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
     AppRoutingModule,
@@ -47,6 +51,7 @@ import {AppRoutingModule} from "../app-routing.module";
     HeaderComponent,
     NavigationComponent,
     AuthorizationBtnComponent,
+    AuthComponent,
     MainComponent,
     CapabilitiesComponent,
     TeamComponent,
@@ -56,7 +61,7 @@ import {AppRoutingModule} from "../app-routing.module";
     RssLogoComponent,
     FooterComponent,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ]
 })
 export class ShareModule { }
