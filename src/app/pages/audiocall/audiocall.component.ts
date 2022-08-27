@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { baseUrl } from 'src/api/baseUrl';
 import { ApiService } from 'src/app/core/api.service';
@@ -11,34 +11,38 @@ import { IWord } from 'src/types/IWord';
 })
 export class AudiocallComponent implements OnInit {
   words: IWord[] = [];
+  currentWord!: IWord;
   _Subscription: Subscription | undefined;
   group!: number;
   page = 0;
   baseImg = baseUrl + "/";
+  answers: IWord[] = [];
+  visible: boolean = true;
+
+  @Output()
+  startGame = new EventEmitter;
 
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    // this.fetchWords(this.group, this.page);
+
   }
 
-  onStartGame(level: number) {
-    this.group = level;
-    console.log(level);
-    const container = <HTMLDivElement>document.querySelector('.audiocall');
-    container.innerHTML = '';
+  onStartGame(words: IWord[]) {
+
+    this.words = words;
+    // this.startGame.emit(this.words);
+    this.currentWord = words[0];
+    console.log(words);
   }
 
-  // private fetchWords(group: number, page: number){
-  //   this._Subscription = this.api.getWords(group, page).subscribe(books => {
-  //     console.log(books);
-  //     this.words = books;
-  //   })
-  // }
+  onStart() {
+    console.log(this.words)
+    this.visible = false;
 
-  // changeLevel(group: number) {
-  //   this.group = group;
-  //   this.fetchWords(this.group, this.page);
-  // }
+  }
 
+  startGames(words: IWord[]) {
+    console.log(this.words)
+  }
 }

@@ -1,0 +1,16 @@
+<div class="audiocall__container">
+  <div class="audiocall__icon" (click)="play()" *ngIf="!imgVisible"></div>
+  <img class="audiocall__image" src={{imgSrc}} *ngIf="imgVisible">
+  <div class="audiocall__answer" *ngIf="imgVisible">
+    <div class="audiocall__word">{{word}}</div>
+    <div class="audiocall__icon" (click)="play()"></div>
+  </div>
+  <div class="audiocall__answers">
+    <button class="audiocall__item" (click)="checkWord($event)">{{randomWords[0]}}</button>
+    <button class="audiocall__item" (click)="checkWord($event)">{{randomWords[1]}}</button>
+    <button class="audiocall__item" (click)="checkWord($event)">{{randomWords[2]}}</button>
+    <button class="audiocall__item" (click)="checkWord($event)">{{randomWords[3]}}</button>
+    <button class="audiocall__item" (click)="checkWord($event)">{{randomWords[4]}}</button>
+  </div>
+  <button class="audiocall__btn" (click)="nextWord()">{{buttonText}}</button>
+</div>

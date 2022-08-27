@@ -7,12 +7,14 @@ import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './pages/auth/auth-interceptor.service';
 import { AuthGuard } from './pages/auth/auth.guard';
+import { GameResultComponent } from './components/game-result/game-result.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    GameResultComponent,
   ],
   imports: [
     AppRoutingModule,
