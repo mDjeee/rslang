@@ -21,6 +21,17 @@
   justify-content: space-between;
 }
 
+.form-title {
+  width: 100%;
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
 .form-label {
   font-style: normal;
   font-weight: 700;

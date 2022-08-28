@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -9,7 +9,9 @@ import { AuthService } from './auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
+
+  private userSub?: Subscription;
 
   isLoginMode = true;
   isLoading = true;
@@ -33,7 +35,7 @@ export class AuthComponent implements OnInit {
 
     if(this.isLoginMode) {
       this.authService.logIn(email, password).subscribe(resData => {
-        console.log(resData);
+        console.log(resData, 1);
         this.router.navigate(['/']);
       }, errorRes => {
         console.log(errorRes);
@@ -59,7 +61,7 @@ export class AuthComponent implements OnInit {
     else {
       this.authService.signUp(name, email, password).subscribe(resData => {
         console.log(resData);
-        this.router.navigate(['/']);
+        this.onSwitchMode();
       }, errorRes => {
         console.log(errorRes);
         switch (errorRes.status) {
@@ -76,13 +78,46 @@ export class AuthComponent implements OnInit {
             this.error = 'Unknown error';
         }
       });
+
+      this.authService.logIn(email, password).subscribe(resData => {
+        console.log(resData, 1);
+        this.router.navigate(['/']);
+      }, errorRes => {
+        console.log(errorRes);
+        console.log(errorRes.status);
+        switch(errorRes.status) {
+          case 404:
+            this.error = errorRes.error;
+            break;
+          case 403:
+            this.error = errorRes.error + ': wrong email or password';
+            break;
+          case 0:
+            this.error = 'Unknown error';
+            break;
+          case 404:
+            this.error = 'Not found';
+            break;
+          default:
+            this.error = 'Unknown error;'
+        }
+      })
     }
 
 
     form.reset();
   }
 
+  isAuthenticated = false;
+
   ngOnInit(): void {
+    this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.userSub?.unsubscribe();
   }
 
 }
