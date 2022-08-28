@@ -6,6 +6,7 @@ import { ShareModule } from './share/share.module';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './pages/auth/auth-interceptor.service';
+import { AuthGuard } from './pages/auth/auth.guard';
 
 
 
@@ -25,7 +26,8 @@ import { AuthInterceptorService } from './pages/auth/auth-interceptor.service';
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
-    multi: true}],
+    multi: true},
+    AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
