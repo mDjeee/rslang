@@ -23,6 +23,7 @@ import { LevelComponent } from '../pages/sprint/level/level.component';
 import { AudiocallComponent } from '../pages/audiocall/audiocall.component';
 import { GameTitleComponent } from '../components/game-title/game-title.component';
 import { GameAudiocallComponent } from '../pages/audiocall/game-audiocall/game-audiocall.component';
+import { GameResultComponent } from '../components/game-result/game-result.component';
 
 
 
@@ -45,7 +46,8 @@ import { GameAudiocallComponent } from '../pages/audiocall/game-audiocall/game-a
     LevelComponent,
     AudiocallComponent,
     GameTitleComponent,
-    GameAudiocallComponent
+    GameAudiocallComponent,
+    GameResultComponent
   ],
   imports: [
     CommonModule,
@@ -77,7 +79,8 @@ import { GameAudiocallComponent } from '../pages/audiocall/game-audiocall/game-a
     LevelComponent,
     AudiocallComponent,
     GameTitleComponent,
-    GameAudiocallComponent
+    GameAudiocallComponent,
+    GameResultComponent
   ]
 })
 export class ShareModule { }

@@ -1,8 +1,10 @@
 <div class="audiocall">
-  <div class="audiocall__container" *ngIf="!words.length">
+  <div class="audiocall__container" *ngIf="!start && !end">
     <app-game-title></app-game-title>
     <h3>Выберите уровень:</h3>
-    <app-level-selection (start) = "onStartGame($event)"></app-level-selection>
+    <app-level-selection (start) = "onStartGame()"></app-level-selection>
+    <!-- <app-level-selection></app-level-selection> -->
   </div>
-    <app-game-audiocall *ngIf="words.length" [words] = 'words'></app-game-audiocall>
+    <app-game-audiocall *ngIf="start && !end"></app-game-audiocall>
+    <app-game-result *ngIf="end"></app-game-result>
 </div>

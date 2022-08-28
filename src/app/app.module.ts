@@ -14,14 +14,12 @@ import { GameResultComponent } from './components/game-result/game-result.compon
 @NgModule({
   declarations: [
     AppComponent,
-    GameResultComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     ShareModule,
     CoreModule,
-
   ],
   exports: [AppRoutingModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

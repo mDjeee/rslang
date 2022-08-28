@@ -1,8 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { baseUrl } from 'src/api/baseUrl';
-import { ApiService } from 'src/app/core/api.service';
-import { IWord } from 'src/types/IWord';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AudiocallService } from 'src/app/core/audiocall.service';
 
 @Component({
   selector: 'app-audiocall',
@@ -10,39 +7,31 @@ import { IWord } from 'src/types/IWord';
   styleUrls: ['./audiocall.component.css']
 })
 export class AudiocallComponent implements OnInit {
-  words: IWord[] = [];
-  currentWord!: IWord;
-  _Subscription: Subscription | undefined;
-  group!: number;
-  page = 0;
-  baseImg = baseUrl + "/";
-  answers: IWord[] = [];
-  visible: boolean = true;
+  start: boolean = false;
+  end: boolean = false;
 
   @Output()
   startGame = new EventEmitter;
 
-  constructor(private api: ApiService) { }
+  constructor(private service: AudiocallService) { }
 
   ngOnInit(): void {
 
   }
 
-  onStartGame(words: IWord[]) {
-
-    this.words = words;
-    // this.startGame.emit(this.words);
-    this.currentWord = words[0];
-    console.log(words);
+  onStartGame() {
+    if (this.service.words.length) {
+      this.start = true;
+    }
   }
 
-  onStart() {
-    console.log(this.words)
-    this.visible = false;
-
+  onEndGame() {
+    if (this.service.words.length === this.service.answers.length) {
+      console.log('end')
+    }
   }
 
-  startGames(words: IWord[]) {
-    console.log(this.words)
+  ngOnDestroy(): void {
+    this.service.unSubscribe();
   }
 }

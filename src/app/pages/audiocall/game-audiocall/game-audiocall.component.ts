@@ -1,7 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { baseUrl } from 'src/api/baseUrl';
-import { answer } from 'src/types/audiocall-answer';
-import { IWord } from 'src/types/IWord';
+import { AudiocallService } from 'src/app/core/audiocall.service';
 
 @Component({
   selector: 'app-game-audiocall',
@@ -10,82 +8,68 @@ import { IWord } from 'src/types/IWord';
 })
 
 export class GameAudiocallComponent implements OnInit {
-  @Output()
-  endGame = new EventEmitter;
-  @Input() words: IWord[] = [];
-  answers: answer[] = [];
-  index: number = 0;
+
   randomWords!: string[];
   buttonText: string = 'Не знаю';
   imgSrc!: string;
   imgVisible: boolean = false;
-  word!: string;
+  currentWord!: string;
+  translateWord!: string;
+  end: boolean = false;
 
-
-  constructor() {
+  constructor(private service: AudiocallService) {
    }
 
   ngOnInit(): void {
-    this.play();
-    this.getRandomWords()
-
-  }
-
-  onStartGame(words: IWord[]) {
-    this.words = words;
-  }
-
-  startGame() {
-    console.log(this.words);
-  }
-
-  play() {
-    const src = this.words[this.index].audio
-    const audio = new Audio();
-    audio.src = baseUrl + "/" + src;
-    audio.load();
-    audio.play()
-  }
-
-  getRandomWords() {
-    const words = [...this.words];
-    words.sort(() => Math.random() - 0.5);
-    const translate = words.map(item => item.wordTranslate).slice(0,4);
-    translate.push(this.words[this.index].wordTranslate);
-    translate.sort(() => Math.random() - 0.5);
-    this.randomWords = translate;
+    console.log('init!')
+    this.randomWords = this.service.nextWord();
   }
 
   nextWord() {
-    if(this.index < 19) {
-      this.index++;
-      this.play();
-      this.getRandomWords();
-      this.buttonText = 'Не знаю';
-      this.activateDiactivateItems(true);
-      this.imgVisible = false;
+    if(this.buttonText === 'Не знаю') {
+      this.showCorrectAnswer();
+      this.activateDiactivateItems(false, this.translateWord);
+      this.buttonText = 'Дальше';
     } else {
-      alert('Game over');
-      console.log(this.answers);
-      this.endGame.emit(this.answers);
+      if(this.service.index < 19) {
+        this.randomWords = this.service.nextWord();
+        this.buttonText = 'Не знаю';
+        this.activateDiactivateItems(true);
+        this.imgVisible = false;
+      } else {
+        alert('Game over');
+        this.end = true;
+      }
     }
+
   }
 
-  checkWord(event: Event) {
+  showCorrectAnswer (word?: string) {
+    const checkWord = this.service.getRightAnswer(word);
+    this.translateWord = checkWord.translate;
+    this.currentWord = checkWord.word;
+    this.imgSrc = checkWord.imgSrc;
+    this.imgVisible = true;
+    this.activateDiactivateItems(false, this.translateWord);
+    if(word) return
+  }
+
+  selectWord(event: Event) {
     const target = <HTMLButtonElement>event.target;
     const word = target.innerText;
-    const correctWord = this.words[this.index].wordTranslate;
-    this.imgSrc = baseUrl + "/" + this.words[this.index].image;
-    this.imgVisible = true;
-    this.word = this.words[this.index].word;
-    this.answers.push({id: this.words[this.index].id, result: correctWord === word});
-    if (correctWord === word) {
+    this.showCorrectAnswer(word);
+
+    if (this.translateWord === word) {
       target.classList.add('audiocall__item_correct');
     } else {
       target.classList.add('audiocall__item_incorrect');
     }
-    this.activateDiactivateItems(false, correctWord);
+
     this.buttonText = 'Дальше';
+  }
+
+  onPlayAudio() {
+    this.service.play();
   }
 
   activateDiactivateItems(activate: boolean, correctWord?: string) {
