@@ -33,6 +33,7 @@ export class BookComponent implements OnInit {
 
   currentLevel = 0;
   currentWordIndex = 0;
+  currentDictionary = 0;
 
   isDictionary = false;
   bookPage = 0;

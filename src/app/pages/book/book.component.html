@@ -22,18 +22,18 @@
 
   <nav class="nav" *ngIf="!isDictionary">
     <ul class="list">
-      <li class="item a1" (click)="changeLevel(0)" [class]="currentLevel === 0 ? 'visible' : 'opacity'">Beginner</li>
-      <li class="item a2" (click)="changeLevel(1)" [class]="currentLevel === 1 ? 'visible' : 'opacity'">Elementary</li>
-      <li class="item b1" (click)="changeLevel(2)" [class]="currentLevel === 2 ? 'visible' : 'opacity'">Pre intermediate</li>
-      <li class="item b2" (click)="changeLevel(3)" [class]="currentLevel === 3 ? 'visible' : 'opacity'">Intermediate</li>
-      <li class="item c1" (click)="changeLevel(4)" [class]="currentLevel === 4 ? 'visible' : 'opacity'">Upper intermediate</li>
-      <li class="item c2" (click)="changeLevel(5)" [class]="currentLevel === 5 ? 'visible' : 'opacity'">Advanced</li>
+      <li class="item a0" (click)="changeLevel(0)" [class]="currentLevel === 0 ? 'a00' : 'opacity'">Beginner</li>
+      <li class="item a1" (click)="changeLevel(1)" [class]="currentLevel === 1 ? 'a10' : 'opacity'">Elementary</li>
+      <li class="item a2" (click)="changeLevel(2)" [class]="currentLevel === 2 ? 'a20' : 'opacity'">Pre intermediate</li>
+      <li class="item a3" (click)="changeLevel(3)" [class]="currentLevel === 3 ? 'a30' : 'opacity'">Intermediate</li>
+      <li class="item a4" (click)="changeLevel(4)" [class]="currentLevel === 4 ? 'a40' : 'opacity'">Upper intermediate</li>
+      <li class="item a5" (click)="changeLevel(5)" [class]="currentLevel === 5 ? 'a50' : 'opacity'">Advanced</li>
     </ul>
   </nav>
 
   <div class="words-container" *ngIf="!isDictionary">
 
-    <div class="word-container" *ngFor="let word of words">
+    <div class="word-container" *ngFor="let word of words" [class]="'a' + currentLevel + '0'">
       <div class="word-image">
         <img class="image" [src]="baseImg + word.image">
       </div>
@@ -109,15 +109,15 @@
 
   <nav class="nav" *ngIf="isDictionary">
     <ul class="list">
+      <li class="item" [class]="currentDictionary === 0 ? 'visible' : ''">Сложные слова</li>
       <li class="item">Изучаемые</li>
-      <li class="item">Сложные слова</li>
       <li class="item">Удаленные слова</li>
     </ul>
   </nav>
 
   <div class="words-container" *ngIf="isDictionary">
 
-    <div class="word-container" *ngFor="let word of userWords">
+    <div class="word-container" *ngFor="let word of userWords" [class]="'a' + word.group + '0'">
       <div class="word-image">
         <img class="image" [src]="baseImg + word.image">
       </div>
