@@ -28,6 +28,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-chart.component';
 import { WordsTableComponent } from '../components/words-table/words-table.component';
+import { NotFoundComponent } from '../pages/not-found/not-found.component';
+
 
 
 
@@ -53,7 +55,8 @@ import { WordsTableComponent } from '../components/words-table/words-table.compo
     GameAudiocallComponent,
     GameResultComponent,
     DoughnutChartComponent,
-    WordsTableComponent
+    WordsTableComponent,
+    NotFoundComponent
 
   ],
   imports: [
@@ -88,7 +91,8 @@ import { WordsTableComponent } from '../components/words-table/words-table.compo
     AudiocallComponent,
     GameTitleComponent,
     GameAudiocallComponent,
-    GameResultComponent
+    GameResultComponent,
+    NotFoundComponent
   ]
 })
 export class ShareModule { }
