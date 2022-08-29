@@ -132,6 +132,7 @@ body {
 }
 
 .list {
+  box-sizing: border-box;
   display: flex;
   width: 100%;
   margin: 0 auto 50px;
@@ -165,13 +166,15 @@ p {
 
 .word {
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap;
+  column-gap: 5px;
 }
 
 .word_en {
   font-weight: 700;
   letter-spacing: 0.05em;
   font-size: 1.5rem;
+  margin: 0;
 }
 
 .play {
@@ -183,11 +186,13 @@ p {
   font-weight: 600;
   letter-spacing: 0.05em;
   font-size: 1.5rem;
+  margin: 0;
 }
 
 .word_transcript {
   letter-spacing: 0.05em;
   font-size: 1.5rem;
+  margin: 0;
 }
 
 .word-meaning_header, .word-example_header {
@@ -290,7 +295,7 @@ p {
 
   .word {
     flex-wrap: wrap;
-    gap: 5px;
+    column-gap: 5px;
   }
 
   .word * {

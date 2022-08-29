@@ -15,10 +15,13 @@ export class BookComponent implements OnInit {
 
   words: IWord[] = [];
   userHardWords: any = [];
+  userWords: IWord[] = [];
 
+  _SubsGetUserWord: Subscription | undefined;
   _SubsUserWord: Subscription | undefined;
   _Subscription: Subscription | undefined;
   _SubsHardWord: Subscription | undefined;
+  _SubsRemoveUserWord: Subscription | undefined;
   group = this.bookService.group;
   page = this.bookService.page;
   baseImg = baseUrl + "/";
@@ -49,7 +52,6 @@ export class BookComponent implements OnInit {
 
   private fetchWords(group: number, page: number){
     this._Subscription = this.api.getWords(group, page).subscribe((books: IWord[]) => {
-      console.log(books);
       this.words = books;
     })
   }
@@ -58,24 +60,41 @@ export class BookComponent implements OnInit {
     if(this.user) {
       this._SubsHardWord = this.api.getUserWords(this.user.userId).subscribe((books) => {
         this.userHardWords = books;
-        console.log(this.userHardWords)
+        this.userHardWords.forEach((word: any) => {
+          this.loadUserWords(word.wordId);
+        })
       })
     }
+  }
+
+  private loadUserWords(userWordId: string) {
+    this._SubsGetUserWord = this.api.getWord(userWordId).subscribe((word: IWord) => {
+      this.userWords.push(word);
+    });
   }
 
   changePage(page: number) {
     this.bookPage = page;
     this.bookPage ? this.isDictionary = true : this.isDictionary = false;
+    this.userWords = [];
+    this.fetchUserHardWords();
   }
 
   addToHard(userId: string, wordId: string) {
     this._SubsUserWord = this.api.postUserWord(userId, wordId).subscribe();
   }
 
+  removeFromHard(userId: string, wordId: string) {
+    this._SubsRemoveUserWord = this.api.deleteUserWord(userId, wordId).subscribe();
+    this.userWords = [];
+    this.fetchUserHardWords();
+  }
+
   changeLevel(group: number) {
     this.bookService.group = group;
     this.group = group;
     this.currentLevel = group;
+    localStorage.setItem('group', `${this.group}`);
     this.movePage({pageIndex: 0})
     this.fetchWords(this.group, this.page);
   }
@@ -83,6 +102,7 @@ export class BookComponent implements OnInit {
   movePage(currentPage: any) {
     this.page = currentPage.pageIndex;
     this.bookService.page = currentPage.pageIndex;
+    localStorage.setItem('page', `${this.page}`);
     this.fetchWords(this.group, this.page);
     return currentPage;
   }
@@ -103,6 +123,9 @@ export class BookComponent implements OnInit {
     }
     if(this._SubsUserWord) {
       this._SubsUserWord.unsubscribe();
+    }
+    if(this._SubsGetUserWord) {
+      this._SubsGetUserWord.unsubscribe();
     }
   }
 }

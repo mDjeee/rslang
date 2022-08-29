@@ -14,8 +14,8 @@ export class ApiService {
     return this.http.get(`${baseWordsUrl}?group=${group}&page=${page}`);
   }
 
-  getWord(id: number): Observable<any> {
-    return this.http.get(`${baseWordsUrl}?${id}`);
+  getWord(id: string): Observable<any> {
+    return this.http.get(`${baseWordsUrl}/${id}`);
   }
 
   postUser(name: string, email: string, password: string): Observable<any> {
@@ -56,5 +56,9 @@ export class ApiService {
         allTry:0
       }
     });
+  }
+
+  deleteUserWord(userId: string, wordId: string) {
+    return this.http.delete(`${baseUrl}/users/${userId}/words/${wordId}`);
   }
 }
