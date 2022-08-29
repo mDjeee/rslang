@@ -1,0 +1,60 @@
+<div class="form-container">
+  <form class="form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <div class="alert" *ngIf="error">
+      <p class="error-msg">{{ error }}</p>
+    </div>
+    <div class="game-container" *ngIf="!error">
+
+    </div>
+
+    <div class="form-group" *ngIf="isLoginMode">
+      <h3 class="form-title">Авторизуйтесь</h3>
+    </div>
+
+    <div class="form-group" *ngIf="!isLoginMode">
+      <label for="name" class="form-label">Имя: </label>
+      <input
+        class="form-input"
+        type="name"
+        name="name"
+        id="name"
+        ngModel
+        [required]="!isLoginMode">
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="form-label">Почта: </label>
+      <input
+        class="form-input"
+        type="email"
+        name="email"
+        id="email"
+        ngModel
+        required
+        email>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="form-label">Пароль: </label>
+      <input
+      class="form-input"
+      type="password"
+      name="password"
+      id="password"
+      ngModel
+      required
+      minlength="8">
+    </div>
+    <div class="form-buttons">
+      <button
+        type="submit"
+        class="sign-in form-button"
+        [disabled]="!authForm.valid">
+        {{isLoginMode ? 'Войти' : 'Зарегистрироваться'}}
+      </button>
+
+      <button class="sign-up form-button" (click)="onSwitchMode()" type="button">{{!isLoginMode ? 'Вход' : 'Перейти к регистрации'}}</button>
+    </div>
+  </form>
+
+</div>

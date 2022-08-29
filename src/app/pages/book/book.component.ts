@@ -34,7 +34,7 @@ export class BookComponent implements OnInit {
   }
 
   private fetchWords(group: number, page: number){
-    this._Subscription = this.api.getWords(group, page).subscribe(books => {
+    this._Subscription = this.api.getWords(group, page).subscribe((books: IWord[]) => {
       console.log(books);
       this.words = books;
     })

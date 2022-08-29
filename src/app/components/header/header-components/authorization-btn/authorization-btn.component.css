@@ -15,5 +15,6 @@
 }
 
 .authorization__button:hover {
-  background-color: lime;
+  background-color: #00b8d4;
+  cursor: pointer;
 }
