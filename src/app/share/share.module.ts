@@ -24,6 +24,10 @@ import { AudiocallComponent } from '../pages/audiocall/audiocall.component';
 import { GameTitleComponent } from '../components/game-title/game-title.component';
 import { GameAudiocallComponent } from '../pages/audiocall/game-audiocall/game-audiocall.component';
 import { GameResultComponent } from '../components/game-result/game-result.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-chart.component';
+import { WordsTableComponent } from '../components/words-table/words-table.component';
 
 
 
@@ -47,7 +51,10 @@ import { GameResultComponent } from '../components/game-result/game-result.compo
     AudiocallComponent,
     GameTitleComponent,
     GameAudiocallComponent,
-    GameResultComponent
+    GameResultComponent,
+    DoughnutChartComponent,
+    WordsTableComponent
+
   ],
   imports: [
     CommonModule,
@@ -56,7 +63,9 @@ import { GameResultComponent } from '../components/game-result/game-result.compo
     BrowserAnimationsModule,
     MatPaginatorModule,
     AppRoutingModule,
-
+,
+    MatTabsModule,
+    MatTableModule
   ],
   exports: [
     TimerComponent,

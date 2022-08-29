@@ -1,7 +1,10 @@
 <div class="result">
-  <div class="result__text">{{title}}</div>
-  <div class="result__description">{{text}}</div>
-  <div id="divChart">
-    <canvas id="myChart"></canvas>
-  </div>
+  <mat-tab-group>
+    <mat-tab color="black" label="Статистика">
+      <app-doughnut-chart [data]="dataForChart" [displayTitle]="displayTitle"></app-doughnut-chart>
+    </mat-tab>
+    <mat-tab color="black" label="Слова">
+      <app-words-table [answers]="dataSource"></app-words-table>
+    </mat-tab>
+  </mat-tab-group>
 </div>

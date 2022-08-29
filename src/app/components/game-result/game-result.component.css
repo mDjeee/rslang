@@ -1,6 +1,22 @@
 #divChart {
   display: block;
-  width: 400px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+:host .mat-tab-label .mat-tab-label-content {
+  color: black;
+  background-color: green;
+}
+
+:host ::ng-deep  .mat-tab-label-content {
+  color: black;
+}
+
+:host ::ng-deep .mat-tab-group {
 
 }

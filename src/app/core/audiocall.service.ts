@@ -62,7 +62,12 @@ export class AudiocallService {
   }
 
   pushAnswer(result: boolean = false) {
-    this.answers.push({id: this.words[this.index].id, result: result});
+    this.answers.push({
+      id: this.words[this.index].id,
+      result: result,
+      word: this.words[this.index].word,
+      translate:  this.words[this.index].wordTranslate ,
+      audio: this.words[this.index].audio});
   }
 
   getImageSource() {
