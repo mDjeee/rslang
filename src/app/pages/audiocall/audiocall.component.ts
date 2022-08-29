@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AudiocallService } from 'src/app/core/audiocall.service';
+
 
 @Component({
   selector: 'app-audiocall',
@@ -6,10 +8,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./audiocall.component.css']
 })
 export class AudiocallComponent implements OnInit {
+  start: boolean = false;
+  end: boolean = false;
 
-  constructor() { }
+  @Output()
+  startGame = new EventEmitter;
+
+  constructor(private service: AudiocallService) { }
 
   ngOnInit(): void {
+
   }
 
+  onStartGame() {
+    if (this.service.words.length) {
+      this.start = true;
+    }
+  }
+
+  onEndGame() {
+    if (this.service.words.length === this.service.answers.length) {
+      console.log('end')
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.service.unSubscribe();
+  }
 }

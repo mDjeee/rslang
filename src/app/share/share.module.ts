@@ -18,6 +18,17 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {AppRoutingModule} from "../app-routing.module";
 import { AuthComponent } from '../pages/auth/auth.component';
 import { FormsModule }   from '@angular/forms';
+import { LevelSelectionComponent } from '../components/level-selection/level-selection.component';
+import { LevelComponent } from '../pages/sprint/level/level.component';
+import { AudiocallComponent } from '../pages/audiocall/audiocall.component';
+import { GameTitleComponent } from '../components/game-title/game-title.component';
+import { GameAudiocallComponent } from '../pages/audiocall/game-audiocall/game-audiocall.component';
+import { GameResultComponent } from '../components/game-result/game-result.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-chart.component';
+import { WordsTableComponent } from '../components/words-table/words-table.component';
+
 
 
 @NgModule({
@@ -35,6 +46,15 @@ import { FormsModule }   from '@angular/forms';
     RssLogoComponent,
     FooterComponent,
     AuthComponent,
+    LevelSelectionComponent,
+    LevelComponent,
+    AudiocallComponent,
+    GameTitleComponent,
+    GameAudiocallComponent,
+    GameResultComponent,
+    DoughnutChartComponent,
+    WordsTableComponent
+
   ],
   imports: [
     CommonModule,
@@ -43,7 +63,8 @@ import { FormsModule }   from '@angular/forms';
     BrowserAnimationsModule,
     MatPaginatorModule,
     AppRoutingModule,
-
+    MatTabsModule,
+    MatTableModule
   ],
   exports: [
     TimerComponent,
@@ -62,6 +83,12 @@ import { FormsModule }   from '@angular/forms';
     FooterComponent,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    LevelSelectionComponent,
+    LevelComponent,
+    AudiocallComponent,
+    GameTitleComponent,
+    GameAudiocallComponent,
+    GameResultComponent
   ]
 })
 export class ShareModule { }

@@ -1,0 +1,16 @@
+.audiocall {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.audiocall__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+:host ::ng-deep .audiocall__btn {
+  background-color: green;
+}
