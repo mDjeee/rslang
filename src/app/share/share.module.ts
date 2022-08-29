@@ -45,7 +45,7 @@ import { WordsTableComponent } from '../components/words-table/words-table.compo
     AppLogoComponent,
     RssLogoComponent,
     FooterComponent,
-    AuthComponent,,
+    AuthComponent,
     LevelSelectionComponent,
     LevelComponent,
     AudiocallComponent,
@@ -63,7 +63,6 @@ import { WordsTableComponent } from '../components/words-table/words-table.compo
     BrowserAnimationsModule,
     MatPaginatorModule,
     AppRoutingModule,
-,
     MatTabsModule,
     MatTableModule
   ],
