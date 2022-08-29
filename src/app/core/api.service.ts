@@ -32,4 +32,29 @@ export class ApiService {
       password: password
     });
   }
+
+  getUserWords(userId: string) {
+    return this.http.get(`${baseUrl}/users/${userId}/words/`);
+  }
+
+  getUserWord(userId: string, wordId: string) {
+    return this.http.get(`${baseUrl}/users/${userId}/words/${wordId}`);
+  }
+
+  postUserWord(userId: string, wordId: string) {
+    return this.http.post(`${baseUrl}/users/${userId}/words/${wordId}`, {
+      difficulty: "difficult",
+      optional:{
+        isDeleted: false,
+        addTime: new Date(),
+        games:{
+          sprint: { right:0, wrong:0 },
+          savanna: { right:0, wrong:0 },
+          oasis: { right:0, wrong:0 },
+          audioCall: { right:0, wrong:0 }
+        },
+        allTry:0
+      }
+    });
+  }
 }

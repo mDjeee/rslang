@@ -4,6 +4,8 @@ import { ApiService } from 'src/app/core/api.service';
 import { IWord } from 'src/types/IWord';
 import { PageEvent } from '@angular/material/paginator';
 import { baseUrl } from 'src/api/baseUrl';
+import { BookService } from './book.service';
+import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
@@ -12,9 +14,13 @@ import { baseUrl } from 'src/api/baseUrl';
 export class BookComponent implements OnInit {
 
   words: IWord[] = [];
+  userHardWords: any = [];
+
+  _SubsUserWord: Subscription | undefined;
   _Subscription: Subscription | undefined;
-  group = 0;
-  page = 0;
+  _SubsHardWord: Subscription | undefined;
+  group = this.bookService.group;
+  page = this.bookService.page;
   baseImg = baseUrl + "/";
 
   showConfig = false;
@@ -25,12 +31,19 @@ export class BookComponent implements OnInit {
   currentLevel = 0;
   currentWordIndex = 0;
 
+  isDictionary = false;
+
   pageEvent: PageEvent | undefined;
 
-  constructor(private api: ApiService) { }
+  user = this.authService.user.value;
+
+  constructor(private api: ApiService, private bookService: BookService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.fetchWords(this.group, this.page);
+    if(!!this.user) {
+      this.fetchUserHardWords();
+    }
   }
 
   private fetchWords(group: number, page: number){
@@ -40,11 +53,25 @@ export class BookComponent implements OnInit {
     })
   }
 
-  changeWord(index: number) {
-    this.currentWordIndex = index;
+  private fetchUserHardWords() {
+    if(this.user) {
+      this._SubsHardWord = this.api.getUserWords(this.user.userId).subscribe((books) => {
+        this.userHardWords = books;
+        console.log(this.userHardWords)
+      })
+    }
+  }
+
+  changePage() {
+    this.isDictionary = !this.isDictionary;
+  }
+
+  addToHard(userId: string, wordId: string) {
+    this._SubsUserWord = this.api.postUserWord(userId, wordId).subscribe();
   }
 
   changeLevel(group: number) {
+    this.bookService.group = group;
     this.group = group;
     this.currentLevel = group;
     this.movePage({pageIndex: 0})
@@ -53,6 +80,7 @@ export class BookComponent implements OnInit {
 
   movePage(currentPage: any) {
     this.page = currentPage.pageIndex;
+    this.bookService.page = currentPage.pageIndex;
     this.fetchWords(this.group, this.page);
     return currentPage;
   }
@@ -61,12 +89,18 @@ export class BookComponent implements OnInit {
     const audio = new Audio();
     audio.src = baseUrl + "/" + src;
     audio.load();
-    audio.play()
+    audio.play();
   }
 
   ngOnDestroy(): void {
     if(this._Subscription) {
       this._Subscription.unsubscribe();
+    }
+    if(this._SubsHardWord) {
+      this._SubsHardWord.unsubscribe();
+    }
+    if(this._SubsUserWord) {
+      this._SubsUserWord.unsubscribe();
     }
   }
 }

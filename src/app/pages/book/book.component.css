@@ -24,6 +24,21 @@ body {
   margin-right: 10px;
 }
 
+.book-change {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.book-change:hover {
+  color: #ED80FD;
+  opacity: 1;
+}
+
+.book-choosen {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .show-translate {
   width: 100%;
   display: flex;
@@ -230,6 +245,33 @@ p {
   border-bottom-left-radius: 20px;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.hard-word {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.hard-word button:hover {
+  background-color: #ED80FD;
+}
+
+.delete-word, .add-to-word {
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 0.2s;
+
+  border: none;
+  cursor: pointer;
+
+  color: #ffffff;
+  background-color:#ff3d00;
+}
+
+.dictionary {
+  border-left: 5px solid #2c2647;
+  padding-left: 10px;
 }
 
 @media screen and (max-width: 900px) {

@@ -1,7 +1,8 @@
 <div class="book-wrapper">
 
   <div class="book-header">
-    <h1 class="book-title">Учебник</h1>
+    <h1 class="book-title" (click)="changePage()" [class]="(!!user && isDictionary) ? 'book-change' : 'book-choosen'">Учебник</h1>
+    <h1 class="book-title dictionary" (click)="changePage()" [class]="(!!user && !isDictionary) ? 'book-change' : 'book-choosen'">Словарь</h1>
     <div class="show-translate">
       <div class="show-translate_set" (click)="showConfig=!showConfig">
         <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
@@ -15,11 +16,11 @@
 
   </div>
 
-  <div class="level-header">
+  <div class="level-header" *ngIf="!isDictionary">
     <h3 class="level-title">Уровни сложности</h3>
   </div>
 
-  <nav class="nav">
+  <nav class="nav" *ngIf="!isDictionary">
     <ul class="list">
       <li class="item a1" (click)="changeLevel(0)" [class]="currentLevel === 0 ? 'visible' : 'opacity'">Beginner</li>
       <li class="item a2" (click)="changeLevel(1)" [class]="currentLevel === 1 ? 'visible' : 'opacity'">Elementary</li>
@@ -30,7 +31,7 @@
     </ul>
   </nav>
 
-  <div class="words-container">
+  <div class="words-container" *ngIf="!isDictionary">
 
     <div class="word-container" *ngFor="let word of words">
       <div class="word-image">
@@ -83,12 +84,17 @@
               <p class="word-example_ru" *ngIf="showTranslate">{{ word.textExampleTranslate }}</p>
             </div>
           </div>
+
+          <div class="hard-word" *ngIf="!!user">
+            <button class="add-to-word" (click)="addToHard(user.userId, word.id)">+ в сложные слова</button>
+            <button class="delete-word">Удалить слово</button>
+          </div>
         </div>
 
       </div>
   </div>
 
-  <div class="pagination">
+  <div class="pagination" *ngIf="!isDictionary">
     <mat-paginator length=600
                   pageSize=20
                   (page)="pageEvent = movePage($event)"
@@ -97,4 +103,17 @@
                   showFirstLastButtons = true>
     </mat-paginator>
   </div>
+
+  <!-- Dictionary -->
+
+
+  <nav class="nav" *ngIf="isDictionary">
+    <ul class="list">
+      <li class="item">Изучаемые</li>
+      <li class="item">Сложные слова</li>
+      <li class="item">Удаленные слова</li>
+    </ul>
+  </nav>
+
+
 </div>
