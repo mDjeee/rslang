@@ -32,6 +32,7 @@ export class BookComponent implements OnInit {
   currentWordIndex = 0;
 
   isDictionary = false;
+  bookPage = 0;
 
   pageEvent: PageEvent | undefined;
 
@@ -62,8 +63,9 @@ export class BookComponent implements OnInit {
     }
   }
 
-  changePage() {
-    this.isDictionary = !this.isDictionary;
+  changePage(page: number) {
+    this.bookPage = page;
+    this.bookPage ? this.isDictionary = true : this.isDictionary = false;
   }
 
   addToHard(userId: string, wordId: string) {

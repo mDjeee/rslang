@@ -1,8 +1,8 @@
 <div class="book-wrapper">
 
   <div class="book-header">
-    <h1 class="book-title" (click)="changePage()" [class]="(!!user && isDictionary) ? 'book-change' : 'book-choosen'">Учебник</h1>
-    <h1 class="book-title dictionary" (click)="changePage()" [class]="(!!user && !isDictionary) ? 'book-change' : 'book-choosen'">Словарь</h1>
+    <h1 class="book-title" (click)="changePage(0)" [class]="(!!user && !(bookPage === 0)) ? 'book-change' : 'book-choosen'">Учебник</h1>
+    <h1 class="book-title dictionary" (click)="changePage(1)" [class]="(!!user && !(bookPage === 1)) ? 'book-change' : 'book-choosen'">Словарь</h1>
     <div class="show-translate">
       <div class="show-translate_set" (click)="showConfig=!showConfig">
         <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
