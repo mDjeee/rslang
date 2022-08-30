@@ -30,6 +30,7 @@ import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-ch
 import { WordsTableComponent } from '../components/words-table/words-table.component';
 import { NotFoundComponent } from '../pages/not-found/not-found.component';
 
+import { StatisticsComponent } from '../pages/statistics/statistics.component';
 
 
 
@@ -56,7 +57,8 @@ import { NotFoundComponent } from '../pages/not-found/not-found.component';
     GameResultComponent,
     DoughnutChartComponent,
     WordsTableComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    StatisticsComponent
 
   ],
   imports: [
@@ -92,7 +94,8 @@ import { NotFoundComponent } from '../pages/not-found/not-found.component';
     GameTitleComponent,
     GameAudiocallComponent,
     GameResultComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    StatisticsComponent
   ]
 })
 export class ShareModule { }
