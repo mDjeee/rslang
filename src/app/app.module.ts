@@ -16,8 +16,8 @@ import { AuthGuard } from './pages/auth/auth.guard';
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule,
     ShareModule,
+    BrowserModule,
     CoreModule,
   ],
   exports: [AppRoutingModule],

@@ -24,6 +24,21 @@ body {
   margin-right: 10px;
 }
 
+.book-change {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.book-change:hover {
+  color: #ED80FD;
+  opacity: 1;
+}
+
+.book-choosen {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .show-translate {
   width: 100%;
   display: flex;
@@ -107,16 +122,63 @@ body {
 }
 
 .item:hover {
-  /* filter: brightness(100%) saturate(100%); */
   background-color: #00b8d4;
 }
 
 .visible {
-  /* filter: brightness(100%) saturate(100%); */
   background-color: #00b8d4;
 }
 
+.a00 {
+  background-color: #00b8d4;
+}
+
+.a10 {
+  background-color: #2db17e;
+}
+
+.a20 {
+  background-color: #e98566;
+}
+
+.a30 {
+  background-color: #8db953;
+}
+
+.a40 {
+  background-color: #7089db;
+}
+
+.a50 {
+  background-color: #9370db;
+}
+
+.a0:hover {
+  background-color: #00b8d4;
+}
+
+.a1:hover {
+  background-color: #2db17e;
+}
+
+.a2:hover {
+  background-color: #e98566;
+}
+
+.a3:hover {
+  background-color: #8db953;
+}
+
+.a4:hover {
+  background-color: #7089db;
+}
+
+.a5:hover {
+  background-color: #9370db;
+}
+
 .list {
+  box-sizing: border-box;
   display: flex;
   width: 100%;
   margin: 0 auto 50px;
@@ -141,7 +203,6 @@ p {
   display: flex;
   width: 100%;
   margin: 15px 0;
-  background-color: #00b8d4;
 }
 
 .word-description {
@@ -150,13 +211,15 @@ p {
 
 .word {
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap;
+  column-gap: 5px;
 }
 
 .word_en {
   font-weight: 700;
   letter-spacing: 0.05em;
   font-size: 1.5rem;
+  margin: 0;
 }
 
 .play {
@@ -168,11 +231,13 @@ p {
   font-weight: 600;
   letter-spacing: 0.05em;
   font-size: 1.5rem;
+  margin: 0;
 }
 
 .word_transcript {
   letter-spacing: 0.05em;
   font-size: 1.5rem;
+  margin: 0;
 }
 
 .word-meaning_header, .word-example_header {
@@ -232,6 +297,33 @@ p {
   background-size: cover;
 }
 
+.hard-word {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.hard-word button:hover {
+  background-color: #ED80FD;
+}
+
+.delete-word, .add-to-word {
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 0.2s;
+
+  border: none;
+  cursor: pointer;
+
+  color: #ffffff;
+  background-color:#ff3d00;
+}
+
+.dictionary {
+  border-left: 5px solid #2c2647;
+  padding-left: 10px;
+}
+
 @media screen and (max-width: 900px) {
   .image {
     height: 320px;
@@ -248,7 +340,7 @@ p {
 
   .word {
     flex-wrap: wrap;
-    gap: 5px;
+    column-gap: 5px;
   }
 
   .word * {
