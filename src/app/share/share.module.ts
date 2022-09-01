@@ -17,6 +17,20 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {AppRoutingModule} from "../app-routing.module";
 import {LevelComponent} from "../pages/sprint/level/level.component";
+import { AuthComponent } from '../pages/auth/auth.component';
+import { FormsModule }   from '@angular/forms';
+import { LevelSelectionComponent } from '../components/level-selection/level-selection.component';
+import { AudiocallComponent } from '../pages/audiocall/audiocall.component';
+import { GameTitleComponent } from '../components/game-title/game-title.component';
+import { GameAudiocallComponent } from '../pages/audiocall/game-audiocall/game-audiocall.component';
+import { GameResultComponent } from '../components/game-result/game-result.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-chart.component';
+import { WordsTableComponent } from '../components/words-table/words-table.component';
+import { NotFoundComponent } from '../pages/not-found/not-found.component';
+
+
 
 
 @NgModule({
@@ -33,15 +47,26 @@ import {LevelComponent} from "../pages/sprint/level/level.component";
     AppLogoComponent,
     RssLogoComponent,
     FooterComponent,
-    LevelComponent
+    AuthComponent,
+    LevelSelectionComponent,
+    LevelComponent,
+    AudiocallComponent,
+    GameTitleComponent,
+    GameAudiocallComponent,
+    GameResultComponent,
+    DoughnutChartComponent,
+    WordsTableComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
     AppRoutingModule,
-
+    MatTabsModule,
+    MatTableModule
   ],
   exports: [
     TimerComponent,
@@ -49,6 +74,7 @@ import {LevelComponent} from "../pages/sprint/level/level.component";
     HeaderComponent,
     NavigationComponent,
     AuthorizationBtnComponent,
+    AuthComponent,
     MainComponent,
     CapabilitiesComponent,
     TeamComponent,
@@ -59,7 +85,13 @@ import {LevelComponent} from "../pages/sprint/level/level.component";
     FooterComponent,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    LevelComponent
+    LevelSelectionComponent,
+    LevelComponent,
+    AudiocallComponent,
+    GameTitleComponent,
+    GameAudiocallComponent,
+    GameResultComponent,
+    NotFoundComponent,
   ]
 })
 export class ShareModule { }

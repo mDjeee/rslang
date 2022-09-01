@@ -1,0 +1,52 @@
+.word-list__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.word-list__wrong,
+.word-list__correct {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.word-list__title {
+  color: black;
+  align-self: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.word-list__count {
+  margin: 0 5px;
+  padding: 0 10px;
+  color: white;
+  border-radius: 1rem;
+}
+
+.word-list__count_wrong {
+  background-color: salmon;
+}
+
+.word-list__count_correct {
+  background-color: aquamarine;
+}
+
+.word-item {
+  display: flex;
+  gap: 10px;
+}
+
+.word-item__audio {
+  height: 1.5rem;
+  width: 1.5rem;
+  padding-right: 10px;
+  background-image: url(../../../assets/sound.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.word-list__separator {
+  width: 90%;
+}
