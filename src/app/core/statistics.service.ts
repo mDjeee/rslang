@@ -6,9 +6,9 @@ import { ApiService } from './api.service';
 })
 export class StatisticsService {
 
+
   constructor(private service: ApiService) { }
 
-  getStatistics() {
 
-  }
+
 }

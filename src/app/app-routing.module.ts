@@ -8,6 +8,7 @@ import { MainComponent } from './pages/main/main.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { AuthGuard } from './pages/auth/auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainComponent },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'games/audiocall', component: AudiocallComponent, canActivate: [AuthGuard] },
   { path: 'games/sprint', component: SprintComponent, canActivate: [AuthGuard]  },
   { path: 'authorization', component: AuthComponent },
+  { path: 'statistics', component: StatisticsComponent },
   { path: '**', component: NotFoundComponent },
 ]
 

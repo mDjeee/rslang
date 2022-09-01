@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { baseUrl, baseWordsUrl } from 'src/api/baseUrl';
+import { IUserStatistics, IUserWordOptions } from 'src/types/IOptions';
+import { IWord } from 'src/types/IWord';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  response!: IWord[];
 
   constructor(private http: HttpClient) { }
 
@@ -60,5 +63,21 @@ export class ApiService {
 
   deleteUserWord(userId: string, wordId: string) {
     return this.http.delete(`${baseUrl}/users/${userId}/words/${wordId}`);
+  }
+
+  //==========================================
+  postUserWordRequest(userId: string, wordId: string, difficulty: 'difficult' | 'studied', options: IUserWordOptions) {
+    return this.http.post(`${baseUrl}/users/${userId}/words/${wordId}`, {
+      difficulty: difficulty,
+      optional: options
+    });
+  }
+
+  getUserStatistics(userId: string) {
+    return this.http.get(`${baseUrl}/users/${userId}/statistics`);
+  }
+
+  putUserStatistics(userId: string, options: IUserStatistics) {
+    return this.http.put(`${baseUrl}/users/${userId}/statistics`, options );
   }
 }

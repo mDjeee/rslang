@@ -23,6 +23,7 @@ export class AudiocallComponent implements OnInit {
   onStartGame() {
     if (this.service.words.length) {
       this.start = true;
+      this.service.getUserId();
     }
   }
 
