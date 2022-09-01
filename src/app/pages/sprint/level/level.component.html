@@ -10,19 +10,20 @@
     <p id="score" >{{score}}</p>
   </div>
     <div class="words">
-      <p class="test">
-        <b>{{ wordEN }}</b>
+      <p class="word word_en">
+        <b>{{wordEN}}</b>
       </p>
-      <p class="test">
-        <b>-</b>
-      </p>
-      <p class="test">
-        <b>{{ wordRU }}</b>
+      <p class="word">
+        <b>{{wordRU}}</b>
       </p>
     </div>
     <div class="control">
-      <button class="button button_false">Неправильно</button>
-      <button class="button button_true">Правильно</button>
+      <button class="button button_false"
+              (window:keydown.arrowLeft)="isnoRightAnswer()"
+              (click)="isnoRightAnswer()">Неправильно<br/> ←</button>
+      <button class="button button_true"
+              (window:keydown.arrowRight)="isRightAnswer()"
+              (click)="isRightAnswer()">Правильно<br/>  →</button>
     </div>
   </div>
   <div class="timer">

@@ -17,5 +17,9 @@ export interface IWord {
 export interface IWordGame {
   id?: string,
   word: string,
-  wordTranslate: string,
+  wordTranslate?: string,
+}
+
+export interface IWo {
+  word: string
 }
