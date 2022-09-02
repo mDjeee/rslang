@@ -15,7 +15,6 @@ export class LinearChartComponent implements OnInit {
   ngOnInit(): void {
     const htmlRef = this.elementRef.nativeElement.querySelector(`#lineChart`);
     Chart.register(...registerables);
-    console.log(this.lineChartData);
     const myChart = new Chart(htmlRef, {
       type: 'line',
       data: {

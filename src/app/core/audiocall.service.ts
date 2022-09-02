@@ -87,7 +87,7 @@ export class AudiocallService {
       error: error => {
         switch(error.status) {
           case 404:
-            console.log('something wrong')
+            this.router.navigate(['/not-found']);
             break;
           case 401:
             this.router.navigate(['/authorization']);

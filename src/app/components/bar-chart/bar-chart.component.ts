@@ -15,7 +15,6 @@ export class BarChartComponent implements OnInit {
   ngOnInit(): void {
     const htmlRef = this.elementRef.nativeElement.querySelector(`#barChart`);
     Chart.register(...registerables);
-    console.log(this.barChartData);
     const myChart = new Chart(htmlRef, {
       type: 'bar',
       data: {
