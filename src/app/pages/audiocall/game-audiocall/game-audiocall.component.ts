@@ -22,7 +22,6 @@ export class GameAudiocallComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log('init!')
     this.randomWords = this.service.nextWord();
   }
 
@@ -32,13 +31,13 @@ export class GameAudiocallComponent implements OnInit {
       this.activateDiactivateItems(false, this.translateWord);
       this.buttonText = 'Дальше';
     } else {
-      if(this.service.index < 19) {
+      if(this.service.index < 9) {
         this.randomWords = this.service.nextWord();
         this.buttonText = 'Не знаю';
         this.activateDiactivateItems(true);
         this.imgVisible = false;
       } else {
-        alert('Game over');
+        this.service.getStatistics();
         this.end = true;
       }
     }

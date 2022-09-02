@@ -30,6 +30,11 @@ import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-ch
 import { WordsTableComponent } from '../components/words-table/words-table.component';
 import { NotFoundComponent } from '../pages/not-found/not-found.component';
 
+import { StatisticsComponent } from '../pages/statistics/statistics.component';
+import { GameCardComponent } from '../components/game-card/game-card.component';
+import { BarChartComponent } from '../components/bar-chart/bar-chart.component';
+import { LinearChartComponent } from '../components/linear-chart/linear-chart.component';
+
 
 
 
@@ -56,7 +61,11 @@ import { NotFoundComponent } from '../pages/not-found/not-found.component';
     GameResultComponent,
     DoughnutChartComponent,
     WordsTableComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    StatisticsComponent,
+    GameCardComponent,
+    BarChartComponent,
+    LinearChartComponent
 
   ],
   imports: [
@@ -92,7 +101,11 @@ import { NotFoundComponent } from '../pages/not-found/not-found.component';
     GameTitleComponent,
     GameAudiocallComponent,
     GameResultComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    StatisticsComponent,
+    GameCardComponent,
+    BarChartComponent,
+    LinearChartComponent
   ]
 })
 export class ShareModule { }
