@@ -12,5 +12,21 @@
         <span class="statistics-day__text">правильных ответов</span>
       </div>
     </div>
+    <div class="statistics-day__games">
+      <app-game-card *ngFor="let element of dataForCards" [data] = "element"></app-game-card>
+    </div>
+  </div>
+  <div class="statistics-all">
+    <h2 class="statistics-all__title">Статистика за всё время</h2>
+    <div class="statistics-all__togle">
+      <span>Количество изученных слов по дням</span>
+      <label class="switch">
+        <input type="checkbox" (click)="changeChart($event)">
+        <span class="slider round"></span>
+      </label>
+      <span>Прогресс изучения</span>
+    </div>
+    <app-bar-chart [barChartData] = 'dataForBarChart' *ngIf="visible && !linearChartVisible"></app-bar-chart>
+    <app-linear-chart [lineChartData] = 'dataForBarChart' *ngIf="visible && linearChartVisible"></app-linear-chart>
   </div>
 </div>

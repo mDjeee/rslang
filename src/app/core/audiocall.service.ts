@@ -23,6 +23,7 @@ export class AudiocallService {
   private userId!: string;
   private existWordOptions!: IUserWordOptions;
   private date = (new Date()).toISOString();
+  chain!: number;
 
   constructor(private api: ApiService) { }
 
@@ -61,6 +62,8 @@ export class AudiocallService {
   getStatistics() {
     this._GetUserStatistics = this.api.getUserStatistics(this.userId).subscribe({
       next: statistics => {
+        console.log(statistics);
+        // this.putStatistics(this.getDefaultStatistics());
         this.putStatistics(this.getChangedStatistics(<IUserStatistics>statistics))
       },
       error: error => {
@@ -97,44 +100,69 @@ export class AudiocallService {
 
   private  getChangedStatistics(statistics: IUserStatistics) {
     delete statistics.id;
-    statistics.learnedWords += this.answers.length;
-    const currentDateStat = statistics.optional.stat.allStat.filter((item) => {
-      return item.date.slice(0, 10) === this.date.slice(0, 10);
-    });
-    const newWordsAnswer = this.answers.filter(item => {
-      return !statistics.optional.stat.newWords.includes(item.id)
-    });
-    const newWords = newWordsAnswer.map(item => item.id);
-    if(newWords.length) statistics.optional.stat.newWords.push(...newWords);
-    let stat: IDayStatistics;
+    // статистика за сегодня
+    const currentDateStat = statistics.optional.stat.allStat
+      .filter((item) => item.date.slice(0, 10) === this.date.slice(0, 10));
+    // newWordsAnswer - новые слова, если слова не встречаются в массиве слов
+    console.log(currentDateStat);
+    console.log(currentDateStat.length);
+    const newWordsFromAnswer = this.answers
+      .filter(item => !statistics.optional.stat.newWords.includes(item.id))
+      .map(item => item.id);
+    const correctAnswers = this.answers.filter(item => item.result).length;
+    const wrongAnswers = this.answers.length - correctAnswers;
+    const chain = this.getLengthOfLongestChain();
+
+    statistics.learnedWords += correctAnswers;
+    if(newWordsFromAnswer.length) statistics.optional.stat.newWords.push(...newWordsFromAnswer);
+    let dayStat: IDayStatistics;
     if(currentDateStat.length) {
-      [stat, ] = currentDateStat;
-      stat.newWords += newWords.length;
-      stat.correctAnswers += this.answers.filter(item => item.result).length;
-      stat.allWords += newWords.length;
+      [dayStat, ] = currentDateStat;
+      console.log('inside',dayStat);
+      dayStat.amountNewWordsPerDey += newWordsFromAnswer.length;
+      dayStat.correctAnswers += correctAnswers;
+      dayStat.games.audiocall.correct += correctAnswers;
+      dayStat.games.audiocall.wrong += wrongAnswers;
+      dayStat.games.audiocall.chain = chain > dayStat.games.audiocall.chain
+        ? chain
+        : dayStat.games.audiocall.chain;
+      dayStat.allWords += this.answers.length;
     } else {
-      stat = {
+      dayStat = {
         date: this.date,
-        newWords: newWords.length,
-        correctAnswers: this.answers.filter(item => item.result).length,
-        allWords: statistics.learnedWords + newWords.length
+        amountNewWordsPerDey: newWordsFromAnswer.length,
+        correctAnswers: correctAnswers,
+        games: {
+          audiocall: {correct: correctAnswers, wrong: wrongAnswers, chain: chain},
+          sprint: {correct: 0, wrong: 0, chain: 0},
+          oasis: {correct: 0, wrong: 0, chain: 0},
+        },
+        allWords: this.answers.length,
       };
+      statistics.optional.stat.allStat.push(dayStat);
     }
-    statistics.optional.stat.allStat.push(stat);
 
     return statistics;
   }
 
   private  getDefaultStatistics(): IUserStatistics {
+    const correctAnswers = this.answers.filter(item => item.result).length;
+    const wrongAnswers = this.answers.length - correctAnswers;
+    const chain = this.getLengthOfLongestChain();
     return {
-      learnedWords: this.answers.length,
+      learnedWords: correctAnswers,
       optional: {
         stat: {
           allStat: [
             {
             date: this.date,
-            newWords: this.answers.length,
-            correctAnswers: this.answers.filter(item => item.result).length,
+            amountNewWordsPerDey: this.answers.length,
+            correctAnswers: correctAnswers,
+            games: {
+              audiocall: {correct: correctAnswers, wrong: wrongAnswers, chain: chain},
+              sprint: {correct: 0, wrong: 0, chain: 0},
+              oasis: {correct: 0, wrong: 0, chain: 0},
+            },
             allWords: this.answers.length
           }
         ],
@@ -142,6 +170,16 @@ export class AudiocallService {
         }
       }
     }
+  }
+
+  getLengthOfLongestChain() {
+    const chain = this.answers
+      .map(item => item.result ? 1 : 0)
+      .join('')
+      .split('0')
+      .map(item => item.length)
+
+      return Math.max(...chain);
   }
 
   private  getChangedOptions(options: IUserWordOptions, answer: boolean) {

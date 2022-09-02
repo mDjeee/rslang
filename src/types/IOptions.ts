@@ -28,7 +28,12 @@ export interface IUserStatistics{
 
 export type IDayStatistics = {
   date: string;
-  newWords: number;
+  amountNewWordsPerDey: number;
   correctAnswers: number;
+  games: {
+    audiocall: {correct: number, wrong: number, chain: number},
+    sprint: {correct: number, wrong: number, chain: number},
+    oasis: {correct: number, wrong: number, chain: number},
+  };
   allWords: number;
 }
