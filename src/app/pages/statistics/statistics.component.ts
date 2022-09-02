@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/core/api.service';
 import { IDayStatistics, IUserStatistics } from 'src/types/IOptions';
@@ -26,7 +27,7 @@ export class StatisticsComponent implements OnInit {
     {name: "Oasis", learned: 0, correct: 0, chain: 0}
   ]
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUserId();
@@ -52,8 +53,7 @@ export class StatisticsComponent implements OnInit {
             console.log('not found')
             break;
           case 401:
-            //TODO вывести сообщение или выдать окно входа?
-            console.log('invalid token');
+            this.router.navigate(['/authorization']);
             break;
         }
       }

@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { baseUrl } from 'src/api/baseUrl';
 import { answer } from 'src/types/audiocall-answer';
 import { IDayStatistics, IUserStatistics, IUserWord, IUserWordOptions } from 'src/types/IOptions';
+import { Router } from "@angular/router";
 import { IWord } from 'src/types/IWord';
 import { ApiService } from './api.service';
 
@@ -25,7 +26,7 @@ export class AudiocallService {
   private date = (new Date()).toISOString();
   chain!: number;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   fetchWords(group: number, page: number){
     this._GetWordsSubscription = this.api.getWords(group, page).subscribe(books => {
@@ -45,7 +46,7 @@ export class AudiocallService {
             this.postUserWord(userId, wordId, 'studied', this.getDefaultOptions(<boolean>answer));
             break;
           case 401:
-            //TODO вывести сообщение или выдать окно входа?
+            this.router.navigate(['/authorization']);
             break;
           case 200:
             this.postUserWord(userId, wordId, 'studied', this.existWordOptions);
@@ -72,8 +73,7 @@ export class AudiocallService {
             this.putStatistics(this.getDefaultStatistics());
             break;
           case 401:
-            //TODO вывести сообщение или выдать окно входа?
-            console.log('invalid token');
+            this.router.navigate(['/authorization']);
             break;
         }
       }
@@ -90,8 +90,7 @@ export class AudiocallService {
             console.log('something wrong')
             break;
           case 401:
-            //TODO вывести сообщение или выдать окно входа?
-            console.log('invalid token');
+            this.router.navigate(['/authorization']);
             break;
         }
       }
