@@ -14,12 +14,3 @@ export interface IWord {
   textMeaningTranslate: string,
   textExampleTranslate: string
 }
-export interface IWordGame {
-  id?: string,
-  word: string,
-  wordTranslate?: string,
-}
-
-export interface IWo {
-  word: string
-}
