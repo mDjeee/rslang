@@ -7,8 +7,10 @@
 
 .wrap-game {
   height: 600px;
+  height: 600px;
   width: 600px;
   border-radius: 30%;
+  border: 20px solid ;
   display: flex;
   padding: 5px;
   font-size: 2rem;
@@ -80,4 +82,47 @@ p{
 }
 .button_song {
   margin: 10px;
+}
+
+.spiner {
+  margin-left: 40%;
+}
+
+::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: rgba(89, 96, 218, 0.97) !important;
+}
+
+.statistic {
+  height: 600px;
+  width: 100vw;
+  background: linear-gradient(134.65deg, rgba(89, 97, 249, 0.51) 3.4%, rgba(238, 154, 229, 0.51) 97.69%);
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+}
+.schedule {
+  width: calc(100%/3);
+  margin: 20px;
+}
+.right-words_wrap{
+  width: calc(100%/3);
+}
+.right-words {
+  display: flex;
+  flex-direction: row;
+}
+.wrong-words {
+  display: flex;
+  flex-direction: row;
+}
+.word-stat{
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-size: 1rem;
+  margin: 0;
+  font-family: Jost-k;
+}
+
+.wrong-words_wrap{
+  width: calc(100%/3);
 }

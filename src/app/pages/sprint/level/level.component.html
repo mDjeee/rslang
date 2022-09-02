@@ -1,15 +1,15 @@
 <button class="button button_song" (click)="stopSong()">🔊</button>
 <!--<button class="button" (click)="playSong()">🔇</button>-->
-<div class="wrapper_game" >
+<div class="wrapper_game" *ngIf="visibleStat; else popup">
   <div class="image-run">
     <img alt="some" id="run-girl" src="./assets/run.jpg" />
   </div>
-  <div class="wrap-game" >
+  <div class="wrap-game" [appSprintBorder]="border">
     <div class="score-time">
-    <app-timer></app-timer>
-    <p id="score" >{{score}}</p>
+    <app-timer (visibleStatistic)="timeOver()"></app-timer>
+    <p id="score" >Score: {{score}}</p>
   </div>
-    <div class="words">
+    <div class="words" *ngIf="!loader; else loaderTemp">
       <p class="word word_en">
         <b>{{wordEN}}</b>
       </p>
@@ -18,10 +18,10 @@
       </p>
     </div>
     <div class="control">
-      <button class="button button_false"
-              (window:keydown.arrowLeft)="isnoRightAnswer()"
-              (click)="isnoRightAnswer()">Неправильно<br/> ←</button>
-      <button class="button button_true"
+      <button class="button button_false" [disabled]="finished"
+              (window:keydown.arrowLeft)="isWrongAnswer()"
+              (click)="isWrongAnswer()">Неправильно<br/> ←</button>
+      <button class="button button_true" [disabled]="finished"
               (window:keydown.arrowRight)="isRightAnswer()"
               (click)="isRightAnswer()">Правильно<br/>  →</button>
     </div>
@@ -29,3 +29,26 @@
   <div class="timer">
   </div>
 </div>
+<ng-template #popup>
+  <div class="statistic">
+    <div class="schedule">
+      <app-chart [chartRight]="wordsRight.length"
+                 [chartWrong]="wordsWrong.length" ></app-chart>
+    </div>
+    <div class="right-words_wrap">
+      <div class="right-words bb"  *ngFor="let worldE of wordsRight">
+      <div class="word-stat">{{worldE.word}}  - </div>
+      <div class="word-stat">{{worldE.wordTranslate}}</div>
+    </div>
+    </div>
+    <div class="wrong-words_wrap">
+      <div class="wrong-words bb"  *ngFor="let worldW of wordsWrong">
+        <div class="word-stat">{{worldW.word}}  - </div>
+        <div class="word-stat">{{worldW.wordTranslate}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #loaderTemp>
+  <mat-spinner class="spiner"></mat-spinner>
+</ng-template>

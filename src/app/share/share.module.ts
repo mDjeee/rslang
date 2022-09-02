@@ -29,6 +29,9 @@ import {MatTableModule} from '@angular/material/table';
 import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-chart.component';
 import { WordsTableComponent } from '../components/words-table/words-table.component';
 import { NotFoundComponent } from '../pages/not-found/not-found.component';
+import { SprintBorderDirective } from './directives/sprint-border.directive';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ChartComponent} from "../pages/sprint/chart/chart.component";
 
 
 
@@ -56,7 +59,9 @@ import { NotFoundComponent } from '../pages/not-found/not-found.component';
     GameResultComponent,
     DoughnutChartComponent,
     WordsTableComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SprintBorderDirective,
+    ChartComponent,
   ],
   imports: [
     CommonModule,
@@ -66,7 +71,8 @@ import { NotFoundComponent } from '../pages/not-found/not-found.component';
     MatPaginatorModule,
     AppRoutingModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     TimerComponent,
@@ -92,6 +98,9 @@ import { NotFoundComponent } from '../pages/not-found/not-found.component';
     GameAudiocallComponent,
     GameResultComponent,
     NotFoundComponent,
+    SprintBorderDirective,
+    MatProgressSpinnerModule,
+    ChartComponent,
   ]
 })
 export class ShareModule { }
