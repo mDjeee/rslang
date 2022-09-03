@@ -14,7 +14,7 @@ import { LevelComponent } from "./pages/sprint/level/level.component";
 const appRoutes: Routes = [
   { path: '', component: MainComponent },
   { path: 'textbook', component: BookComponent },
-  { path: 'games/audiocall', component: AudiocallComponent, canActivate: [AuthGuard] },
+  { path: 'games/audiocall', component: AudiocallComponent, canActivate: [AuthGuard]},
   { path: 'games/sprint', component: SprintComponent, canActivate: [AuthGuard]  },
   { path: 'games/sprint/level/:id', component: LevelComponent},
   { path: 'authorization', component: AuthComponent },

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { baseUrl } from 'src/api/baseUrl';
 import { answer } from 'src/types/audiocall-answer';
 import { IDayStatistics, IUserStatistics, IUserWord, IUserWordOptions } from 'src/types/IOptions';
@@ -20,6 +20,7 @@ export class AudiocallService {
   words: IWord[] = [];
   index: number = -1;
   answers: answer[] = [];
+  dataStatus = new BehaviorSubject(false);
   private randomWords!: string[];
   private userId!: string;
   private existWordOptions!: IUserWordOptions;
@@ -32,7 +33,12 @@ export class AudiocallService {
     this._GetWordsSubscription = this.api.getWords(group, page).subscribe(books => {
       this.words = books;
       this.words.sort(() => this.getRandomIntInclusive(-1, 1)).splice(10);
+      this.dataStatus.next(true);
     })
+  }
+
+  public getDataStatus(): Observable<boolean> {
+    return this.dataStatus.asObservable();
   }
 
   private getUserWord(userId: string, wordId: string, answer?: boolean) {

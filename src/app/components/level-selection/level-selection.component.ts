@@ -11,8 +11,7 @@ export class LevelSelectionComponent implements OnInit {
 
   words: IWord[] = [];
 
-  @Output()
-  start = new EventEmitter;
+  @Output() levelSelected = new EventEmitter;
 
   constructor(private service: AudiocallService) { }
 
@@ -22,19 +21,16 @@ export class LevelSelectionComponent implements OnInit {
   onChangeLevel(event: Event, level: number) {
 
     const levelItems = document.querySelectorAll('.level__item');
-    const startButton = <HTMLButtonElement>document.querySelector('.start__btn');
+    // const startButton = <HTMLButtonElement>document.querySelector('.start__btn');
     const page = this.service.getRandomIntInclusive(0, 29);
 
-    startButton.disabled = false;
+    this.levelSelected.emit();
+    // startButton.disabled = false;
 
     levelItems.forEach((item) => item.classList.remove('level__item_active'));
     (<HTMLElement>event.target).classList.add('level__item_active');
     //TODO
     this.service.fetchWords(level, page);
-  }
-
-  onStart() {
-    this.start.emit();
   }
 
   ngOnDestroy(): void {

@@ -1,10 +1,9 @@
 <div class="audiocall">
-  <div class="audiocall__container" *ngIf="!start && !end">
-    <app-game-title></app-game-title>
-    <h3>Выберите уровень:</h3>
-    <app-level-selection (start) = "onStartGame()"></app-level-selection>
-    <!-- <app-level-selection></app-level-selection> -->
+  <div class="audiocall__container" *ngIf="!startBtnVisible && !end">
+    <app-game-title *ngIf="visible"></app-game-title>
+    <app-level-selection *ngIf="levelSelectionVisible" (levelSelected) = 'levelSelected()'></app-level-selection>
   </div>
     <app-game-audiocall *ngIf="start && !end"></app-game-audiocall>
     <app-game-result *ngIf="end"></app-game-result>
+    <button class="start__btn" disabled="BtnDisabled" *ngIf="visible" (click)="onStart()">Начать</button>
 </div>
