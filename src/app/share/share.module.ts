@@ -33,6 +33,10 @@ import { SprintBorderDirective } from './directives/sprint-border.directive';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {ChartComponent} from "../pages/sprint/chart/chart.component";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { StatisticsComponent } from '../pages/statistics/statistics.component';
+import { GameCardComponent } from '../components/game-card/game-card.component';
+import { BarChartComponent } from '../components/bar-chart/bar-chart.component';
+import { LinearChartComponent } from '../components/linear-chart/linear-chart.component';
 
 
 
@@ -61,6 +65,10 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     DoughnutChartComponent,
     WordsTableComponent,
     NotFoundComponent,
+    StatisticsComponent,
+    GameCardComponent,
+    BarChartComponent,
+    LinearChartComponent,
     SprintBorderDirective,
     ChartComponent,
   ],
@@ -100,6 +108,10 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     GameAudiocallComponent,
     GameResultComponent,
     NotFoundComponent,
+    StatisticsComponent,
+    GameCardComponent,
+    BarChartComponent,
+    LinearChartComponent,
     SprintBorderDirective,
     MatProgressSpinnerModule,
     ChartComponent,

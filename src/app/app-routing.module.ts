@@ -8,6 +8,7 @@ import { MainComponent } from './pages/main/main.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { AuthGuard } from './pages/auth/auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { LevelComponent } from "./pages/sprint/level/level.component";
 
 const appRoutes: Routes = [
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
   { path: 'games/sprint', component: SprintComponent, canActivate: [AuthGuard]  },
   { path: 'games/sprint/level/:id', component: LevelComponent},
   { path: 'authorization', component: AuthComponent },
+  { path: 'statistics', component: StatisticsComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
