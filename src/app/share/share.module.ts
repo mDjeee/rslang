@@ -32,6 +32,7 @@ import { NotFoundComponent } from '../pages/not-found/not-found.component';
 import { SprintBorderDirective } from './directives/sprint-border.directive';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {ChartComponent} from "../pages/sprint/chart/chart.component";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 
 
@@ -63,17 +64,18 @@ import {ChartComponent} from "../pages/sprint/chart/chart.component";
     SprintBorderDirective,
     ChartComponent,
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatPaginatorModule,
-    AppRoutingModule,
-    MatTabsModule,
-    MatTableModule,
-    MatProgressSpinnerModule
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatPaginatorModule,
+        AppRoutingModule,
+        MatTabsModule,
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatSlideToggleModule
+    ],
   exports: [
     TimerComponent,
     SprintComponent,

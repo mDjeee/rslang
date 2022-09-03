@@ -28,6 +28,10 @@
 
 }
 
+.button_song{
+  height: 50px;
+}
+
 #run-girl {
   height: 400px;
   width: 400px;

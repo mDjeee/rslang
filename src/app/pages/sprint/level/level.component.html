@@ -1,6 +1,7 @@
-<button class="button button_song" (click)="stopSong()">🔊</button>
+
 <!--<button class="button" (click)="playSong()">🔇</button>-->
 <div class="wrapper_game" *ngIf="visibleStat; else popup">
+  <button class="button button_song" (click)="stopSong()">🔊</button>
   <div class="image-run">
     <img alt="some" id="run-girl" src="./assets/run.jpg" />
   </div>
@@ -31,6 +32,7 @@
 </div>
 <ng-template #popup>
   <div class="statistic">
+    <mat-slide-toggle>Slide me!</mat-slide-toggle>
     <div class="schedule">
       <app-chart [chartRight]="wordsRight.length"
                  [chartWrong]="wordsWrong.length" ></app-chart>
