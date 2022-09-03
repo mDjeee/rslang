@@ -103,6 +103,7 @@ export class BookComponent implements OnInit {
   }
 
   addToHard(userId: string, wordId: string) {
+    this.removeFromLearned(userId, wordId);
     this._SubsUserWord = this.api.postUserWordRequest(userId, wordId, 'difficult', {
       isDeleted: false,
       addTime: new Date().toString(),
@@ -125,6 +126,7 @@ export class BookComponent implements OnInit {
   }
 
   addToLearned(userId: string, wordId: string) {
+    this.removeFromHard(userId, wordId);
     this._SubsUserWord = this.api.postUserWordRequest(userId, wordId, 'studied', {
       isDeleted: false,
       addTime: new Date().toString(),
