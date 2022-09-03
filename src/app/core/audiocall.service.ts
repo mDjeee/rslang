@@ -97,17 +97,12 @@ export class AudiocallService {
     })
   }
 
-  private  getChangedStatistics(statistics: IUserStatistics) {
+  private getChangedStatistics(statistics: IUserStatistics) {
     delete statistics.id;
     // статистика за сегодня
-    const currentDateStat = statistics.optional.stat.allStat
-      .filter((item) => item.date.slice(0, 10) === this.date.slice(0, 10));
+    const currentDateStat = this.getCurrentDateStatistucs(statistics);
     // newWordsAnswer - новые слова, если слова не встречаются в массиве слов
-    console.log(currentDateStat);
-    console.log(currentDateStat.length);
-    const newWordsFromAnswer = this.answers
-      .filter(item => !statistics.optional.stat.newWords.includes(item.id))
-      .map(item => item.id);
+    const newWordsFromAnswer = this.getNewWords(statistics);
     const correctAnswers = this.answers.filter(item => item.result).length;
     const wrongAnswers = this.answers.length - correctAnswers;
     const chain = this.getLengthOfLongestChain();
@@ -127,48 +122,66 @@ export class AudiocallService {
         : dayStat.games.audiocall.chain;
       dayStat.allWords += this.answers.length;
     } else {
-      dayStat = {
-        date: this.date,
-        amountNewWordsPerDey: newWordsFromAnswer.length,
-        correctAnswers: correctAnswers,
-        games: {
-          audiocall: {correct: correctAnswers, wrong: wrongAnswers, chain: chain},
-          sprint: {correct: 0, wrong: 0, chain: 0},
-          oasis: {correct: 0, wrong: 0, chain: 0},
-        },
-        allWords: this.answers.length,
-      };
+      dayStat = this.getDefaultDayStatistics(statistics);
       statistics.optional.stat.allStat.push(dayStat);
     }
 
     return statistics;
   }
 
-  private  getDefaultStatistics(): IUserStatistics {
+  private getCurrentDateStatistucs(statistics: IUserStatistics) {
+    const currentDateStatistics = statistics.optional.stat.allStat
+      .filter((item) => {
+        return item.date.slice(0, 10) === this.date.slice(0, 10)
+      });
+
+      return currentDateStatistics;
+  }
+
+  private getNewWords(statistics: IUserStatistics) {
+    const newWordsFromAnswers = this.answers
+    .filter(item => !statistics.optional.stat.newWords.includes(item.id))
+    .map(item => item.id);
+
+    return newWordsFromAnswers;
+  }
+
+
+  private getDefaultStatistics(): IUserStatistics {
     const correctAnswers = this.answers.filter(item => item.result).length;
-    const wrongAnswers = this.answers.length - correctAnswers;
-    const chain = this.getLengthOfLongestChain();
-    return {
+    const defaultStatistics = {
       learnedWords: correctAnswers,
       optional: {
         stat: {
           allStat: [
-            {
-            date: this.date,
-            amountNewWordsPerDey: this.answers.length,
-            correctAnswers: correctAnswers,
-            games: {
-              audiocall: {correct: correctAnswers, wrong: wrongAnswers, chain: chain},
-              sprint: {correct: 0, wrong: 0, chain: 0},
-              oasis: {correct: 0, wrong: 0, chain: 0},
-            },
-            allWords: this.answers.length
-          }
+            this.getDefaultDayStatistics()
         ],
           newWords: this.answers.map(item => item.id),
         }
       }
     }
+    return defaultStatistics;
+  }
+
+  private getDefaultDayStatistics(statistics?: IUserStatistics) {
+    const correctAnswers = this.answers.filter(item => item.result).length;
+    const wrongAnswers = this.answers.length - correctAnswers;
+    const chain = this.getLengthOfLongestChain();
+    const newWordsFromAnswer = statistics ? this.getNewWords(statistics).length : 0;
+
+    const dayStatistics = {
+      date: this.date,
+      amountNewWordsPerDey: newWordsFromAnswer,
+      correctAnswers: correctAnswers,
+      games: {
+        audiocall: {correct: correctAnswers, wrong: wrongAnswers, chain: chain},
+        sprint: {correct: 0, wrong: 0, chain: 0},
+        oasis: {correct: 0, wrong: 0, chain: 0},
+      },
+      allWords: this.answers.length,
+    };
+
+    return dayStatistics;
   }
 
   getLengthOfLongestChain() {

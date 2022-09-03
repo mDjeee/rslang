@@ -27,9 +27,9 @@ export class StatisticsComponent implements OnInit {
   }
 
   dataForBarChart!: {data: number[], labels: string[]};
+  dataForLineChart!: {data: number[], labels: string[]};
 
   constructor(private api: ApiService,  private router: Router, private service: StatisticsService) {
-    console.log(service)
   }
 
   ngOnInit(): void {
@@ -43,6 +43,7 @@ export class StatisticsComponent implements OnInit {
       next: statistics => {
         this.statisticsPerDay = this.service.getStatisticsPerDay(<IUserStatistics>statistics);
         this.dataForBarChart = this.service.getDataForBarChart(<IUserStatistics>statistics);
+        this.dataForLineChart = this.service.getDataForLineChart(<IUserStatistics>statistics);
         this.visible = true
       },
       error: error => {
