@@ -35,7 +35,7 @@
 
     <div class="word-container" *ngFor="let word of words" [class]="'a' + currentLevel + '0'">
       <div class="word-image">
-        <img class="image" [src]="baseImg + word.image">
+        <img class="image" [src]="baseImg + word.image" draggable="false">
       </div>
 
         <div class="word-description">
@@ -133,7 +133,7 @@
 
     <div class="word-container" *ngFor="let word of userWords" [class]="'a' + word.group + '0'">
       <div class="word-image">
-        <img class="image" [src]="baseImg + word.image">
+        <img class="image" [src]="baseImg + word.image" draggable="false">
       </div>
 
         <div class="word-description">
@@ -197,7 +197,7 @@
 
     <div class="word-container" *ngFor="let word of userWords" [class]="'a' + word.group + '0'">
       <div class="word-image">
-        <img class="image" [src]="baseImg + word.image">
+        <img class="image" [src]="baseImg + word.image" draggable="false">
       </div>
 
         <div class="word-description">
@@ -255,4 +255,14 @@
       </div>
   </div>
 
+  <div class="game-container">
+    <div class="game sprint" (click)="gameFromBook('games/sprint')">
+      <img src="../../../assets/booksprint.svg" alt="Sprint" class="game-image" draggable="false">
+      <h3 class="game-title">Попробуй изучить эти слова с игрой спринт</h3>
+    </div>
+    <div class="game audiocall" (click)="gameFromBook('games/audiocall')">
+      <img src="../../../assets/bookaudiocall.svg" alt="Sprint" class="game-image" draggable="false">
+      <h3 class="game-title">Попробуй изучить эти слова с игрой Аудиовызов</h3>
+    </div>
+  </div>
 </div>

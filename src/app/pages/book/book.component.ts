@@ -6,6 +6,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { baseUrl } from 'src/api/baseUrl';
 import { BookService } from './book.service';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
@@ -46,13 +47,17 @@ export class BookComponent implements OnInit {
 
   user = this.authService.user.value;
 
-  constructor(private api: ApiService, private bookService: BookService, private authService: AuthService) { }
+  constructor(private api: ApiService, private bookService: BookService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     if(!!this.user) {
       this.fetchUserHardWords('difficult');
     }
     this.fetchWords(this.group, this.page);
+    this.bookService.fromBook = false;
+    console.log(this.bookService.fromBook)
+    console.log(this.bookService.group);
+    console.log(this.bookService.page);
   }
 
   private fetchWords(group: number, page: number){
@@ -186,6 +191,14 @@ export class BookComponent implements OnInit {
     audio.src = baseUrl + "/" + src;
     audio.load();
     audio.play();
+  }
+
+  gameFromBook(route: string) {
+    this.bookService.fromBook = true;
+    console.log(this.bookService.fromBook);
+    console.log(this.bookService.group);
+    console.log(this.bookService.page);
+    this.router.navigate([route]);
   }
 
   ngOnDestroy(): void {

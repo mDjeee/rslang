@@ -10,6 +10,8 @@ export class BookService implements OnInit{
   group = 0;
   page = 0;
 
+  fromBook = false;
+
   userHardWords: any[] = [];
 
   constructor(private api: ApiService) {}

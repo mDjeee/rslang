@@ -207,6 +207,37 @@ body {
   background-color: #4cb12d;
 }
 
+.game-container {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  background-color: #f3f4f8;
+  align-items: center;
+  transition: all 0.3s;
+}
+.game:hover {
+  cursor: pointer;
+  box-shadow: 0px 1px 10px 1px rgba(0,0,0,0.19);
+}
+
+.game-title {
+  color: #2c2647;
+  font-weight: 700;
+}
+
+.game-image {
+  width: 300px;
+  height: 300px;
+  user-select: none;
+}
+
 .disabled {
   opacity: 0.5;
 }
@@ -327,6 +358,7 @@ p {
 
 .word-image {
   height: 320px;
+  user-select: none;
 }
 
 .image {
@@ -335,6 +367,7 @@ p {
   border-bottom-left-radius: 20px;
   background-repeat: no-repeat;
   background-size: cover;
+  user-select: none;
 }
 
 .hard-word {
