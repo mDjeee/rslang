@@ -16,6 +16,8 @@ export class BookComponent implements OnInit {
   words: IWord[] = [];
   userHardWords: any = [];
   userWords: IWord[] = [];
+  userHardWordsId: any = [];
+  userLearnedWordsId: any = [];
 
   _SubsGetUserWord: Subscription | undefined;
   _SubsUserWord: Subscription | undefined;
@@ -36,6 +38,8 @@ export class BookComponent implements OnInit {
   currentDictionary = 0;
 
   isDictionary = false;
+  isHardwords = true;
+  isLearned = false;
   bookPage = 0;
 
   pageEvent: PageEvent | undefined;
@@ -45,10 +49,10 @@ export class BookComponent implements OnInit {
   constructor(private api: ApiService, private bookService: BookService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.fetchWords(this.group, this.page);
     if(!!this.user) {
-      this.fetchUserHardWords();
+      this.fetchUserHardWords('difficult');
     }
+    this.fetchWords(this.group, this.page);
   }
 
   private fetchWords(group: number, page: number){
@@ -57,11 +61,28 @@ export class BookComponent implements OnInit {
     })
   }
 
-  private fetchUserHardWords() {
+  private fetchUserHardWords(navigate: string) {
     if(this.user) {
       this._SubsHardWord = this.api.getUserWords(this.user.userId).subscribe((books) => {
         this.userHardWords = books;
-        this.userHardWords.forEach((word: any) => {
+
+        this.userHardWordsId = [];
+        this.userLearnedWordsId = [];
+
+        this.userHardWords.forEach((item: any) => {
+          if(item.difficulty === 'difficult'){
+            this.userHardWordsId.push(item.wordId);
+          }
+        })
+
+        this.userHardWords.forEach((item: any) => {
+          if(item.difficulty === 'studied'){
+            this.userLearnedWordsId.push(item.wordId);
+          }
+        })
+
+        console.log(books);
+        this.userHardWords.filter((item: any) => item.difficulty === navigate).forEach((word: any) => {
           this.loadUserWords(word.wordId);
         })
       })
@@ -78,17 +99,67 @@ export class BookComponent implements OnInit {
     this.bookPage = page;
     this.bookPage ? this.isDictionary = true : this.isDictionary = false;
     this.userWords = [];
-    this.fetchUserHardWords();
+    this.fetchUserHardWords('difficult');
   }
 
   addToHard(userId: string, wordId: string) {
-    this._SubsUserWord = this.api.postUserWord(userId, wordId).subscribe();
+    this._SubsUserWord = this.api.postUserWordRequest(userId, wordId, 'difficult', {
+      isDeleted: false,
+      addTime: new Date().toString(),
+      games:{
+        sprint: { right: 0, wrong: 0 },
+        savanna: { right: 0, wrong: 0 },
+        oasis: { right: 0, wrong: 0 },
+        audioCall: { right: 0, wrong: 0 }
+      },
+      allTry: 0
+    }).subscribe();
+    this.userWords = [];
+    this.fetchUserHardWords('difficult');
   }
 
   removeFromHard(userId: string, wordId: string) {
     this._SubsRemoveUserWord = this.api.deleteUserWord(userId, wordId).subscribe();
     this.userWords = [];
-    this.fetchUserHardWords();
+    this.fetchUserHardWords('difficult');
+  }
+
+  addToLearned(userId: string, wordId: string) {
+    this._SubsUserWord = this.api.postUserWordRequest(userId, wordId, 'studied', {
+      isDeleted: false,
+      addTime: new Date().toString(),
+      games:{
+        sprint: { right: 0, wrong: 0 },
+        savanna: { right: 0, wrong: 0 },
+        oasis: { right: 0, wrong: 0 },
+        audioCall: { right: 0, wrong: 0 }
+      },
+      allTry: 0
+    }).subscribe();
+    this.userWords = [];
+    this.fetchUserHardWords('studied');
+  }
+
+  removeFromLearned(userId: string, wordId: string) {
+    this._SubsRemoveUserWord = this.api.deleteUserWord(userId, wordId).subscribe();
+    this.userWords = [];
+    this.fetchUserHardWords('studied');
+  }
+
+  changeDictionaryPage(page: number) {
+    this.userWords = [];
+    if(page === 0) {
+      this.currentDictionary = 0;
+      this.isHardwords = true;
+      this.isLearned = false;
+      this.fetchUserHardWords('difficult');
+    }
+    if(page === 1) {
+      this.currentDictionary = 1;
+      this.isHardwords = false;
+      this.isLearned = true;
+      this.fetchUserHardWords('studied');
+    }
   }
 
   changeLevel(group: number) {

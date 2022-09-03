@@ -51,10 +51,10 @@ export class ApiService {
         isDeleted: false,
         addTime: new Date(),
         games:{
-          sprint: { right:0, wrong:0 },
-          savanna: { right:0, wrong:0 },
-          oasis: { right:0, wrong:0 },
-          audioCall: { right:0, wrong:0 }
+          sprint: { right: 0, wrong: 0 },
+          savanna: { right: 0, wrong: 0 },
+          oasis: { right: 0, wrong: 0 },
+          audioCall: { right: 0, wrong: 0 }
         },
         allTry:0
       }
