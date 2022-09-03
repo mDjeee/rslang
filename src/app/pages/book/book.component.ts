@@ -25,8 +25,10 @@ export class BookComponent implements OnInit {
   _Subscription: Subscription | undefined;
   _SubsHardWord: Subscription | undefined;
   _SubsRemoveUserWord: Subscription | undefined;
-  group = this.bookService.group;
-  page = this.bookService.page;
+
+  group = localStorage.getItem('group') ? Number(localStorage.getItem('group')) : 0;
+  page = localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 0;
+
   baseImg = baseUrl + "/";
 
   showConfig = false;
@@ -34,7 +36,7 @@ export class BookComponent implements OnInit {
 
   isRussian = true
 
-  currentLevel = 0;
+  currentLevel = this.group;
   currentWordIndex = 0;
   currentDictionary = 0;
 
@@ -50,14 +52,13 @@ export class BookComponent implements OnInit {
   constructor(private api: ApiService, private bookService: BookService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.group = localStorage.getItem('group') ? Number(localStorage.getItem('group')) : 0;
+    this.page = localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 0;
     if(!!this.user) {
       this.fetchUserHardWords('difficult');
     }
     this.fetchWords(this.group, this.page);
     this.bookService.fromBook = false;
-    console.log(this.bookService.fromBook)
-    console.log(this.bookService.group);
-    console.log(this.bookService.page);
   }
 
   private fetchWords(group: number, page: number){
@@ -86,7 +87,6 @@ export class BookComponent implements OnInit {
           }
         })
 
-        console.log(books);
         this.userHardWords.filter((item: any) => item.difficulty === navigate).forEach((word: any) => {
           this.loadUserWords(word.wordId);
         })
@@ -195,9 +195,6 @@ export class BookComponent implements OnInit {
 
   gameFromBook(route: string) {
     this.bookService.fromBook = true;
-    console.log(this.bookService.fromBook);
-    console.log(this.bookService.group);
-    console.log(this.bookService.page);
     this.router.navigate([route]);
   }
 
