@@ -39,12 +39,14 @@
     </div>
     <div class="right-words_wrap">
       <div class="right-words bb"  *ngFor="let worldE of wordsRight">
+        <div class="word-stat">🔊</div>
       <div class="word-stat">{{worldE.word}}  - </div>
       <div class="word-stat">{{worldE.wordTranslate}}</div>
     </div>
     </div>
     <div class="wrong-words_wrap">
       <div class="wrong-words bb"  *ngFor="let worldW of wordsWrong">
+        <div class="word-stat" (click)="playWord()">🔊</div>
         <div class="word-stat">{{worldW.word}}  - </div>
         <div class="word-stat">{{worldW.wordTranslate}}</div>
       </div>

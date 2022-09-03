@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ApiService} from "../../core/api.service";
-import {group} from "@angular/animations";
 import {IWord} from "../../../types/IWord";
 
 
