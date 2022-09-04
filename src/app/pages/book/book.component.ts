@@ -39,6 +39,8 @@ export class BookComponent implements OnInit {
 
   baseImg = baseUrl + "/";
 
+  isLoading = true;
+
   showConfig = false;
   showTranslate = true;
 
@@ -80,6 +82,7 @@ export class BookComponent implements OnInit {
         }
       });
       localStorage.setItem('counter', `${this.counter}`);
+      this.isLoading = false;
     })
   }
 

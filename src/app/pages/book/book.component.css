@@ -169,3 +169,8 @@ body {
 .completed {
   opacity: 0.4;
 }
+.spiner {
+  width: 300px;
+  height: 300px;
+  margin: auto;
+}

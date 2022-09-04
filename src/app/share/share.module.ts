@@ -15,6 +15,7 @@ import {RssLogoComponent} from "../components/rss-logo/rss-logo.component";
 import {FooterComponent} from "../components/footer/footer.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {AppRoutingModule} from "../app-routing.module";
 import { AuthComponent } from '../pages/auth/auth.component';
 import { FormsModule }   from '@angular/forms';
@@ -74,6 +75,7 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
     FormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     MatTabsModule,
     MatTableModule
@@ -95,6 +97,7 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
     FooterComponent,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     LevelSelectionComponent,
     LevelComponent,
     AudiocallComponent,

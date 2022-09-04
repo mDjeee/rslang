@@ -31,6 +31,8 @@
     </ul>
   </nav>
 
+  <mat-spinner class="spiner" *ngIf="isLoading"></mat-spinner>
+
   <div class="words-container" *ngIf="!isDictionary" [class]="counter === 20 ? 'completed' : ''">
 
     <div class="word-container" *ngFor="let word of words" [class]="'a' + currentLevel + '0'">
