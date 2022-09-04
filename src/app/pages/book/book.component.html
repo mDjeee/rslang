@@ -110,6 +110,7 @@
   <div class="pagination" *ngIf="!isDictionary">
     <mat-paginator length=600
                   pageSize=20
+                  [pageIndex]='page'
                   (page)="pageEvent = movePage($event)"
                   aria-label="Select page"
                   hidePageSize = true
