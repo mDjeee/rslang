@@ -30,6 +30,7 @@ export class LevelSelectionComponent implements OnInit {
     levelItems.forEach((item) => item.classList.remove('level__item_active'));
     (<HTMLElement>event.target).classList.add('level__item_active');
     //TODO
+    this.service.getUserId();
     this.service.fetchWords(level, page);
   }
 

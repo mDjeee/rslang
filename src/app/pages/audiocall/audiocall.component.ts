@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { AudiocallService } from 'src/app/core/audiocall.service';
 import { BookService } from '../book/book.service';
 
@@ -11,46 +11,50 @@ import { BookService } from '../book/book.service';
 })
 export class AudiocallComponent implements OnInit {
   private _DataStatus: Subscription | undefined;
+  message:boolean = false;
   status!: boolean;
   startBtnVisible: boolean = false;
   visible: boolean = true;
   end: boolean = false;
   levelSelectionVisible: boolean = true;
   start: boolean = false;
+  page!: number;
   startBtn = <HTMLButtonElement>document.querySelector('.start__btn');
 
-  private _GetWordsSubscription: Subscription | undefined;
+  private _GetWordsStatusSubscription: Subscription | undefined;
 
   @Output()
   startGame = new EventEmitter;
 
-  // @Output()
-  // start = new EventEmitter;
-
   constructor(private service: AudiocallService, private bookService: BookService) { }
 
   ngOnInit(): void {
+    this.service.words = [];
     if(this.bookService.fromBook) {
-      // const startBtn = <HTMLButtonElement>document.querySelector('.start__btn');
-      const page = this.bookService.page;
+      this.page = this.bookService.page;
       const group = this.bookService.group;
-      this.service.fetchWords(group, page);
+      this.service.getUserId()
       this.levelSelectionVisible = false;
       this.visible = false;
-      this._DataStatus = this.service.getDataStatus().subscribe(status => {
-        this.status = status;
-        this.start = status
-      })
+      // this.start = true;
+      this._GetWordsStatusSubscription = this.service.existWordsStatus.subscribe(value => {
+        console.log('start!',value)
+        this.start = value;
+      });
+      // this._DataStatus = this.service.minWordsStatus.subscribe(value => {
+      //   this.message = value
+      // })
+      this.service.allFetches(this.page, group)
     }
   }
 
 
-  onStartGame() {
-    if (this.service.words.length) {
-      this.startBtnVisible = this.status;;
-      this.service.getUserId();
-    }
-  }
+  // onStartGame() {
+  //   if (this.service.words.length) {
+  //     this.startBtnVisible = this.status;;
+  //     this.service.getUserId();
+  //   }
+  // }
 
   onEndGame() {
     if (this.service.words.length === this.service.answers.length) {
@@ -60,7 +64,7 @@ export class AudiocallComponent implements OnInit {
 
   onStart() {
     const startBtn = <HTMLButtonElement>document.querySelector('.start__btn');
-    this.start = true;
+    this._GetWordsStatusSubscription = this.service.existWordsStatus.subscribe(value => this.start = value)
     this.levelSelectionVisible = false;
     this.visible = false;
     startBtn.disabled = true;
@@ -68,6 +72,15 @@ export class AudiocallComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.service.unSubscribe();
+    if(this._GetWordsStatusSubscription) {
+      this._GetWordsStatusSubscription.unsubscribe()
+    }
+    if(this._DataStatus) {
+      this._DataStatus.unsubscribe()
+    }
+    this.service.page = 0;
+    this.service.index = 0;
+    this.service.words = [];
   }
 
   levelSelected() {

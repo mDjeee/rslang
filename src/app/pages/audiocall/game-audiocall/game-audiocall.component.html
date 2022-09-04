@@ -1,4 +1,4 @@
-<div class="audiocall__container" *ngIf="!end">
+<div class="audiocall__container" *ngIf="!end && !message">
   <div class="audiocall__icon" (click)="onPlayAudio()" *ngIf="!imgVisible"></div>
   <img class="audiocall__image" src={{imgSrc}} *ngIf="imgVisible">
   <div class="audiocall__answer" *ngIf="imgVisible">
@@ -9,5 +9,10 @@
     <button class="audiocall__item" *ngFor="let item of randomWords" (click)="selectWord($event)">{{item}}</button>
   </div>
   <button class="audiocall__btn" (click)="nextWord()">{{buttonText}}</button>
+</div>
+<div class="audiocall__message" *ngIf="message">
+  <span class="message">
+    Все слова со страницы {{page + 1}} учебника уже изучены
+  </span>
 </div>
 <app-game-result *ngIf="end"></app-game-result>
