@@ -44,30 +44,20 @@ export class ApiService {
     return this.http.get(`${baseUrl}/users/${userId}/words/${wordId}`);
   }
 
-  postUserWord(userId: string, wordId: string) {
-    return this.http.post(`${baseUrl}/users/${userId}/words/${wordId}`, {
-      difficulty: "difficult",
-      optional:{
-        isDeleted: false,
-        addTime: new Date(),
-        games:{
-          sprint: { right:0, wrong:0 },
-          savanna: { right:0, wrong:0 },
-          oasis: { right:0, wrong:0 },
-          audioCall: { right:0, wrong:0 }
-        },
-        allTry:0
-      }
-    });
-  }
-
   deleteUserWord(userId: string, wordId: string) {
     return this.http.delete(`${baseUrl}/users/${userId}/words/${wordId}`);
   }
 
   //==========================================
-  postUserWordRequest(userId: string, wordId: string, difficulty: 'difficult' | 'studied', options: IUserWordOptions) {
+  postUserWordRequest(userId: string, wordId: string, difficulty: 'difficult' | 'studied' | 'unstudied', options: IUserWordOptions) {
     return this.http.post(`${baseUrl}/users/${userId}/words/${wordId}`, {
+      difficulty: difficulty,
+      optional: options
+    });
+  }
+
+  putUserWordRequest(userId: string, wordId: string, difficulty: 'difficult' | 'studied' | 'unstudied', options: IUserWordOptions) {
+    return this.http.put(`${baseUrl}/users/${userId}/words/${wordId}`, {
       difficulty: difficulty,
       optional: options
     });
