@@ -1,14 +1,18 @@
 <div class="audiocall__container" *ngIf="!end && !message">
-  <div class="audiocall__icon" (click)="onPlayAudio()" *ngIf="!imgVisible"></div>
+  <div class="audiocall__icon" (window:keydown.space)="onPlayAudio()" (click)="onPlayAudio()" *ngIf="!imgVisible"></div>
   <img class="audiocall__image" src={{imgSrc}} *ngIf="imgVisible">
   <div class="audiocall__answer" *ngIf="imgVisible">
     <div class="audiocall__word">{{currentWord}}</div>
     <div class="audiocall__icon" (click)="onPlayAudio()"></div>
   </div>
   <div class="audiocall__answers">
-    <button class="audiocall__item" *ngFor="let item of randomWords" (click)="selectWord($event)">{{item}}</button>
+    <button class="audiocall__item" (window:keydown.1)="selectWord(0)" (click)="selectWord(0)">{{randomWords[0]}}</button>
+    <button class="audiocall__item" (window:keydown.2)="selectWord(1)" (click)="selectWord(1)">{{randomWords[1]}}</button>
+    <button class="audiocall__item" (window:keydown.3)="selectWord(2)" (click)="selectWord(2)">{{randomWords[2]}}</button>
+    <button class="audiocall__item" (window:keydown.4)="selectWord(3)" (click)="selectWord(3)">{{randomWords[3]}}</button>
+    <button class="audiocall__item" (window:keydown.5)="selectWord(4)" (click)="selectWord(4)">{{randomWords[4]}}</button>
   </div>
-  <button class="audiocall__btn" (click)="nextWord()">{{buttonText}}</button>
+  <button class="audiocall__btn" (window:keydown.enter)="nextWord()" (click)="nextWord()">{{buttonText}}</button>
 </div>
 <div class="audiocall__message" *ngIf="message">
   <span class="message">

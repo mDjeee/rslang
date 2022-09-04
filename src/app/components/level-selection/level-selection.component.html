@@ -1,11 +1,11 @@
 <div class="level">
   <h3>Выберите уровень:</h3>
   <div class="level__list">
-    <button class="level__item" (click)="onChangeLevel($event, 0)">A1</button>
-    <button class="level__item" (click)="onChangeLevel($event, 1)">A2</button>
-    <button class="level__item" (click)="onChangeLevel($event, 2)">B1</button>
-    <button class="level__item" (click)="onChangeLevel($event, 3)">B2</button>
-    <button class="level__item" (click)="onChangeLevel($event, 4)">C1</button>
-    <button class="level__item" (click)="onChangeLevel($event, 5)">C2</button>
+    <button class="level__item" (window:keydown.1)="onChangeLevel(0)" (click)="onChangeLevel(0)">A1</button>
+    <button class="level__item" (window:keydown.2)="onChangeLevel(1)" (click)="onChangeLevel(1)">A2</button>
+    <button class="level__item" (window:keydown.3)="onChangeLevel(2)" (click)="onChangeLevel(2)">B1</button>
+    <button class="level__item" (window:keydown.4)="onChangeLevel(3)" (click)="onChangeLevel(3)">B2</button>
+    <button class="level__item" (window:keydown.5)="onChangeLevel(4)" (click)="onChangeLevel(4)">C1</button>
+    <button class="level__item" (window:keydown.6)="onChangeLevel(5)" (click)="onChangeLevel(5)">C2</button>
   </div>
 </div>

@@ -63,9 +63,10 @@ export class GameAudiocallComponent implements OnInit {
     if(word) return
   }
 
-  selectWord(event: Event) {
-    const target = <HTMLButtonElement>event.target;
-    const word = target.innerText;
+  selectWord(index: number) {
+    console.log(event)
+    const target = <HTMLElement>document.querySelectorAll('.audiocall__item')[index];
+    const word = (target).innerText;
     this.showCorrectAnswer(word);
 
     if (this.translateWord === word) {

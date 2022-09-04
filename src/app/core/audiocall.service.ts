@@ -37,7 +37,7 @@ export class AudiocallService {
 
   fetchWords(group: number, page: number){
     this._GetWordsSubscription = this.api.getWords(group, page).subscribe(books => {
-      this.words = books;
+      this.words = books.slice(0, 10);
       this.words.sort(() => this.getRandomIntInclusive(-1, 1));
       this.existWordsStatus.next(true);
     })

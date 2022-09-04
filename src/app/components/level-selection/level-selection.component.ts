@@ -18,18 +18,14 @@ export class LevelSelectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChangeLevel(event: Event, level: number) {
+  onChangeLevel(level: number) {
 
     const levelItems = document.querySelectorAll('.level__item');
-    // const startButton = <HTMLButtonElement>document.querySelector('.start__btn');
     const page = this.service.getRandomIntInclusive(0, 29);
 
     this.levelSelected.emit();
-    // startButton.disabled = false;
-
     levelItems.forEach((item) => item.classList.remove('level__item_active'));
-    (<HTMLElement>event.target).classList.add('level__item_active');
-    //TODO
+    levelItems[level].classList.add('level__item_active');
     this.service.getUserId();
     this.service.fetchWords(level, page);
   }
