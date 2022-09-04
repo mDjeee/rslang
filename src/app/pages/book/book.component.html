@@ -86,21 +86,21 @@
           </div>
 
 
-          <div class="hard" *ngIf="userHardWordsId.includes(word.id)">!</div>
-          <div class="learned" *ngIf="userLearnedWordsId.includes(word.id)">&#x2713;</div>
+          <div class="hard" *ngIf="userHardWordsId.has(word.id)">!</div>
+          <div class="learned" *ngIf="userLearnedWordsId.has(word.id)">&#x2713;</div>
 
           <div class="hard-word" *ngIf="!!user">
             <button
             class="add-to-word"
             (click)="addToHard(user.userId, word.id)"
-            [disabled]="userHardWordsId.includes(word.id)"
-            [class]="userHardWordsId.includes(word.id) ? 'disabled' : ''">+ в сложные слова</button>
+            [disabled]="userHardWordsId.has(word.id)"
+            [class]="userHardWordsId.has(word.id) ? 'disabled' : ''">+ в сложные слова</button>
 
             <button
             class="delete-word"
             (click)="addToLearned(user.userId, word.id)"
-            [disabled]="userLearnedWordsId.includes(word.id)"
-            [class]="userLearnedWordsId.includes(word.id) ? 'disabled' : ''"> + в изуенные слова</button>
+            [disabled]="userLearnedWordsId.has(word.id)"
+            [class]="userLearnedWordsId.has(word.id) ? 'disabled' : ''"> + в изуенные слова</button>
           </div>
         </div>
 

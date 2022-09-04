@@ -15,12 +15,12 @@ import { Router } from '@angular/router';
 export class BookComponent implements OnInit {
 
   words: IWord[] = [];
-  userHardWords: any = [];
+  userHardWords: any = new Set([]);
   userWords: IWord[] = [];
-  userHardWordsId: any = [];
-  userLearnedWordsId: any = [];
-  userUnstudiedWordsId: any = [];
-  counter = 0;
+  userHardWordsId: any = new Set([]);
+  userLearnedWordsId: any = new Set([]);
+  userUnstudiedWordsId: any = new Set([]);
+  counter = localStorage.getItem('counter') ? Number(localStorage.getItem('counter')) : 0;
 
   _SubsGetUserWord: Subscription | undefined;
   _SubsUserWord: Subscription | undefined;
@@ -64,6 +64,7 @@ export class BookComponent implements OnInit {
     this.page = localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 0;
     if(!!this.user) {
       this.fetchUserHardWords('difficult');
+      this.fetchUserHardWords('studied');
     }
     this.fetchWords(this.group, this.page);
     this.bookService.fromBook = false;
@@ -74,41 +75,42 @@ export class BookComponent implements OnInit {
       this.words = books;
       this.counter = 0;
       this.words.forEach(word => {
-        if(this.userLearnedWordsId.includes(word.id)) {
+        if(this.userLearnedWordsId.has(word.id)) {
           this.counter++;
         }
-      })
+      });
+      localStorage.setItem('counter', `${this.counter}`);
     })
   }
 
   private fetchUserHardWords(navigate: string) {
     if(this.user) {
-      this._SubsHardWord = this.api.getUserWords(this.user.userId).subscribe((books) => {
+      this._SubsHardWord = this.api.getUserWords(this.user.userId).subscribe((books: any) => {
         this.userHardWords = books;
 
-        this.userHardWordsId = [];
-        this.userLearnedWordsId = [];
-        this.userUnstudiedWordsId = [];
+        this.userHardWordsId = new Set([]);
+        this.userLearnedWordsId = new Set([]);
+        this.userUnstudiedWordsId = new Set([]);
 
         this.userHardWords.forEach((item: any) => {
           if(item.difficulty === 'difficult'){
-            this.userHardWordsId.push(item.wordId);
+            this.userHardWordsId.add(item.wordId);
           }
         })
 
         this.userHardWords.forEach((item: any) => {
           if(item.difficulty === 'studied'){
-            this.userLearnedWordsId.push(item.wordId);
+            this.userLearnedWordsId.add(item.wordId);
           }
         })
 
         this.userHardWords.forEach((item: any) => {
           if(item.difficulty === 'unstudied'){
-            this.userUnstudiedWordsId.push(item.wordId);
+            this.userUnstudiedWordsId.add(item.wordId);
           }
         })
 
-        this.userHardWords.filter((item: any) => item.difficulty === navigate).forEach((word: any) => {
+        books.filter((item: any) => item.difficulty === navigate).forEach((word: any) => {
           this.loadUserWords(word.wordId);
         })
       })
@@ -125,23 +127,26 @@ export class BookComponent implements OnInit {
     this.bookPage = page;
     this.bookPage ? this.isDictionary = true : this.isDictionary = false;
     this.userWords = [];
+    this.currentDictionary = 0;
     this.fetchUserHardWords('difficult');
   }
 
   addToHard(userId: string, wordId: string) {
-    if(this.userLearnedWordsId.includes(wordId)) {
+    if(this.userLearnedWordsId.has(wordId)) {
       this.counter--;
-      this._SubsGetHardWords = this.api.getUserWord(userId, wordId).subscribe((word: any) => {
-        this._SubsHardWords = this._SubsHardWord = this.api.putUserWordRequest(userId, wordId, 'difficult', word.options).subscribe();
+      this.userLearnedWordsId.delete(wordId);
+      this.api.getUserWord(userId, wordId).pipe(take(1)).subscribe((word: any) => {
+        this._SubsHardWords = this.api.putUserWordRequest(userId, wordId, 'difficult', word.options).subscribe();
       })
-    } else if(this.userUnstudiedWordsId.includes(wordId)) {
-      this._SubsGetHardWords = this.api.getUserWord(userId, wordId).pipe(take(1)).subscribe((word: any) => {
+    } else if(this.userUnstudiedWordsId.has(wordId)) {
+      this.userUnstudiedWordsId.delete(wordId);
+      this.api.getUserWord(userId, wordId).pipe(take(1)).subscribe((word: any) => {
         this._SubsHardWords = this.api.putUserWordRequest(userId, wordId, 'difficult', word.options).subscribe();
       })
     } else {
-      this._SubsUserWord = this.api.postUserWordRequest(userId, wordId, 'difficult', {
+      this._SubsHardWords = this.api.postUserWordRequest(userId, wordId, 'difficult', {
         isDeleted: false,
-        addTime: new Date().toString(),
+        addTime: '',
         games: {
           sprint: {
             right: 0,
@@ -161,10 +166,10 @@ export class BookComponent implements OnInit {
           }
         },
         allTry: 0
-      }).pipe(take(1)).subscribe();
+      }).subscribe();
     }
-    this.userWords = [];
-    this.fetchUserHardWords('difficult');
+
+    this.userHardWordsId.add(wordId);
   }
 
   removeFromHard(userId: string, wordId: string) {
@@ -177,18 +182,21 @@ export class BookComponent implements OnInit {
 
   addToLearned(userId: string, wordId: string) {
     this.counter++;
-    if(this.userHardWordsId.includes(wordId)) {
-      this._SubsGetLearndWords = this.api.getUserWord(userId, wordId).subscribe((word: any) => {
+    if(this.userHardWordsId.has(wordId)) {
+      this.userHardWordsId.delete(wordId);
+      this.api.getUserWord(userId, wordId).pipe(take(1)).subscribe((word: any) => {
         this._SubsLearndWords = this.api.putUserWordRequest(userId, wordId, 'studied', word.options).subscribe();
       })
-    } else if(this.userUnstudiedWordsId.includes(wordId)) {
-      this._SubsGetLearndWords = this.api.getUserWord(userId, wordId).subscribe((word: any) => {
+    }
+    else if(this.userUnstudiedWordsId.has(wordId)) {
+      this.userUnstudiedWordsId.delete(wordId);
+      this.api.getUserWord(userId, wordId).pipe(take(1)).subscribe((word: any) => {
         this._SubsLearndWords = this.api.putUserWordRequest(userId, wordId, 'studied', word.options).subscribe();
       })
     } else {
-      this._SubsUserWord = this.api.postUserWordRequest(userId, wordId, 'studied', {
+      this._SubsLearndWords = this.api.postUserWordRequest(userId, wordId, 'studied', {
         isDeleted: false,
-        addTime: new Date().toString(),
+        addTime: '',
         games: {
           sprint: {
             right: 0,
@@ -208,10 +216,10 @@ export class BookComponent implements OnInit {
           }
         },
         allTry: 0
-      }).pipe(take(1)).subscribe();
+      }).subscribe();
     }
-    this.userWords = [];
-    this.fetchUserHardWords('studied');
+
+    this.userLearnedWordsId.add(wordId);
   }
 
   removeFromLearned(userId: string, wordId: string) {
