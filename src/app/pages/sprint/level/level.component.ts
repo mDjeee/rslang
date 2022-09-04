@@ -5,6 +5,7 @@ import {IWord} from "../../../../types/IWord";
 import {SprintService} from "../../../core/sprint.service";
 import {IDayStatistics, IUserStatistics, IUserWord, IUserWordOptions} from "../../../../types/IOptions";
 import {Subscription} from "rxjs";
+import {baseUrl} from "../../../../api/baseUrl";
 
 @Component({
   selector: 'app-level',
@@ -36,6 +37,7 @@ export class LevelComponent implements OnInit, OnChanges {
   private userId!: string;
   private date = (new Date()).toISOString();
   private statistic!: IUserStatistics;
+  private _PutUserStatistics: Subscription | undefined;
 
 
   constructor(private router: Router, private api: ApiService, private act: ActivatedRoute, private  sprintApi:SprintService) {}
@@ -49,7 +51,11 @@ export class LevelComponent implements OnInit, OnChanges {
   }
 
   public getsWords() {
-    this.api.getWords(this.routerId,this.count[0]).subscribe((data) => {
+    const userPage = window.localStorage.getItem('page')
+    if (userPage) {
+      this.count[0] = Number(userPage)
+    }
+    this.api.getWords(this.routerId ,this.count[0]).subscribe((data) => {
       this.words = data;
       this.border = false;
       this.ChangeWord()
@@ -57,15 +63,7 @@ export class LevelComponent implements OnInit, OnChanges {
     })
   }
 
-  public timeOver() {
-    this.visibleStat = false;
-    this.finished = true;
-    this.wordsRight = [...this.SetRight];
-    this.wordsWrong = [...this.SetWrong];
-    this.getStatistics();
-    this.putStatistic();
-    console.log(this.getStatistics())
-  }
+
 
   public ChangeWord() {
     if (this.index < 19)  {
@@ -74,7 +72,7 @@ export class LevelComponent implements OnInit, OnChanges {
     this.wordEN = this.words[this.index].word
     this.wordsRu = Math.floor(Math.random() * this.words.length)
     this.wordRU = this.words[this.wordsRu].wordTranslate
-    this.border = !this.border
+    this.border = !this.border;
   }
 
   public isRightAnswer() {
@@ -113,8 +111,11 @@ export class LevelComponent implements OnInit, OnChanges {
     this.chain = Math.max(...(this.maxRightAnswer))
   }
 
-  public playWord() {
-// слово
+  public playWord(src: string) {
+    const audio = new Audio();
+    audio.src = baseUrl + "/" + src;
+    audio.load();
+    audio.play()
   }
 
   private  getStatistics(): IUserStatistics {
@@ -150,20 +151,49 @@ export class LevelComponent implements OnInit, OnChanges {
     this.userId = userId;
   }
 
-  public Options() {
-
-  }
-
-  private putStatistic() {
-    this.api.putUserStatistics(this.userId, this.statistic)
+  private  putStatistics() {
+    this._PutUserStatistics = this.api.putUserStatistics(this.userId, {
+      learnedWords: (this.wordsRight.length) + (this.wordsWrong.length),
+      optional: {
+        stat: {
+          allStat: [{
+      date: new Date().toISOString(),
+      amountNewWordsPerDey: this.wordsRight.length,
+      correctAnswers: this.wordsRight.length,
+      games: {
+        audiocall: {correct: 0, wrong: 0, chain: 0},
+        sprint: {correct: this.wordsRight.length, wrong: this.wordsWrong.length, chain: this.chain},
+        oasis: {correct: 0, wrong: 0, chain: 0},
+      },
+      allWords: (this.wordsRight.length) + (this.wordsWrong.length)
+    }],
+          newWords:    ['dd'] //массиво строк
+        }
+      }
+    })
+      .subscribe({
+        error: error => {
+          switch(error.status) {
+            case 404:
+              this.router.navigate(['/not-found']);
+              break;
+            case 401:
+              this.router.navigate(['/authorization']);
+              break;
+          }
+        }
+      })
   }
 
 
   ngOnInit(): void {
    // this.sprintApi.playSong();
-   this.act.params.subscribe((paramId) => {
-     this.routerId = paramId['id'];
-   })
+
+      this.act.params.subscribe((paramId) => {
+        this.routerId = paramId['id'];
+      })
+
+
     this.randomArr();
     this.getsWords();
     this.getUserId()
@@ -173,6 +203,13 @@ export class LevelComponent implements OnInit, OnChanges {
 
   }
 
-
+  public timeOver() {
+    this.visibleStat = false;
+    this.finished = true;
+    this.wordsRight = [...this.SetRight];
+    this.wordsWrong = [...this.SetWrong];
+    this.getStatistics();
+    this.putStatistics()
+  }
 }
 
