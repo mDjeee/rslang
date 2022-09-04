@@ -31,7 +31,7 @@
     </ul>
   </nav>
 
-  <div class="words-container" *ngIf="!isDictionary">
+  <div class="words-container" *ngIf="!isDictionary" [class]="counter === 20 ? 'completed' : ''">
 
     <div class="word-container" *ngFor="let word of words" [class]="'a' + currentLevel + '0'">
       <div class="word-image">
@@ -257,13 +257,22 @@
   </div>
 
   <div class="game-container">
-    <div class="game sprint" (click)="gameFromBook('games/sprint')">
+    <button
+    class="game sprint"
+    (click)="gameFromBook('games/sprint')"
+    [disabled]="counter === 20"
+    [class]="counter === 20 ? 'completed' : ''">
       <img src="../../../assets/booksprint.svg" alt="Sprint" class="game-image" draggable="false">
       <h3 class="game-title">Перейти к спринт</h3>
-    </div>
-    <div class="game audiocall" (click)="gameFromBook('games/audiocall')">
+    </button>
+
+    <button
+    class="game audiocall"
+    (click)="gameFromBook('games/audiocall')"
+    [disabled]="counter === 20"
+    [class]="counter === 20 ? 'completed' : ''">
       <img src="../../../assets/bookaudiocall.svg" alt="Sprint" class="game-image" draggable="false">
       <h3 class="game-title">Перейти к аудиовызов</h3>
-    </div>
+    </button>
   </div>
 </div>

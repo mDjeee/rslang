@@ -20,6 +20,7 @@ export class BookComponent implements OnInit {
   userHardWordsId: any = [];
   userLearnedWordsId: any = [];
   userUnstudiedWordsId: any = [];
+  counter = 0;
 
   _SubsGetUserWord: Subscription | undefined;
   _SubsUserWord: Subscription | undefined;
@@ -71,6 +72,12 @@ export class BookComponent implements OnInit {
   private fetchWords(group: number, page: number){
     this._Subscription = this.api.getWords(group, page).subscribe((books: IWord[]) => {
       this.words = books;
+      this.counter = 0;
+      this.words.forEach(word => {
+        if(this.userLearnedWordsId.includes(word.id)) {
+          this.counter++;
+        }
+      })
     })
   }
 
@@ -123,6 +130,7 @@ export class BookComponent implements OnInit {
 
   addToHard(userId: string, wordId: string) {
     if(this.userLearnedWordsId.includes(wordId)) {
+      this.counter--;
       this._SubsGetHardWords = this.api.getUserWord(userId, wordId).subscribe((word: any) => {
         this._SubsHardWords = this._SubsHardWord = this.api.putUserWordRequest(userId, wordId, 'difficult', word.options).subscribe();
       })
@@ -168,6 +176,7 @@ export class BookComponent implements OnInit {
   }
 
   addToLearned(userId: string, wordId: string) {
+    this.counter++;
     if(this.userHardWordsId.includes(wordId)) {
       this._SubsGetLearndWords = this.api.getUserWord(userId, wordId).subscribe((word: any) => {
         this._SubsLearndWords = this.api.putUserWordRequest(userId, wordId, 'studied', word.options).subscribe();
