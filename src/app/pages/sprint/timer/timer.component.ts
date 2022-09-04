@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Subscription, timer} from 'rxjs';
+import {SprintService} from "../../../core/sprint.service";
 
 @Component({
   selector: 'app-timer',
@@ -7,15 +8,29 @@ import { timer } from 'rxjs';
   styleUrls: ['./timer.component.css']
 })
 export class TimerComponent implements OnInit {
-  seconds:number = 0
-  constructor() {}
-  ngOnInit() {
+  @Output() public visibleStatistic = new EventEmitter()
+  seconds!:number | string
+  public subscription!: Subscription;
+  constructor(private SprintApi: SprintService) {}
+  public setFormData() {
+    if (this.seconds >= 60 ) {
+      this.subscription.unsubscribe();
+      this.seconds = 'Время вышло';
+      this.visibleStatistic.emit()
+    }
 
-    const numbers = timer(1000, 1000);
-    numbers.subscribe((x)=> {
-      this.seconds = (x);
+  }
+  ngOnInit() {
+    this.subscription = timer(0, 1000).subscribe(t => {
+      this.seconds = (t)
+      this.setFormData();
     });
+  }
+
 
   }
 
-}
+
+
+
+
