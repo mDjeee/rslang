@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 10px;
+  border: none;
   background-color: #f3f4f8;
   align-items: center;
   transition: all 0.3s;
@@ -152,10 +153,6 @@ p {
   cursor: pointer;
   color: #ffffff;
   background-color:#ff3d00;
-}
-.dictionary {
-  border-left: 5px solid #2c2647;
-  padding-left: 10px;
 }
 @media screen and (max-width: 900px) {
   .image {

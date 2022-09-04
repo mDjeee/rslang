@@ -2,7 +2,7 @@
 
   <div class="book-header">
     <h1 class="book-title" (click)="changePage(0)" [class]="(!!user && !(bookPage === 0)) ? 'book-change' : 'book-choosen'">Учебник</h1>
-    <h1 class="book-title dictionary" (click)="changePage(1)" [class]="(!!user && !(bookPage === 1)) ? 'book-change' : 'book-choosen'">Словарь</h1>
+    <h1 class="book-title dictionary" *ngIf="!!user" (click)="changePage(1)" [class]="(!!user && !(bookPage === 1)) ? 'book-change' : 'book-choosen'">Словарь</h1>
     <div class="show-translate">
       <div class="show-translate_set" (click)="showConfig=!showConfig">
         <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
@@ -31,7 +31,9 @@
     </ul>
   </nav>
 
-  <div class="words-container" *ngIf="!isDictionary">
+  <mat-spinner class="spiner" *ngIf="isLoading"></mat-spinner>
+
+  <div class="words-container" *ngIf="!isDictionary" [class]="counter === 20 ? 'completed' : ''">
 
     <div class="word-container" *ngFor="let word of words" [class]="'a' + currentLevel + '0'">
       <div class="word-image">
@@ -86,21 +88,21 @@
           </div>
 
 
-          <div class="hard" *ngIf="userHardWordsId.includes(word.id)">!</div>
-          <div class="learned" *ngIf="userLearnedWordsId.includes(word.id)">&#x2713;</div>
+          <div class="hard" *ngIf="userHardWordsId.has(word.id)">!</div>
+          <div class="learned" *ngIf="userLearnedWordsId.has(word.id)">&#x2713;</div>
 
           <div class="hard-word" *ngIf="!!user">
             <button
             class="add-to-word"
             (click)="addToHard(user.userId, word.id)"
-            [disabled]="userHardWordsId.includes(word.id)"
-            [class]="userHardWordsId.includes(word.id) ? 'disabled' : ''">+ в сложные слова</button>
+            [disabled]="userHardWordsId.has(word.id)"
+            [class]="userHardWordsId.has(word.id) ? 'disabled' : ''">+ в сложные слова</button>
 
             <button
             class="delete-word"
             (click)="addToLearned(user.userId, word.id)"
-            [disabled]="userLearnedWordsId.includes(word.id)"
-            [class]="userLearnedWordsId.includes(word.id) ? 'disabled' : ''"> + в изуенные слова</button>
+            [disabled]="userLearnedWordsId.has(word.id)"
+            [class]="userLearnedWordsId.has(word.id) ? 'disabled' : ''"> + в изуенные слова</button>
           </div>
         </div>
 
@@ -110,6 +112,7 @@
   <div class="pagination" *ngIf="!isDictionary">
     <mat-paginator length=600
                   pageSize=20
+                  [pageIndex]='page'
                   (page)="pageEvent = movePage($event)"
                   aria-label="Select page"
                   hidePageSize = true
@@ -256,13 +259,22 @@
   </div>
 
   <div class="game-container">
-    <div class="game sprint" (click)="gameFromBookSprint('games/sprint/level/')">
+    <button
+    class="game sprint"
+    (click)="gameFromBookSprint('games/sprint/level/')"
+    [disabled]="counter === 20"
+    [class]="counter === 20 ? 'completed' : ''">
       <img src="../../../assets/booksprint.svg" alt="Sprint" class="game-image" draggable="false">
       <h3 class="game-title">Перейти к спринт</h3>
-    </div>
-    <div class="game audiocall" (click)="gameFromBook('games/audiocall')">
+    </button>
+
+    <button
+    class="game audiocall"
+    (click)="gameFromBook('games/audiocall')"
+    [disabled]="counter === 20"
+    [class]="counter === 20 ? 'completed' : ''">
       <img src="../../../assets/bookaudiocall.svg" alt="Sprint" class="game-image" draggable="false">
       <h3 class="game-title">Перейти к аудиовызов</h3>
-    </div>
+    </button>
   </div>
 </div>

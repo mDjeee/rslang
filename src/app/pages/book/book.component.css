@@ -162,3 +162,15 @@ body {
 .learned {
   background-color: #4cb12d;
 }
+.dictionary {
+  border-left: 5px solid #2c2647;
+  padding-left: 10px;
+}
+.completed {
+  opacity: 0.4;
+}
+.spiner {
+  width: 300px;
+  height: 300px;
+  margin: auto;
+}
