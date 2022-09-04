@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 2rem;
 }
 
 .audiocall__container {
@@ -13,4 +14,30 @@
 
 :host ::ng-deep .audiocall__btn {
   background-color: green;
+}
+
+.audiocall__start-btn:hover {
+  cursor: pointer;
+  color: white;
+  border-color: white;
+  background-color: #524983;
+}
+
+.audiocall__start-btn:disabled {
+  cursor: auto;
+  color: lightslategray;
+  border-color: lightslategray;
+  background-color: transparent;
+}
+
+.audiocall__start-btn {
+  border: 1px solid #272525;
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 120%;
+  color: #272525;
+  padding: .5rem 3rem;
+  border-radius: 20px;
+  background-color: transparent;
 }

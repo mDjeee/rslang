@@ -11,11 +11,15 @@
 }
 
 .word-list__title {
-  color: black;
-  align-self: center;
+  font-family: 'Manrope';
+  font-weight: 700;
   font-size: 1.2rem;
-  font-weight: bold;
+  line-height: 120%;
+  text-align: center;
+  color: #272525;
+  align-self: center;
   padding-bottom: 10px;
+  user-select: none;
 }
 
 .word-list__count {
@@ -23,14 +27,24 @@
   padding: 0 10px;
   color: white;
   border-radius: 1rem;
+  text-align: center;
+}
+
+.word-list__text {
+  font-family: 'Manrope';
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 150%;
+  color: #272525;
+  user-select: none;
 }
 
 .word-list__count_wrong {
-  background-color: salmon;
+  background-color: rgb(157, 30, 30);
 }
 
 .word-list__count_correct {
-  background-color: aquamarine;
+  background-color: rgb(5, 155, 5);
 }
 
 .word-item {
@@ -49,4 +63,17 @@
 
 .word-list__separator {
   width: 90%;
+}
+
+.word-item__word,
+.word-item__translate,
+.word-item__seperator {
+  font-family: 'Manrope';
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 100%;
+  text-align: center;
+  color: #454747;
+  align-self: center;
+  user-select: none;
 }

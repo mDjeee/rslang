@@ -5,10 +5,10 @@
   </div>
     <app-game-audiocall *ngIf="start && !end"></app-game-audiocall>
     <app-game-result *ngIf="end"></app-game-result>
-    <button class="start__btn" disabled="BtnDisabled" *ngIf="visible" (window:keydown.enter)="onStart()" (click)="onStart()">Начать</button>
-</div>
-<div class="audiocall__message" *ngIf="message">
-  <span class="message">
-    Все слова со страницы {{page + 1}} учебника уже изучены
-  </span>
+    <button class="audiocall__start-btn" disabled="BtnDisabled" *ngIf="visible" (window:keydown.enter)="onStart()" (click)="onStart()">Начать</button>
+    <div class="audiocall__message" *ngIf="message">
+      <span class="message">
+        Все слова со страницы {{page + 1}} учебника уже изучены
+      </span>
+    </div>
 </div>
