@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <div class="levels-container" *ngIf="isLevels">
+    <div class="levels-header">
+      <h3 class="levels-title">Оазис</h3>
+      <p class="levels-description">Тренировка Оазис развивает смысловое прогнозирование и формирует навык написания слов.</p>
+    </div>
+
+    <div class="levels">
+      <h3 class="levels-intro">Выберите уровень</h3>
+      <ul class="levels-list">
+        <li class="levels-item" (click)="choseLevel(0)">A1</li>
+        <li class="levels-item" (click)="choseLevel(1)">A2</li>
+        <li class="levels-item" (click)="choseLevel(2)">B1</li>
+        <li class="levels-item" (click)="choseLevel(3)">B2</li>
+        <li class="levels-item" (click)="choseLevel(4)">C1</li>
+        <li class="levels-item" (click)="choseLevel(5)">C2</li>
+      </ul>
+    </div>
+  </div>
+</div>

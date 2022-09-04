@@ -37,6 +37,7 @@ import { StatisticsComponent } from '../pages/statistics/statistics.component';
 import { GameCardComponent } from '../components/game-card/game-card.component';
 import { BarChartComponent } from '../components/bar-chart/bar-chart.component';
 import { LinearChartComponent } from '../components/linear-chart/linear-chart.component';
+import { OasisComponent } from '../pages/oasis/oasis.component';
 
 
 
@@ -59,6 +60,7 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
     LevelSelectionComponent,
     LevelComponent,
     AudiocallComponent,
+    OasisComponent,
     GameTitleComponent,
     GameAudiocallComponent,
     GameResultComponent,
@@ -71,7 +73,6 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
     LinearChartComponent,
     SprintBorderDirective,
     ChartComponent,
-
   ],
   imports: [
     CommonModule,
@@ -109,6 +110,7 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
     GameTitleComponent,
     GameAudiocallComponent,
     GameResultComponent,
+    OasisComponent,
     NotFoundComponent,
     StatisticsComponent,
     GameCardComponent,
