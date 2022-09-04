@@ -55,27 +55,20 @@ export class AudiocallService {
   }
 
   getUnlearnedWords(learnedWords: IUserWord[], allWords: IWord[]) {
-    // console.log('learned',learnedWords)
-    // console.log('all',allWords)
-    // console.log('words before', this.words)
     if(!learnedWords.length) {
       this.words = allWords.slice(0,10);
       this.existWordsStatus.next(true);
     } else {
       const learned = learnedWords.filter(item => <'difficult' | 'studied' | 'unstudied'>item.difficulty === 'studied').map(item => item.wordId);
-      // console.log('Filtered learned', learned)
       const words = allWords.flat().filter(item => {
-        // console.log('include?',learned.includes(item.id), item.id);
         return !learned.includes(item.id)
       });
-      // console.log('filtered',words)
       this.words = words.slice(0, 10);
       if(this.words.length >= 5) this.existWordsStatus.next(true);
       if(this.words.length < 5) {
         this.minWordsStatus.next(true);
       }
     }
-    // console.log('game',this.words)
   }
 
   public getFetchWordsStatus(): Observable<boolean> {

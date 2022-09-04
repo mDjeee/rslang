@@ -36,29 +36,10 @@ export class AudiocallComponent implements OnInit {
       this.service.getUserId()
       this.levelSelectionVisible = false;
       this.visible = false;
-      // this.start = true;
       this._GetWordsStatusSubscription = this.service.existWordsStatus.subscribe(value => {
-        console.log('start!',value)
         this.start = value;
       });
-      // this._DataStatus = this.service.minWordsStatus.subscribe(value => {
-      //   this.message = value
-      // })
       this.service.allFetches(this.page, group)
-    }
-  }
-
-
-  // onStartGame() {
-  //   if (this.service.words.length) {
-  //     this.startBtnVisible = this.status;;
-  //     this.service.getUserId();
-  //   }
-  // }
-
-  onEndGame() {
-    if (this.service.words.length === this.service.answers.length) {
-      console.log('end')
     }
   }
 
