@@ -1,0 +1,190 @@
+
+.game-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  background-color: #f3f4f8;
+  align-items: center;
+  transition: all 0.3s;
+}
+.game:hover {
+  cursor: pointer;
+  box-shadow: 0px 1px 10px 1px rgba(0,0,0,0.19);
+}
+
+.game-title {
+  color: #2c2647;
+  font-weight: 700;
+}
+.game-image {
+  width: 300px;
+  height: 300px;
+  user-select: none;
+}
+.disabled {
+  opacity: 0.5;
+}
+.disabled:hover {
+  cursor: auto;
+  background-color: #ff3d00 !important;
+}
+.list {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  margin: 0 auto 50px;
+  flex-wrap: wrap;
+  justify-content: last baseline;
+  gap: 2%;
+  list-style-type: none;
+}
+p {
+  margin: 0;
+  vertical-align: middle;
+}
+.words-container {
+  width: 100%;
+}
+.word-container {
+  position: relative;
+  border-radius: 20px;
+  display: flex;
+  width: 100%;
+  margin: 15px 0;
+}
+.word-description {
+  padding: 20px;
+}
+.word {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 5px;
+}
+.word_en {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.play {
+  font-size: 1.5rem;
+}
+.word_ru {
+  font-family: 'Jost-k';
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.word_transcript {
+  letter-spacing: 0.05em;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.word-meaning_header, .word-example_header {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2c2647;
+  margin-bottom: 2px;
+}
+.word-meaning_en, .word-example_en {
+  font-family: Roboto;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  font-size: 1.1em;
+}
+.word-meaning_ru, .word-example_ru {
+  font-family: 'Jost-k';
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  font-size: 1.1em;
+  color: #ffffff;
+}
+.word-meaning {
+  margin-bottom: 10px;
+}
+.play {
+  cursor: pointer;
+}
+.svg {
+  width: 20px;
+}
+.pagination {
+  margin-top: 10px;
+}
+.active {
+  background-color: #00b8d4;
+}
+.word-image {
+  height: 320px;
+  user-select: none;
+}
+.image {
+  height: 320px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  user-select: none;
+}
+.hard-word {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+.hard-word button:hover {
+  background-color: #ED80FD;
+}
+.delete-word, .add-to-word {
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  background-color:#ff3d00;
+}
+.dictionary {
+  border-left: 5px solid #2c2647;
+  padding-left: 10px;
+}
+@media screen and (max-width: 900px) {
+  .image {
+    height: 320px;
+    width: 240px;
+    object-fit: cover;
+  }
+}
+@media screen and (max-width: 600px) {
+  .word-container {
+    flex-direction: column;
+    border-top-right-radius: 20px;
+  }
+  .word {
+    flex-wrap: wrap;
+    column-gap: 5px;
+  }
+  .word * {
+    margin: 0;
+  }
+  .word-image {
+    width: 100%;
+    height: 100%;
+  }
+  .image {
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0;
+    width: 100%;
+    height: fit-content;
+    object-fit: contain;
+  }
+}
