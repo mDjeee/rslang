@@ -70,4 +70,5 @@ export class ApiService {
   putUserStatistics(userId: string, options: IUserStatistics) {
     return this.http.put(`${baseUrl}/users/${userId}/statistics`, options );
   }
+
 }

@@ -15,12 +15,11 @@ import {RssLogoComponent} from "../components/rss-logo/rss-logo.component";
 import {FooterComponent} from "../components/footer/footer.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {AppRoutingModule} from "../app-routing.module";
+import {LevelComponent} from "../pages/sprint/level/level.component";
 import { AuthComponent } from '../pages/auth/auth.component';
 import { FormsModule }   from '@angular/forms';
 import { LevelSelectionComponent } from '../components/level-selection/level-selection.component';
-import { LevelComponent } from '../pages/sprint/level/level.component';
 import { AudiocallComponent } from '../pages/audiocall/audiocall.component';
 import { GameTitleComponent } from '../components/game-title/game-title.component';
 import { GameAudiocallComponent } from '../pages/audiocall/game-audiocall/game-audiocall.component';
@@ -30,7 +29,10 @@ import {MatTableModule} from '@angular/material/table';
 import { DoughnutChartComponent } from '../components/doughnut-chart/doughnut-chart.component';
 import { WordsTableComponent } from '../components/words-table/words-table.component';
 import { NotFoundComponent } from '../pages/not-found/not-found.component';
-
+import { SprintBorderDirective } from './directives/sprint-border.directive';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ChartComponent} from "../pages/sprint/chart/chart.component";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { StatisticsComponent } from '../pages/statistics/statistics.component';
 import { GameCardComponent } from '../components/game-card/game-card.component';
 import { BarChartComponent } from '../components/bar-chart/bar-chart.component';
@@ -66,7 +68,9 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
     StatisticsComponent,
     GameCardComponent,
     BarChartComponent,
-    LinearChartComponent
+    LinearChartComponent,
+    SprintBorderDirective,
+    ChartComponent,
 
   ],
   imports: [
@@ -75,10 +79,11 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
     FormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule,
     AppRoutingModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
   ],
   exports: [
     TimerComponent,
@@ -108,7 +113,10 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
     StatisticsComponent,
     GameCardComponent,
     BarChartComponent,
-    LinearChartComponent
+    LinearChartComponent,
+    SprintBorderDirective,
+    MatProgressSpinnerModule,
+    ChartComponent,
   ]
 })
 export class ShareModule { }

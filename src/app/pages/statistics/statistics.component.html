@@ -19,7 +19,7 @@
   <div class="statistics-all">
     <h2 class="statistics-all__title">Статистика за всё время</h2>
     <div class="statistics-all__togle">
-      <span>Количество изученных слов по дням</span>
+      <span>Количество новых слов по дням</span>
       <label class="switch">
         <input type="checkbox" (click)="changeChart($event)">
         <span class="slider round"></span>
@@ -27,6 +27,6 @@
       <span>Прогресс изучения</span>
     </div>
     <app-bar-chart [barChartData] = 'dataForBarChart' *ngIf="visible && !linearChartVisible"></app-bar-chart>
-    <app-linear-chart [lineChartData] = 'dataForBarChart' *ngIf="visible && linearChartVisible"></app-linear-chart>
+    <app-linear-chart [lineChartData] = 'dataForLineChart' *ngIf="visible && linearChartVisible"></app-linear-chart>
   </div>
 </div>
