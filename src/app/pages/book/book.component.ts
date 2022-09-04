@@ -72,6 +72,22 @@ export class BookComponent implements OnInit {
     this.bookService.fromBook = false;
   }
 
+
+  private  getDefaultOptions() {
+    const options = {
+      isDeleted: false,
+      addTime: (new Date()).toISOString(),
+      games: {
+        sprint: { right: 0, wrong: 0 },
+        savanna: { right: 0, wrong: 0 },
+        oasis: { right: 0, wrong: 0 },
+        audioCall: { right: 0, wrong: 0 },
+      },
+      allTry: 1
+    }
+    return options;
+  }
+
   private fetchWords(group: number, page: number){
     this._Subscription = this.api.getWords(group, page).subscribe((books: IWord[]) => {
       this.words = books;
@@ -147,29 +163,7 @@ export class BookComponent implements OnInit {
         this._SubsHardWords = this.api.putUserWordRequest(userId, wordId, 'difficult', word.options).subscribe();
       })
     } else {
-      this._SubsHardWords = this.api.postUserWordRequest(userId, wordId, 'difficult', {
-        isDeleted: false,
-        addTime: '',
-        games: {
-          sprint: {
-            right: 0,
-            wrong: 0
-          },
-          savanna: {
-            right: 0,
-            wrong: 0
-          },
-          oasis: {
-            right: 0,
-            wrong: 0
-          },
-          audioCall: {
-            right: 0,
-            wrong: 0
-          }
-        },
-        allTry: 0
-      }).subscribe();
+      this._SubsHardWords = this.api.postUserWordRequest(userId, wordId, 'difficult', this.getDefaultOptions()).subscribe();
     }
 
     this.userHardWordsId.add(wordId);
@@ -197,29 +191,7 @@ export class BookComponent implements OnInit {
         this._SubsLearndWords = this.api.putUserWordRequest(userId, wordId, 'studied', word.options).subscribe();
       })
     } else {
-      this._SubsLearndWords = this.api.postUserWordRequest(userId, wordId, 'studied', {
-        isDeleted: false,
-        addTime: '',
-        games: {
-          sprint: {
-            right: 0,
-            wrong: 0
-          },
-          savanna: {
-            right: 0,
-            wrong: 0
-          },
-          oasis: {
-            right: 0,
-            wrong: 0
-          },
-          audioCall: {
-            right: 0,
-            wrong: 0
-          }
-        },
-        allTry: 0
-      }).subscribe();
+      this._SubsLearndWords = this.api.postUserWordRequest(userId, wordId, 'studied', this.getDefaultOptions()).subscribe();
     }
 
     this.userLearnedWordsId.add(wordId);
