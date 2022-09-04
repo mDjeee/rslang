@@ -17,12 +17,19 @@ export class GameAudiocallComponent implements OnInit {
   currentWord!: string;
   translateWord!: string;
   end: boolean = false;
+  message: boolean = false;
+  page!: number;
 
   constructor(private service: AudiocallService) {
    }
 
   ngOnInit(): void {
-    this.randomWords = this.service.nextWord();
+    this.page = this.service.page === -1 ? 1 : this.service.page;
+    if(!this.service.words.length || this.service.words.length < 5) {
+      this.message = true;
+    } else {
+      this.randomWords = this.service.nextWord();
+    }
   }
 
   nextWord() {
@@ -31,7 +38,7 @@ export class GameAudiocallComponent implements OnInit {
       this.activateDiactivateItems(false, this.translateWord);
       this.buttonText = 'Дальше';
     } else {
-      if(this.service.index < 9) {
+      if(this.service.index < this.service.words.length - 1) {
         this.randomWords = this.service.nextWord();
         this.buttonText = 'Не знаю';
         this.activateDiactivateItems(true);
@@ -54,9 +61,9 @@ export class GameAudiocallComponent implements OnInit {
     if(word) return
   }
 
-  selectWord(event: Event) {
-    const target = <HTMLButtonElement>event.target;
-    const word = target.innerText;
+  selectWord(index: number) {
+    const target = <HTMLElement>document.querySelectorAll('.audiocall__item')[index];
+    const word = (target).innerText;
     this.showCorrectAnswer(word);
 
     if (this.translateWord === word) {

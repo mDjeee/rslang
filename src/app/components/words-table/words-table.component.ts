@@ -21,8 +21,6 @@ export class WordsTableComponent implements OnInit {
   }
 
   play(src: string) {
-    console.log(this.answers);
-    console.log(src)
     const audio = new Audio();
     audio.src = baseUrl + "/" + src;
     audio.load();

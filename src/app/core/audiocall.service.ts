@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, Subscription } from 'rxjs';
 import { baseUrl } from 'src/api/baseUrl';
 import { answer } from 'src/types/audiocall-answer';
 import { IDayStatistics, IUserStatistics, IUserWord, IUserWordOptions } from 'src/types/IOptions';
@@ -16,29 +16,74 @@ export class AudiocallService {
   private _PostUserWordSubscription: Subscription | undefined;
   private _GetUserStatistics: Subscription | undefined;
   private _PutUserStatistics: Subscription | undefined;
+  private _AllWordsFetches: Subscription | undefined;
 
   words: IWord[] = [];
+  learnedWords: IUserWord[] = [];
   index: number = -1;
   answers: answer[] = [];
+  existWordsStatus = new BehaviorSubject(false);
+  minWordsStatus = new BehaviorSubject(false);
+  learnedWordsStatus = new BehaviorSubject(false);
+  bothStatus = new BehaviorSubject(false);
   private randomWords!: string[];
   private userId!: string;
   private existWordOptions!: IUserWordOptions;
   private date = (new Date()).toISOString();
   chain!: number;
+  page!: number;
 
   constructor(private api: ApiService, private router: Router) { }
 
   fetchWords(group: number, page: number){
     this._GetWordsSubscription = this.api.getWords(group, page).subscribe(books => {
-      this.words = books;
-      this.words.sort(() => this.getRandomIntInclusive(-1, 1)).splice(10);
+      this.words = books.slice(0, 10);
+      this.words.sort(() => this.getRandomIntInclusive(-1, 1));
+      this.existWordsStatus.next(true);
     })
+  }
+
+  allFetches(page: number, group: number) {
+    let resp0 = new Array(page + 1).fill(0);
+    let words = resp0.map((_) => this.api.getWords(group, page--));
+    let learned = this.api.getUserWords(this.userId);
+    const _AllWordsFetches = forkJoin([learned, ...words]).subscribe(item => {
+      this.page = page;
+      const [learnedWords, ...words] = item;
+      this.getUnlearnedWords(<IUserWord[]>learnedWords, words);
+    })
+  }
+
+  getUnlearnedWords(learnedWords: IUserWord[], allWords: IWord[]) {
+    if(!learnedWords.length) {
+      this.words = allWords.slice(0,10);
+      this.existWordsStatus.next(true);
+    } else {
+      const learned = learnedWords.filter(item => <'difficult' | 'studied' | 'unstudied'>item.difficulty === 'studied').map(item => item.wordId);
+      const words = allWords.flat().filter(item => {
+        return !learned.includes(item.id)
+      });
+      this.words = words.slice(0, 10);
+      if(this.words.length >= 5) this.existWordsStatus.next(true);
+      if(this.words.length < 5) {
+        this.minWordsStatus.next(true);
+      }
+    }
+  }
+
+  public getFetchWordsStatus(): Observable<boolean> {
+    return this.existWordsStatus.asObservable();
+  }
+
+  public getMinWordsStatus(): Observable<boolean> {
+    return this.minWordsStatus.asObservable();
   }
 
   private getUserWord(userId: string, wordId: string, answer?: boolean) {
     this._GetUserWordSubscription = this.api.getUserWord(userId, wordId).subscribe( {
       next: word => {
         this.existWordOptions = this.getChangedOptions((<IUserWord>word).optional, <boolean>answer);
+        this.api.putUserWordRequest(userId, wordId, 'studied', this.existWordOptions);
       },
       error: error => {
         switch(error.status) {
@@ -47,9 +92,6 @@ export class AudiocallService {
             break;
           case 401:
             this.router.navigate(['/authorization']);
-            break;
-          case 200:
-            this.postUserWord(userId, wordId, 'studied', this.existWordOptions);
             break;
         }
       }
@@ -63,7 +105,6 @@ export class AudiocallService {
   getStatistics() {
     this._GetUserStatistics = this.api.getUserStatistics(this.userId).subscribe({
       next: statistics => {
-        console.log(statistics);
         // this.putStatistics(this.getDefaultStatistics());
         this.putStatistics(this.getChangedStatistics(<IUserStatistics>statistics))
       },
@@ -81,7 +122,6 @@ export class AudiocallService {
   }
 
   private  putStatistics(statistics: IUserStatistics) {
-    console.log('put')
     this._PutUserStatistics = this.api.putUserStatistics(this.userId, statistics)
     .subscribe({
       error: error => {
@@ -97,17 +137,12 @@ export class AudiocallService {
     })
   }
 
-  private  getChangedStatistics(statistics: IUserStatistics) {
+  private getChangedStatistics(statistics: IUserStatistics) {
     delete statistics.id;
     // статистика за сегодня
-    const currentDateStat = statistics.optional.stat.allStat
-      .filter((item) => item.date.slice(0, 10) === this.date.slice(0, 10));
+    const currentDateStat = this.getCurrentDateStatistucs(statistics);
     // newWordsAnswer - новые слова, если слова не встречаются в массиве слов
-    console.log(currentDateStat);
-    console.log(currentDateStat.length);
-    const newWordsFromAnswer = this.answers
-      .filter(item => !statistics.optional.stat.newWords.includes(item.id))
-      .map(item => item.id);
+    const newWordsFromAnswer = this.getNewWords(statistics);
     const correctAnswers = this.answers.filter(item => item.result).length;
     const wrongAnswers = this.answers.length - correctAnswers;
     const chain = this.getLengthOfLongestChain();
@@ -117,7 +152,6 @@ export class AudiocallService {
     let dayStat: IDayStatistics;
     if(currentDateStat.length) {
       [dayStat, ] = currentDateStat;
-      console.log('inside',dayStat);
       dayStat.amountNewWordsPerDey += newWordsFromAnswer.length;
       dayStat.correctAnswers += correctAnswers;
       dayStat.games.audiocall.correct += correctAnswers;
@@ -127,48 +161,66 @@ export class AudiocallService {
         : dayStat.games.audiocall.chain;
       dayStat.allWords += this.answers.length;
     } else {
-      dayStat = {
-        date: this.date,
-        amountNewWordsPerDey: newWordsFromAnswer.length,
-        correctAnswers: correctAnswers,
-        games: {
-          audiocall: {correct: correctAnswers, wrong: wrongAnswers, chain: chain},
-          sprint: {correct: 0, wrong: 0, chain: 0},
-          oasis: {correct: 0, wrong: 0, chain: 0},
-        },
-        allWords: this.answers.length,
-      };
+      dayStat = this.getDefaultDayStatistics(statistics);
       statistics.optional.stat.allStat.push(dayStat);
     }
 
     return statistics;
   }
 
-  private  getDefaultStatistics(): IUserStatistics {
+  private getCurrentDateStatistucs(statistics: IUserStatistics) {
+    const currentDateStatistics = statistics.optional.stat.allStat
+      .filter((item) => {
+        return item.date.slice(0, 10) === this.date.slice(0, 10)
+      });
+
+      return currentDateStatistics;
+  }
+
+  private getNewWords(statistics: IUserStatistics) {
+    const newWordsFromAnswers = this.answers
+    .filter(item => !statistics.optional.stat.newWords.includes(item.id))
+    .map(item => item.id);
+
+    return newWordsFromAnswers;
+  }
+
+
+  private getDefaultStatistics(): IUserStatistics {
     const correctAnswers = this.answers.filter(item => item.result).length;
-    const wrongAnswers = this.answers.length - correctAnswers;
-    const chain = this.getLengthOfLongestChain();
-    return {
+    const defaultStatistics = {
       learnedWords: correctAnswers,
       optional: {
         stat: {
           allStat: [
-            {
-            date: this.date,
-            amountNewWordsPerDey: this.answers.length,
-            correctAnswers: correctAnswers,
-            games: {
-              audiocall: {correct: correctAnswers, wrong: wrongAnswers, chain: chain},
-              sprint: {correct: 0, wrong: 0, chain: 0},
-              oasis: {correct: 0, wrong: 0, chain: 0},
-            },
-            allWords: this.answers.length
-          }
+            this.getDefaultDayStatistics()
         ],
           newWords: this.answers.map(item => item.id),
         }
       }
     }
+    return defaultStatistics;
+  }
+
+  private getDefaultDayStatistics(statistics?: IUserStatistics) {
+    const correctAnswers = this.answers.filter(item => item.result).length;
+    const wrongAnswers = this.answers.length - correctAnswers;
+    const chain = this.getLengthOfLongestChain();
+    const newWordsFromAnswer = statistics ? this.getNewWords(statistics).length : 0;
+
+    const dayStatistics = {
+      date: this.date,
+      amountNewWordsPerDey: newWordsFromAnswer,
+      correctAnswers: correctAnswers,
+      games: {
+        audiocall: {correct: correctAnswers, wrong: wrongAnswers, chain: chain},
+        sprint: {correct: 0, wrong: 0, chain: 0},
+        oasis: {correct: 0, wrong: 0, chain: 0},
+      },
+      allWords: this.answers.length,
+    };
+
+    return dayStatistics;
   }
 
   getLengthOfLongestChain() {
@@ -230,7 +282,7 @@ export class AudiocallService {
   nextWord() {
     this.index++;
     this.play();
-    this.getUserWord(this.userId, this.words[this.index].id);
+    // this.getUserWord(this.userId, this.words[this.index].id);
     this.getRandomWords();
     return this.randomWords;
   }
@@ -238,8 +290,7 @@ export class AudiocallService {
   getRightAnswer(word?: string,) {
     const correctWord = this.words[this.index].word;
     const correctWordTranslate = this.words[this.index].wordTranslate;
-
-    this.getUserWord(this.userId, this.words[this.index].id,word === correctWordTranslate);
+    if (word === correctWordTranslate) this.getUserWord(this.userId, this.words[this.index].id,word === correctWordTranslate);
     this.pushAnswer(word === correctWordTranslate);
     return {word: correctWord, translate: correctWordTranslate, imgSrc: this.getImageSource()};
   }
@@ -279,6 +330,9 @@ export class AudiocallService {
     }
     if (this._PutUserStatistics) {
       this._PutUserStatistics.unsubscribe();
+    }
+    if (this._AllWordsFetches) {
+      this._AllWordsFetches.unsubscribe();
     }
   }
 

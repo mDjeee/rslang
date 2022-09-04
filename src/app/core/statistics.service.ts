@@ -44,11 +44,11 @@ export class StatisticsService {
   }
 
   private getPercent(base: number, amount: number) {
-    console.log(base, amount)
     return Math.round(amount / base * 100);
   }
 
   private getDataForCards(statistics: IDayStatistics) {
+    if (!statistics) return this.statisticsPerDay.dataForCards;
     const audiocall = statistics.games.audiocall;
     const sprint = statistics.games.sprint;
     const oasis = statistics.games.oasis;
@@ -68,9 +68,15 @@ export class StatisticsService {
     ]
   }
 
-  getDataForBarChart(statistics: IUserStatistics) {
+  getDataForLineChart(statistics: IUserStatistics) {
     const labels = statistics.optional.stat.allStat.map((item: IDayStatistics) => item.date.slice(0, 10));
     const data = statistics.optional.stat.allStat.map((item: IDayStatistics) => item.correctAnswers);
+    return {data: data, labels: labels};
+  }
+
+  getDataForBarChart(statistics: IUserStatistics) {
+    const labels = statistics.optional.stat.allStat.map((item: IDayStatistics) => item.date.slice(0, 10));
+    const data = statistics.optional.stat.allStat.map((item: IDayStatistics) => item.amountNewWordsPerDey);
     return {data: data, labels: labels};
   }
 
