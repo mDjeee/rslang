@@ -275,6 +275,11 @@ export class BookComponent implements OnInit {
     this.router.navigate([route]);
   }
 
+  gameFromBookSprint(route: string) {
+    this.bookService.fromBook = true;
+    this.router.navigate([route + this.group]);
+  }
+
   ngOnDestroy(): void {
     if(this._Subscription) {
       this._Subscription.unsubscribe();
