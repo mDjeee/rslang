@@ -5,27 +5,76 @@
   margin: 0 10%;
 }
 
+.team__title {
+  font-family: 'Comfortaa';
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #272525;
+  line-height: 100%;
+  padding: 2rem;
+  margin: 0;
+  user-select: none;
+}
+
 .team__container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1.5rem;
+  height: 450px;
+  padding: 1rem;
 }
 
 .team__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 250px;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid #524983;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  gap: 1rem;
 }
 
 .team__name {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.team__subtitle {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  font-family: 'Manrope';
+  color: #454747;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  user-select: none;
+}
+
+.team__role,
+.team__description {
+  margin: 0;
+  padding: 0;
+  font-family: 'Manrope';
+  color: #454747;
+  font-size: 1.2rem;
+  font-weight: 700;
+  user-select: none;
+}
+
+.team__description {
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: justify;
 }
 
 .team_img {
