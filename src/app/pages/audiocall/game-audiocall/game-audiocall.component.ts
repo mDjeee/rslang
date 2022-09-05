@@ -63,7 +63,7 @@ export class GameAudiocallComponent implements OnInit {
 
   selectWord(index: number) {
     const target = <HTMLElement>document.querySelectorAll('.audiocall__item')[index];
-    const word = (target).innerText.split(' ')[1];
+    const word = (target).innerText.slice(2);
     this.showCorrectAnswer(word);
 
     if (this.translateWord === word) {
@@ -88,8 +88,7 @@ export class GameAudiocallComponent implements OnInit {
         })
       } else {
         items.forEach((item) => {
-          console.log((<HTMLButtonElement>item).innerText)
-          if ((<HTMLButtonElement>item).innerText.split(' ')[1] === correctWord) {
+          if ((<HTMLButtonElement>item).innerText.slice(2) === correctWord) {
             item.classList.add('audiocall__item_correct');
           }
           (<HTMLButtonElement>item).disabled = true;
