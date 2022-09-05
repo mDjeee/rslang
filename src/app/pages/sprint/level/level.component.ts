@@ -6,6 +6,7 @@ import {SprintService} from "../../../core/sprint.service";
 import {IDayStatistics, IUserStatistics, IUserWord, IUserWordOptions} from "../../../../types/IOptions";
 import {Subscription} from "rxjs";
 import {baseUrl} from "../../../../api/baseUrl";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-level',
@@ -28,6 +29,7 @@ export class LevelComponent implements OnInit, OnChanges {
   border!: boolean
   visibleStat: boolean = true
   finished: boolean = false
+  piestatic: boolean = true
   correctAnswer: number = 0
   maxRightAnswer: Array<number> = []
   chain!: number
@@ -46,6 +48,12 @@ export class LevelComponent implements OnInit, OnChanges {
     this.audio.pause();
   }
 
+  public pie() {
+  this.piestatic = true
+  }
+  public nopie() {
+    this.piestatic = false
+  }
   public randomArr() {
     this.count.sort(() => Math.random() - 0.5);
   }

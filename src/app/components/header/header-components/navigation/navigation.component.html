@@ -12,4 +12,13 @@
     </li>
     <li class="navigation__item"><a class="navigation__link" routerLink="/statistics">Статистика</a></li>
   </ul>
+  <button mat-button [matMenuTriggerFor]="beforeMenu" class="menu-button">Меню</button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before" classList="menu-mat">
+    <a routerLink="/"><button mat-menu-item class="burger__link">Главная</button></a>
+    <a routerLink="/textbook"><button mat-menu-item class="burger__link">Учебник</button></a>
+    <a routerLink="/games/audiocall"><button mat-menu-item class="burger__link">Аудиовызов</button></a>
+    <a routerLink="/games/sprint"><button mat-menu-item class="burger__link">Спринт</button></a>
+    <a routerLink="/statistics"><button mat-menu-item class="burger__link">Статистика</button></a>
+    <a  href="/authorization"><button mat-menu-item class="burger__link">Авторизация</button></a>
+  </mat-menu>
 </nav>
