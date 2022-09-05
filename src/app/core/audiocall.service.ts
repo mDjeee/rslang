@@ -16,6 +16,7 @@ export class AudiocallService {
   private _GetUserStatistics: Subscription | undefined;
   private _PutUserStatistics: Subscription | undefined;
   private _AllWordsFetches: Subscription | undefined;
+  private _PutUserWordSubscription: Subscription | undefined;
 
   words: IWord[] = [];
   learnedWords: IUserWord[] = [];
@@ -81,12 +82,15 @@ export class AudiocallService {
   private getUserWord(userId: string, wordId: string, answer?: boolean) {
     this._GetUserWordSubscription = this.api.getUserWord(userId, wordId).subscribe( {
       next: word => {
+        const status = answer ? 'studied' : 'unstudied';
+        console.log(status)
         this.existWordOptions = this.getChangedOptions((<IUserWord>word).optional, <boolean>answer);
-        this.api.putUserWordRequest(userId, wordId, 'studied', this.existWordOptions);
+        this._PutUserWordSubscription = this.api.putUserWordRequest(userId, wordId, status, this.existWordOptions).subscribe();
       },
       error: error => {
         switch(error.status) {
           case 404:
+            const status = answer ? 'studied' : 'unstudied';
             this.postUserWord(userId, wordId, 'studied', this.getDefaultOptions(<boolean>answer));
             break;
           case 401:
@@ -289,7 +293,7 @@ export class AudiocallService {
   getRightAnswer(word?: string,) {
     const correctWord = this.words[this.index].word;
     const correctWordTranslate = this.words[this.index].wordTranslate;
-    if (word === correctWordTranslate) this.getUserWord(this.userId, this.words[this.index].id,word === correctWordTranslate);
+    this.getUserWord(this.userId, this.words[this.index].id,word === correctWordTranslate);
     this.pushAnswer(word === correctWordTranslate);
     return {word: correctWord, translate: correctWordTranslate, imgSrc: this.getImageSource()};
   }
@@ -332,6 +336,9 @@ export class AudiocallService {
     }
     if (this._AllWordsFetches) {
       this._AllWordsFetches.unsubscribe();
+    }
+    if (this._PutUserWordSubscription) {
+      this._PutUserWordSubscription.unsubscribe();
     }
   }
 

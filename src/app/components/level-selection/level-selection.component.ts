@@ -21,7 +21,7 @@ export class LevelSelectionComponent implements OnInit {
   onChangeLevel(level: number) {
 
     const levelItems = document.querySelectorAll('.level__item');
-    const page = this.service.getRandomIntInclusive(0, 29);
+    const page = this.service.getRandomIntInclusive(0, 1);
 
     this.levelSelected.emit();
     levelItems.forEach((item) => item.classList.remove('level__item_active'));
