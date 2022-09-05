@@ -51,8 +51,6 @@ export class LevelComponent implements OnInit, OnDestroy {
               private audioapi: AudiocallService) {}
 
 
-
-
   public pie() {
   this.piestatic = true
   }
@@ -221,7 +219,8 @@ public  statisticSprint(){
 
 
   ngOnDestroy(): void {
-    this.audioapi.unSubscribe()
+    // this.audioapi.unSubscribe()
+    console.log('dddd')
   }
 
 }
