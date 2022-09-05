@@ -74,11 +74,12 @@
     display: none;
   }
   .menu-button {
-    padding: 4px;
     font-family: Jost-k;
     background: #7d6be6;
-    color: white;
-    font-size: 1.5rem;
+    padding: 5px 30px;
+    border: 2px solid black;
+    border-radius: 20px;
+    font-size: 1.5rem;line-height: 100%;
   }
   .app-title {
     padding: 0 3px;
