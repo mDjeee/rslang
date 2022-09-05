@@ -74,7 +74,8 @@ export class OasisComponent implements OnInit, OnDestroy {
       audio.load();
       audio.play();
 
-      this.oasisService.getUserWord(this.oasisService.userId, word.id, this.isCorrect)
+      this.oasisService.getUserWord(this.oasisService.userId, word.id, this.isCorrect);
+      this.oasisService.getStatistics();
 
       this.audioCall.answers.push({
         id: word.id,
@@ -113,9 +114,9 @@ export class OasisComponent implements OnInit, OnDestroy {
     this.currentWordId++;
     (<HTMLInputElement>document.getElementById('answer-input')).value = '';
 
-    if(this.currentWordId > 9) {
-      this.audioCall.getStatistics();
-    }
+    // if(this.currentWordId > 9) {
+    //   this.oas.getStatistics();
+    // }
   }
 
   dontKnow(answer: string, translate: string, word: IWord) {
@@ -125,6 +126,7 @@ export class OasisComponent implements OnInit, OnDestroy {
     audio.play();
 
     this.oasisService.getUserWord(this.oasisService.userId, word.id, this.isCorrect);
+    this.oasisService.getStatistics();
 
     this.audioCall.answers.push({
       id: word.id,
