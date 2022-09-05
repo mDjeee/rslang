@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { catchError, map, Subscription, take } from 'rxjs';
-import { ApiService } from 'src/app/core/api.service';
+import {ApiService, baseUrl} from 'src/app/core/api.service';
 import { IWord } from 'src/types/IWord';
 import { PageEvent } from '@angular/material/paginator';
-import { baseUrl } from 'src/api/baseUrl';
 import { BookService } from './book.service';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
