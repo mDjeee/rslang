@@ -30,6 +30,10 @@
     display: flex;
     gap: 10px;
   }
+  .dropdown__content {
+    display: flex;
+    flex-direction: column;
+  }
 
   .dropdown:hover .dropdown__arrow {
     display: inline-block;
@@ -53,6 +57,7 @@
 
   .dropdown__item {
     padding: 5px .5rem;
+    background: #7d6be6;
   }
 
   .dropdown__item:hover {

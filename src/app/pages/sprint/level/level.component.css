@@ -100,11 +100,9 @@
   }
 
   .statistic {
-    height: 600px;
-    width: 100vw;
     display: flex;
     padding-top: 30px;
-    flex-flow: column wrap;
+    flex-direction: column;
   }
 
   .button_pie {
@@ -133,6 +131,8 @@
   .right-words_wrap{
     padding: 30px;
     background: rgba(125, 107, 230, 0.09);
+    max-height: 400px;
+    overflow-y: scroll;
   }
   .right-words {
     display: flex;
@@ -153,6 +153,8 @@
   .wrong-words_wrap{
     padding: 30px;
     background: rgba(125, 107, 230, 0.09);
+    max-height: 400px;
+    overflow-y: scroll;
   }
 
   .button-audio {
@@ -184,7 +186,6 @@
     gap: 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     background: linear-gradient(134.65deg, #5961F9 3.4%, #EE9AE5 97.69%);
-
   }
 
   #score {
@@ -253,10 +254,10 @@
 
   .statistic {
     height: 600px;
-    width: 100vw;
     display: flex;
     padding-top: 30px;
     flex-direction: column;
+    overflow: hidden;
   }
 
   .button_pie {
@@ -280,11 +281,18 @@
   .words_wrap-stat {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 50px;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
+
   .right-words_wrap{
-    padding: 10px;
+    padding: 2px;
     background: rgba(125, 107, 230, 0.09);
+    max-height: 400px;
+    overflow-x: scroll;
+    align-items: center;
+    margin: 0 auto;
   }
   .right-words {
     display: flex;
@@ -295,7 +303,7 @@
     flex-direction: row;
   }
   .word-stat{
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 0.05em;
     font-size: 1rem;
     margin: 0;
@@ -303,8 +311,12 @@
   }
 
   .wrong-words_wrap{
-    padding: 10px;
+    padding: 2px;
     background: rgba(125, 107, 230, 0.09);
+    max-height: 400px;
+    overflow-x: scroll;
+    align-items: center;
+    margin: 0 auto;
   }
 
   .button-audio {

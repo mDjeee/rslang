@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {ApiService} from "../../core/api.service";
-import {IWord} from "../../../types/IWord";
-
-
 
 @Component({
   selector: 'app-sprint',
@@ -11,10 +6,7 @@ import {IWord} from "../../../types/IWord";
   styleUrls: ['./sprint.component.css']
 })
 export class SprintComponent implements OnInit {
-  Score!: number
-  public  level!: IWord[];
-  constructor(private router: Router,private api: ApiService) {
-    this.Score = 0;
+  constructor() {
   }
 
   ngOnInit(): void {
