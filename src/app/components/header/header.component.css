@@ -3,8 +3,9 @@
   justify-content:space-around;
   align-items: center;
   width: 100%;
-  padding: 20px 0;
+  padding: 20px 0 40px;
   background: #7d6be6;
+  margin-bottom: 4rem;
 }
 @media (min-width: 780px) {
   .header {
