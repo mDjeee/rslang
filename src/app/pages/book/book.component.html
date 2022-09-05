@@ -86,7 +86,7 @@
               <p class="word-example_ru" *ngIf="showTranslate">{{ word.textExampleTranslate }}</p>
             </div>
 
-            <div class="word-game">
+            <div class="word-game" *ngIf="!!user">
               <div class="game-result game-sprint">
                 <span class="game-result-title">Спринт</span>
                 <div class="div-score">
@@ -209,7 +209,7 @@
             </div>
           </div>
 
-          <div class="word-game">
+          <div class="word-game" *ngIf="!!user">
             <div class="game-result game-sprint">
               <span class="game-result-title">Спринт</span>
               <div class="div-score">
@@ -301,7 +301,7 @@
             </div>
           </div>
 
-          <div class="word-game">
+          <div class="word-game" *ngIf="!!user">
             <div class="game-result game-sprint">
               <span class="game-result-title">Спринт</span>
               <div class="div-score">

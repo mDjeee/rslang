@@ -22,7 +22,7 @@
 }
 
 .authorization__button {
-  height: 24px;
+  font-size: 24px;
   filter: invert(100%);
   transition: all 0.3s;
 }
