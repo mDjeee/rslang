@@ -44,6 +44,9 @@ export class OasisComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.audioCall.answers = [];
+    if(this.fromBook) {
+      this.choseLevel(0);
+    }
   }
 
   ngOnDestroy(): void {
