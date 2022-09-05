@@ -1,4 +1,3 @@
-<!-- <app-doughnut-chart [data]="dataForChart" [displayTitle]="displayTitle" *ngIf="visible"></app-doughnut-chart> -->
 <div class="statistics" *ngIf = 'visible'>
   <div class="statistics-day">
     <h2 class="statistics-day__title">Статистика за сегодня</h2>
@@ -16,15 +15,16 @@
       <app-game-card *ngFor="let element of statisticsPerDay.dataForCards" [data] = "element"></app-game-card>
     </div>
   </div>
+  <hr class="statistics__separator">
   <div class="statistics-all">
     <h2 class="statistics-all__title">Статистика за всё время</h2>
-    <div class="statistics-all__togle">
-      <span>Количество новых слов по дням</span>
+    <div class="statistics-all__toggle toggle">
+      <span class="toggle__text">Количество новых слов по дням</span>
       <label class="switch">
         <input type="checkbox" (click)="changeChart($event)">
         <span class="slider round"></span>
       </label>
-      <span>Прогресс изучения</span>
+      <span class="toggle__text">Прогресс изучения</span>
     </div>
     <app-bar-chart [barChartData] = 'dataForBarChart' *ngIf="visible && !linearChartVisible"></app-bar-chart>
     <app-linear-chart [lineChartData] = 'dataForLineChart' *ngIf="visible && linearChartVisible"></app-linear-chart>

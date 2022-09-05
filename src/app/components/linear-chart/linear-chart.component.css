@@ -1,0 +1,8 @@
+#divChart {
+  display: flex;
+  position: relative;
+  min-width: 320px;
+  max-width: 60vw;
+  width: 100%;
+  padding: 1rem;
+}

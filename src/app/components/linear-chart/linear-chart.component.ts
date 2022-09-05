@@ -15,6 +15,9 @@ export class LinearChartComponent implements OnInit {
   ngOnInit(): void {
     const htmlRef = this.elementRef.nativeElement.querySelector(`#lineChart`);
     Chart.register(...registerables);
+    Chart.defaults.font.family = 'Manrope';
+    Chart.defaults.font.size = 16;
+    Chart.defaults.color = '#272525';
     const myChart = new Chart(htmlRef, {
       type: 'line',
       data: {
@@ -48,11 +51,14 @@ export class LinearChartComponent implements OnInit {
             'rgba(153, 102, 255, 1)',
             'rgba(255, 159, 64, 1)'
           ],
-          borderWidth: 1
+          borderWidth: 1,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
         }]
       },
       options: {
-      //  scales: {  }
+        maintainAspectRatio: false,
       }
     });
   }
