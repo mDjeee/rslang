@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { baseUrl } from 'src/api/baseUrl';
 import { AudiocallService } from 'src/app/core/audiocall.service';
 import { OasisService } from 'src/app/core/oasis.service';
 import { IWord } from 'src/types/IWord';
 import { BookService } from '../book/book.service';
+import {baseUrl} from "../../core/api.service";
 
 @Component({
   selector: 'app-oasis',
