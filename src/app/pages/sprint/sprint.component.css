@@ -21,7 +21,8 @@
     width: 4rem;
     border-radius: 100%;
   }
-  .title-sprint {
+  .title-sprint,
+  .chose-level {
      font-size: 1.5rem;
   }
 }
@@ -34,7 +35,8 @@
     align-items: center;
   }
 
-  .title-sprint {
+  .title-sprint,
+  .chose-level {
     font-size: 1.5rem;
   }
 
