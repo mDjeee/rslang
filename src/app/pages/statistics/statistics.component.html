@@ -1,32 +1,35 @@
-<!-- <app-doughnut-chart [data]="dataForChart" [displayTitle]="displayTitle" *ngIf="visible"></app-doughnut-chart> -->
-<div class="statistics" *ngIf = 'visible'>
-  <div class="statistics-day">
-    <h2 class="statistics-day__title">Статистика за сегодня</h2>
-    <div class="statistics-day__data">
-      <div class="statistics-day__learned">
-        <span class="statistics-day__number">{{statisticsPerDay.learned}}</span>
-        <span class="statistics-day__text">слов изучено</span>
+<div class="statistics-container">
+  <div class="statistics" *ngIf = 'visible'>
+    <div class="statistics-day">
+      <h2 class="statistics-day__title">Статистика за сегодня</h2>
+      <div class="statistics-day__data">
+        <div class="statistics-day__learned">
+          <span class="statistics-day__number">{{statisticsPerDay.learned}}</span>
+          <span class="statistics-day__text">слов изучено</span>
+        </div>
+        <div class="statistics-day__percent">
+          <span class="statistics-day__number">{{statisticsPerDay.percent}}%</span>
+          <span class="statistics-day__text">правильных ответов</span>
+        </div>
       </div>
-      <div class="statistics-day__percent">
-        <span class="statistics-day__number">{{statisticsPerDay.percent}}%</span>
-        <span class="statistics-day__text">правильных ответов</span>
+      <div class="statistics-day__games">
+        <app-game-card *ngFor="let element of statisticsPerDay.dataForCards" [data] = "element"></app-game-card>
       </div>
     </div>
-    <div class="statistics-day__games">
-      <app-game-card *ngFor="let element of statisticsPerDay.dataForCards" [data] = "element"></app-game-card>
+    <hr class="statistics__separator">
+    <div class="statistics-all">
+      <h2 class="statistics-all__title">Статистика за всё время</h2>
+      <div class="statistics-all__toggle toggle">
+        <span class="toggle__text">Количество новых слов по дням</span>
+        <label class="switch">
+          <input type="checkbox" (click)="changeChart($event)">
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle__text">Прогресс изучения</span>
+      </div>
+      <app-bar-chart [barChartData] = 'dataForBarChart' *ngIf="visible && !linearChartVisible"></app-bar-chart>
+      <app-linear-chart [lineChartData] = 'dataForLineChart' *ngIf="visible && linearChartVisible"></app-linear-chart>
     </div>
   </div>
-  <div class="statistics-all">
-    <h2 class="statistics-all__title">Статистика за всё время</h2>
-    <div class="statistics-all__togle">
-      <span>Количество новых слов по дням</span>
-      <label class="switch">
-        <input type="checkbox" (click)="changeChart($event)">
-        <span class="slider round"></span>
-      </label>
-      <span>Прогресс изучения</span>
-    </div>
-    <app-bar-chart [barChartData] = 'dataForBarChart' *ngIf="visible && !linearChartVisible"></app-bar-chart>
-    <app-linear-chart [lineChartData] = 'dataForLineChart' *ngIf="visible && linearChartVisible"></app-linear-chart>
-  </div>
+  <mat-spinner class="spiner" *ngIf="!visible"></mat-spinner>
 </div>
