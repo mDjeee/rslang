@@ -47,7 +47,7 @@
   .dropdown:hover .dropdown__content {
     margin-top: 5px;
     display: block;
-    background: #7d6be6;
+    background: rgba(125, 107, 230, 0.12);
   }
 
   .dropdown__item {
@@ -84,10 +84,13 @@
     padding: 0 3px;
   }
 
+  .menu-button:hover {
+    cursor: pointer;
+  }
+
 .burger__link:hover {
   background: #7d6be6;
-
-
+  cursor: pointer;
 }
   .burger__link {
     background: white;
