@@ -40,6 +40,7 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
 import { OasisComponent } from '../pages/oasis/oasis.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -89,6 +90,7 @@ import {MatMenuModule} from "@angular/material/menu";
         MatSlideToggleModule,
         MatIconModule,
         MatMenuModule,
+        NgxPaginationModule,
     ],
   exports: [
     TimerComponent,
@@ -123,6 +125,7 @@ import {MatMenuModule} from "@angular/material/menu";
     SprintBorderDirective,
     MatProgressSpinnerModule,
     ChartComponent,
+    NgxPaginationModule,
   ]
 })
 export class ShareModule { }

@@ -134,10 +134,10 @@
 
   <div class="words-container" *ngIf="(isHardwords && isDictionary)">
 
-    <div class="word-container" *ngFor="let word of userWords" [class]="'a' + word.group + '0'">
-      <div class="word-image">
-        <img class="image" [src]="baseImg + word.image" draggable="false">
-      </div>
+      <div class="word-container" *ngFor="let word of userWords | paginate: { itemsPerPage: 10, currentPage: p }" [class]="'a' + word.group + '0'">
+        <div class="word-image">
+          <img class="image" [src]="baseImg + word.image" draggable="false">
+        </div>
 
         <div class="word-description">
           <div class="word">
@@ -192,16 +192,19 @@
         </div>
 
       </div>
+
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
+
 
 <!-- Learned words -->
 
   <div class="words-container" *ngIf="(isLearned && isDictionary)">
 
-    <div class="word-container" *ngFor="let word of userWords" [class]="'a' + word.group + '0'">
-      <div class="word-image">
-        <img class="image" [src]="baseImg + word.image" draggable="false">
-      </div>
+    <div class="word-container" *ngFor="let word of userWords | paginate: { itemsPerPage: 10, currentPage: p }" [class]="'a' + word.group + '0'">
+        <div class="word-image">
+          <img class="image" [src]="baseImg + word.image" draggable="false">
+        </div>
 
         <div class="word-description">
           <div class="word">
@@ -256,6 +259,8 @@
         </div>
 
       </div>
+
+      <pagination-controls (pageChange)="n = $event"></pagination-controls>
   </div>
 
   <div class="game-container">

@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   { path: 'textbook', component: BookComponent },
   { path: 'games/audiocall', component: AudiocallComponent, canActivate: [AuthGuard]},
   { path: 'games/sprint', component: SprintComponent, canActivate: [AuthGuard]  },
-  { path: 'games/sprint/level/:id', component: LevelComponent},
+  { path: 'games/sprint/level/:id', component: LevelComponent, canActivate: [AuthGuard]},
   { path: 'games/oasis', component: OasisComponent, canActivate: [AuthGuard]},
   { path: 'authorization', component: AuthComponent },
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard] },

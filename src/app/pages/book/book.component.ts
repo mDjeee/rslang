@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./book.component.css', './book.component-extra.css']
 })
 export class BookComponent implements OnInit {
-
+  p: number = 1;
+  n: number = 1;
   words: IWord[] = [];
   userHardWords: any = new Set([]);
   userWords: IWord[] = [];
