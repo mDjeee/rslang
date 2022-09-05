@@ -31,6 +31,7 @@ export class AudiocallComponent implements OnInit {
   ngOnInit(): void {
     this.service.words = [];
     if(this.bookService.fromBook) {
+      this.bookService.fromBook = false;
       this.page = this.bookService.page;
       const group = this.bookService.group;
       this.service.getUserId()
@@ -62,6 +63,7 @@ export class AudiocallComponent implements OnInit {
     this.service.page = 0;
     this.service.index = 0;
     this.service.words = [];
+    this.service.answers = [];
   }
 
   levelSelected() {
