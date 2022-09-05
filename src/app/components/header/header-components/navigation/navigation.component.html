@@ -15,7 +15,9 @@
     </li>
     <li class="navigation__item"><a class="navigation__link" routerLink="/statistics">Статистика</a></li>
   </ul>
-  <button mat-button [matMenuTriggerFor]="beforeMenu" class="menu-button">Меню</button>
+  <button mat-button [matMenuTriggerFor]="beforeMenu" class="menu-button">
+    <span class="line"></span><span class="line"></span><span class="line"></span>
+  </button>
   <mat-menu #beforeMenu="matMenu" xPosition="before" classList="menu-mat">
     <a routerLink="/"><button mat-menu-item class="burger__link">Главная</button></a>
     <a routerLink="/textbook"><button mat-menu-item class="burger__link">Учебник</button></a>

@@ -18,7 +18,7 @@
 }
 
 .authorization:hover .authorization__button{
-  filter: invert(37%) sepia(85%) saturate(4844%) hue-rotate(359deg) brightness(100%) contrast(103%);
+  filter: invert(0%) sepia(82%) saturate(7500%) hue-rotate(318deg) brightness(82%) contrast(102%);
 }
 
 .authorization__button {
@@ -41,10 +41,6 @@
 @media (max-width: 779px) {
   .authorization__button {
     background-color: transparent;
-    padding: 5px 30px;
-    border: 2px solid black;
-    border-radius: 20px;
-    font-size: 1.5rem;line-height: 100%;
   }
 
   .authorization__button:hover {

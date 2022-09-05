@@ -75,11 +75,13 @@
   }
   .menu-button {
     font-family: Jost-k;
-    background: #7d6be6;
-    padding: 5px 30px;
-    border: 2px solid black;
-    border-radius: 20px;
-    font-size: 1.5rem;line-height: 100%;
+    background: transparent;
+    display: flex;
+    border: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 40px;
+    gap: 8px;
   }
   .app-title {
     padding: 0 3px;
@@ -87,6 +89,13 @@
 
   .menu-button:hover {
     cursor: pointer;
+  }
+
+  .line {
+    width: 30px;
+    height: 4px;
+    background-color: #ffffff;
+    content: "";
   }
 
 .burger__link:hover {

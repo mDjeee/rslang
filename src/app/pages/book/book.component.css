@@ -19,6 +19,7 @@ body {
   color: #2c2647;
   letter-spacing: 0.05em;
   margin-right: 10px;
+  margin-top: 0;
 }
 .book-change {
   opacity: 0.5;
@@ -35,6 +36,8 @@ body {
 .show-translate {
   width: 100%;
   display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .show-translate_set {
   width: 50px;
