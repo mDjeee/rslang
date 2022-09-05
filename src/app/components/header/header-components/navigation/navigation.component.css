@@ -32,6 +32,7 @@
   }
   .dropdown__content {
     display: flex;
+    flex-direction: column;
   }
 
   .dropdown:hover .dropdown__arrow {
