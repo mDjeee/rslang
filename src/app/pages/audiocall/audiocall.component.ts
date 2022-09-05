@@ -19,7 +19,7 @@ export class AudiocallComponent implements OnInit {
   levelSelectionVisible: boolean = true;
   start: boolean = false;
   page!: number;
-  startBtn = <HTMLButtonElement>document.querySelector('.start__btn');
+  startBtn = <HTMLButtonElement>document.querySelector('.audiocall__start-btn');
 
   private _GetWordsStatusSubscription: Subscription | undefined;
 
@@ -44,7 +44,7 @@ export class AudiocallComponent implements OnInit {
   }
 
   onStart() {
-    const startBtn = <HTMLButtonElement>document.querySelector('.start__btn');
+    const startBtn = <HTMLButtonElement>document.querySelector('.audiocall__start-btn');
     this._GetWordsStatusSubscription = this.service.existWordsStatus.subscribe(value => this.start = value)
     this.levelSelectionVisible = false;
     this.visible = false;
@@ -65,7 +65,7 @@ export class AudiocallComponent implements OnInit {
   }
 
   levelSelected() {
-    const startBtn = <HTMLButtonElement>document.querySelector('.start__btn');
+    const startBtn = <HTMLButtonElement>document.querySelector('.audiocall__start-btn');
     startBtn.disabled = false;
   }
 }

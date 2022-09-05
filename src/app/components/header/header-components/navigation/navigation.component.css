@@ -1,54 +1,95 @@
-* {
-  list-style: none;
-  text-decoration: none;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  color: black;
-  font-family: Jost-k;
+@media (min-width: 780px) {
+  * {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: black;
+    font-family: Jost-k;
+  }
+
+  .navigation {
+    display: flex;
+  }
+
+  .navigation__list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .navigation__item {
+    margin: 10px;
+  }
+
+  .dropdown {
+    position: relative;
+    display: flex;
+    gap: 10px;
+  }
+
+  .dropdown:hover .dropdown__arrow {
+    display: inline-block;
+    transition: all .6s cubic-bezier(0.1, 0.2, 0.2, 0.1);
+    transform: rotate(180deg);
+  }
+
+  .dropdown__content {
+    display: none;
+    position: absolute;
+    top: 50%;
+  }
+
+  .dropdown:hover .dropdown__content {
+    margin-top: 5px;
+    display: block;
+  }
+
+  .dropdown__item {
+    padding: 5px 0;
+  }
+
+  .dropdown__item_first {
+    margin-top: 10px;
+  }
+
+  .menu-button{
+    display: none;
+  }
 }
 
-.navigation {
-  display: flex;
-}
+@media (max-width: 779px){
+  .navigation {
+    display: flex;
+    align-self: flex-end;
+    order: 1;
+  }
 
-.navigation__list {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
+  .navigation__list {
+    display: none;
+  }
+  .menu-button {
+    width: 60px;
+    padding: 4px;
+    font-family: Jost-k;
+    background: #7d6be6;
+    color: white;
+  }
+  .app-title {
+    padding: 0 3px;
+  }
 
-.navigation__item {
-  margin: 10px;
+.burger__link:hover {
+  background: #7d6be6;
 }
+  .burger__link {
+    background: white;
+    color: black;
+    font-family: Jost-k;
+  }
+  a {
+    text-decoration: none;
+  }
 
-.dropdown {
-  position: relative;
-  display: flex;
-  gap: 10px;
-}
-
-.dropdown:hover .dropdown__arrow {
-  display: inline-block;
-  transition: all .6s cubic-bezier(0.1, 0.2, 0.2, 0.1);
-  transform: rotate(180deg);
-}
-
-.dropdown__content {
-  display: none;
-  position: absolute;
-  top: 50%;
-}
-
-.dropdown:hover .dropdown__content {
-  margin-top: 5px;
-  display: block;
-}
-
-.dropdown__item {
-  padding: 5px 0;
-}
-
-.dropdown__item_first {
-  margin-top: 10px;
 }

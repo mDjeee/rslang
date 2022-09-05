@@ -17,6 +17,12 @@ export class DoughnutChartComponent implements OnInit {
   ngOnInit(): void {
     const htmlRef = this.elementRef.nativeElement.querySelector(`#myChart`);
     Chart.register(...registerables);
+    Chart.defaults.font.family = 'Manrope';
+    Chart.defaults.font.size = 16;
+    Chart.defaults.color = '#272525';
+    // Chart.defaults.global.defaultFontFamily = 'Manrope';
+    // Chart.defaults.global.defaultFontSize = 16;
+    // Chart.defaults.global.defaultFontColor = '#272525';
     const myChart = new Chart(htmlRef, {
       type: 'doughnut',
       data: {
@@ -48,6 +54,11 @@ export class DoughnutChartComponent implements OnInit {
             title: {
                 display: this.displayTitle,
                 text: this.getTitleText(this.data),
+                font: {
+                  size: 16,
+                  family: 'Manrope',
+                },
+                fullSize: false ,
                 padding: {
                   top: 10,
                   bottom: 10

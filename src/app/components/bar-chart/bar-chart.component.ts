@@ -15,12 +15,15 @@ export class BarChartComponent implements OnInit {
   ngOnInit(): void {
     const htmlRef = this.elementRef.nativeElement.querySelector(`#barChart`);
     Chart.register(...registerables);
+    Chart.defaults.font.family = 'Manrope';
+    Chart.defaults.font.size = 16;
+    Chart.defaults.color = '#272525';
     const myChart = new Chart(htmlRef, {
       type: 'bar',
       data: {
         labels: this.barChartData.labels,
         datasets: [{
-          label: 'Количество изученных слов по дням',
+          label: 'Количество новых слов',
           data: this.barChartData.data,
           backgroundColor: [
             'rgba(75, 192, 192, 0.2)',
@@ -47,7 +50,8 @@ export class BarChartComponent implements OnInit {
           y: {
             beginAtZero: true,
           }
-        }
+        },
+        maintainAspectRatio: false
       }
     });
   }

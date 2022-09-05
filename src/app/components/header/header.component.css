@@ -4,4 +4,34 @@
   align-items: center;
   width: 100%;
   padding: 20px 0;
+  background: #7d6be6;
+}
+@media (min-width: 780px) {
+  .header {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    background: #7d6be6;
+  }
+}
+
+@media (max-width: 779px) and (min-width: 400px){
+  .header {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    background: #7d6be6;
+  }
+
+  .authorization {
+    order: 0;
+  }
+
+  .nav {
+    order: 1;
+  }
 }
