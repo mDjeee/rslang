@@ -48,6 +48,10 @@
   user-select: none;
 }
 
+.sprint__conditions {
+  text-align: justify;
+}
+
 
 @media (max-width: 780px) {
   .level {
