@@ -14,19 +14,48 @@
   justify-content: space-evenly;
   align-items: center;
   user-select: none;
+  padding-top: 2rem;
 }
 
-.levels-title, .levels-intro {
-  font-size: 24px;
+.levels-title {
+  font-family: 'Comfortaa';
+  font-weight: bold;
+  font-size: 3.5rem;
+  color: #272525;
+  line-height: 3rem;
+  padding: 2rem;
+  margin: 0;
+  user-select: none;
   text-align: center;
-  color: #2c2647;
+}
+
+.levels-description,
+.oasis__conditions {
+  margin: 0;
+  padding: 1rem 10%;
+  font-family: 'Manrope';
+  color: #454747;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: justify;
+  user-select: none;
 }
 
 .levels-description {
-  font-family: 'Jost-k';
-  font-size: 20px;
-  max-width: 600px;
   text-align: center;
+}
+
+.levels-intro {
+  margin: 0;
+  padding: 0 1.2rem;
+  font-family: 'Manrope';
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 150%;
+  color: #454747;
+  user-select: none;
+  text-align: center;
+  padding: 1rem 0;
 }
 
 .levels {
@@ -150,3 +179,10 @@
 .wrong-counter {
   background-color: #ff3d00;
 }
+
+/* .oasis__conditions {
+  font-family: 'Jost-k';
+  font-size: 20px;
+  max-width: 600px;
+  text-align: center;
+} */

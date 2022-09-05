@@ -15,15 +15,20 @@
   user-select: none;
 }
 
+.title__conditions,
 .title__description {
   margin: 0;
   padding: 1rem;
   font-family: 'Manrope';
   color: #454747;
-  font-size: 120%;
+  font-size: 1.2rem;
   font-weight: 700;
   text-align: center;
   user-select: none;
+}
+
+.title__conditions {
+  text-align: justify;
 }
 
 @media (max-width: 780px) {

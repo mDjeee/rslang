@@ -16,9 +16,10 @@ export class AudiocallService {
   private _GetUserStatistics: Subscription | undefined;
   private _PutUserStatistics: Subscription | undefined;
   private _AllWordsFetches: Subscription | undefined;
+  private _PutUserWordSubscription: Subscription | undefined;
 
   words: IWord[] = [];
-  learnedWords: IUserWord[] = [];
+  allWords: IWord[] = [];
   index: number = -1;
   answers: answer[] = [];
   existWordsStatus = new BehaviorSubject(false);
@@ -55,7 +56,7 @@ export class AudiocallService {
 
   getUnlearnedWords(learnedWords: IUserWord[], allWords: IWord[]) {
     if(!learnedWords.length) {
-      this.words = allWords.slice(0,10);
+      this.words = allWords.flat().slice(0,10);
       this.existWordsStatus.next(true);
     } else {
       const learned = learnedWords.filter(item => <'difficult' | 'studied' | 'unstudied'>item.difficulty === 'studied').map(item => item.wordId);
@@ -65,8 +66,11 @@ export class AudiocallService {
       this.words = words.slice(0, 10);
       if(this.words.length >= 5) this.existWordsStatus.next(true);
       if(this.words.length < 5) {
-        this.minWordsStatus.next(true);
+        this.allWords = allWords.flat().slice(0,10);
+        this.existWordsStatus.next(true);
       }
+
+      if(!this.words.length) this.minWordsStatus.next(true);
     }
   }
 
@@ -81,12 +85,15 @@ export class AudiocallService {
   private getUserWord(userId: string, wordId: string, answer?: boolean) {
     this._GetUserWordSubscription = this.api.getUserWord(userId, wordId).subscribe( {
       next: word => {
+        const status = answer ? 'studied' : 'unstudied';
+        console.log(status)
         this.existWordOptions = this.getChangedOptions((<IUserWord>word).optional, <boolean>answer);
-        this.api.putUserWordRequest(userId, wordId, 'studied', this.existWordOptions);
+        this._PutUserWordSubscription = this.api.putUserWordRequest(userId, wordId, status, this.existWordOptions).subscribe();
       },
       error: error => {
         switch(error.status) {
           case 404:
+            const status = answer ? 'studied' : 'unstudied';
             this.postUserWord(userId, wordId, 'studied', this.getDefaultOptions(<boolean>answer));
             break;
           case 401:
@@ -272,24 +279,27 @@ export class AudiocallService {
   getRandomWords() {
     const words = [...this.words];
     words.sort(() => Math.random() - 0.5);
-    const translate = words.map(item => item.wordTranslate).slice(0,5);
+    let translate = words.map(item => item.wordTranslate).slice(0,5);
+    if(words.length < 5) {
+      translate = this.allWords.map(item => item.wordTranslate).sort(() => Math.random() - 0.5).slice(0,5);
+    }
     const wordTranslate = this.words[this.index].wordTranslate;
     if(!translate.includes(wordTranslate)) translate[0] = wordTranslate;
-    this.randomWords = translate.sort(() => Math.random() - 0.5);;
+    this.randomWords = translate.sort(() => Math.random() - 0.5);
   }
 
   nextWord() {
     this.index++;
-    this.play();
     // this.getUserWord(this.userId, this.words[this.index].id);
     this.getRandomWords();
+    this.play();
     return this.randomWords;
   }
 
   getRightAnswer(word?: string,) {
     const correctWord = this.words[this.index].word;
     const correctWordTranslate = this.words[this.index].wordTranslate;
-    if (word === correctWordTranslate) this.getUserWord(this.userId, this.words[this.index].id,word === correctWordTranslate);
+    this.getUserWord(this.userId, this.words[this.index].id,word === correctWordTranslate);
     this.pushAnswer(word === correctWordTranslate);
     return {word: correctWord, translate: correctWordTranslate, imgSrc: this.getImageSource()};
   }
@@ -332,6 +342,9 @@ export class AudiocallService {
     }
     if (this._AllWordsFetches) {
       this._AllWordsFetches.unsubscribe();
+    }
+    if (this._PutUserWordSubscription) {
+      this._PutUserWordSubscription.unsubscribe();
     }
   }
 

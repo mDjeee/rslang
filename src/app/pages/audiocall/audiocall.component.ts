@@ -61,7 +61,7 @@ export class AudiocallComponent implements OnInit {
       this._DataStatus.unsubscribe()
     }
     this.service.page = 0;
-    this.service.index = 0;
+    this.service.index = -1;
     this.service.words = [];
     this.service.answers = [];
   }
