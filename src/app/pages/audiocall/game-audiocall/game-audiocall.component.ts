@@ -25,7 +25,7 @@ export class GameAudiocallComponent implements OnInit {
 
   ngOnInit(): void {
     this.page = this.service.page === -1 ? 1 : this.service.page;
-    if(!this.service.words.length || this.service.words.length < 5) {
+    if(!this.service.words.length || !this.service.words.length) {
       this.message = true;
     } else {
       this.randomWords = this.service.nextWord();

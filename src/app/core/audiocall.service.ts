@@ -19,7 +19,7 @@ export class AudiocallService {
   private _PutUserWordSubscription: Subscription | undefined;
 
   words: IWord[] = [];
-  learnedWords: IUserWord[] = [];
+  allWords: IWord[] = [];
   index: number = -1;
   answers: answer[] = [];
   existWordsStatus = new BehaviorSubject(false);
@@ -56,7 +56,7 @@ export class AudiocallService {
 
   getUnlearnedWords(learnedWords: IUserWord[], allWords: IWord[]) {
     if(!learnedWords.length) {
-      this.words = allWords.slice(0,10);
+      this.words = allWords.flat().slice(0,10);
       this.existWordsStatus.next(true);
     } else {
       const learned = learnedWords.filter(item => <'difficult' | 'studied' | 'unstudied'>item.difficulty === 'studied').map(item => item.wordId);
@@ -66,8 +66,11 @@ export class AudiocallService {
       this.words = words.slice(0, 10);
       if(this.words.length >= 5) this.existWordsStatus.next(true);
       if(this.words.length < 5) {
-        this.minWordsStatus.next(true);
+        this.allWords = allWords.flat().slice(0,10);
+        this.existWordsStatus.next(true);
       }
+
+      if(!this.words.length) this.minWordsStatus.next(true);
     }
   }
 
@@ -276,17 +279,20 @@ export class AudiocallService {
   getRandomWords() {
     const words = [...this.words];
     words.sort(() => Math.random() - 0.5);
-    const translate = words.map(item => item.wordTranslate).slice(0,5);
+    let translate = words.map(item => item.wordTranslate).slice(0,5);
+    if(words.length < 5) {
+      translate = this.allWords.map(item => item.wordTranslate).sort(() => Math.random() - 0.5).slice(0,5);
+    }
     const wordTranslate = this.words[this.index].wordTranslate;
     if(!translate.includes(wordTranslate)) translate[0] = wordTranslate;
-    this.randomWords = translate.sort(() => Math.random() - 0.5);;
+    this.randomWords = translate.sort(() => Math.random() - 0.5);
   }
 
   nextWord() {
     this.index++;
-    this.play();
     // this.getUserWord(this.userId, this.words[this.index].id);
     this.getRandomWords();
+    this.play();
     return this.randomWords;
   }
 
