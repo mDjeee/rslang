@@ -37,6 +37,8 @@ import { StatisticsComponent } from '../pages/statistics/statistics.component';
 import { GameCardComponent } from '../components/game-card/game-card.component';
 import { BarChartComponent } from '../components/bar-chart/bar-chart.component';
 import { LinearChartComponent } from '../components/linear-chart/linear-chart.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -73,18 +75,20 @@ import { LinearChartComponent } from '../components/linear-chart/linear-chart.co
     ChartComponent,
 
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatPaginatorModule,
-    AppRoutingModule,
-    MatTabsModule,
-    MatTableModule,
-    MatProgressSpinnerModule,
-    MatSlideToggleModule,
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatPaginatorModule,
+        AppRoutingModule,
+        MatTabsModule,
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatSlideToggleModule,
+        MatIconModule,
+        MatMenuModule,
+    ],
   exports: [
     TimerComponent,
     SprintComponent,
