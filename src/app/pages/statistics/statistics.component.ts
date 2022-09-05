@@ -49,7 +49,9 @@ export class StatisticsComponent implements OnInit {
       error: error => {
         switch(error.status) {
           case 404:
-            this.router.navigate(['/not-found']);
+            this.visible = true;
+            this.dataForBarChart = {data: [0], labels: ['']};
+            this.dataForLineChart = {data: [0], labels: ['']};
             break;
           case 401:
             this.router.navigate(['/authorization']);
