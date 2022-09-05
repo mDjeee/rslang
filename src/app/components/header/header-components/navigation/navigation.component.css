@@ -17,10 +17,12 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+
   }
 
   .navigation__item {
     margin: 10px;
+    font-size: 1.5rem;
   }
 
   .dropdown {
@@ -39,11 +41,13 @@
     display: none;
     position: absolute;
     top: 50%;
+
   }
 
   .dropdown:hover .dropdown__content {
     margin-top: 5px;
     display: block;
+    background: rgba(125, 107, 230, 0.12);
   }
 
   .dropdown__item {
@@ -70,23 +74,30 @@
     display: none;
   }
   .menu-button {
-    width: 60px;
-    padding: 4px;
     font-family: Jost-k;
     background: #7d6be6;
-    color: white;
+    padding: 5px 30px;
+    border: 2px solid black;
+    border-radius: 20px;
+    font-size: 1.5rem;line-height: 100%;
   }
   .app-title {
     padding: 0 3px;
   }
 
+  .menu-button:hover {
+    cursor: pointer;
+  }
+
 .burger__link:hover {
   background: #7d6be6;
+  cursor: pointer;
 }
   .burger__link {
     background: white;
     color: black;
     font-family: Jost-k;
+    font-size: 1.5rem;
   }
   a {
     text-decoration: none;

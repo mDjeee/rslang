@@ -10,20 +10,27 @@
   .authorization__button {
     background-color: transparent;
     padding: 5px 30px;
-    border: 2px solid olive;
+    border: 2px solid black;
     border-radius: 20px;
     font-size: 1.5rem;line-height: 100%;
   }
 
   .authorization__button:hover {
-    background-color: #00b8d4;
     cursor: pointer;
   }
 }
 
 @media (max-width: 779px) {
   .authorization__button {
-   display: none;
+    background-color: transparent;
+    padding: 5px 30px;
+    border: 2px solid black;
+    border-radius: 20px;
+    font-size: 1.5rem;line-height: 100%;
+  }
+
+  .authorization__button:hover {
+    cursor: pointer;
   }
 
 }

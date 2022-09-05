@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { baseUrl, baseWordsUrl } from 'src/api/baseUrl';
 import { IUserStatistics, IUserWordOptions } from 'src/types/IOptions';
 import { IWord } from 'src/types/IWord';
-
+export const baseUrl = 'https://angular-learndwords.herokuapp.com';
+export const baseWordsUrl = 'https://angular-learndwords.herokuapp.com/words';
 @Injectable({
   providedIn: 'root'
 })

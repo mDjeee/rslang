@@ -1,8 +1,7 @@
 import { Injectable, OnInit } from "@angular/core";
 import { PageEvent } from "@angular/material/paginator";
 import { Subscription } from "rxjs";
-import { baseUrl } from "src/api/baseUrl";
-import { ApiService } from "src/app/core/api.service";
+import { ApiService, baseUrl } from "src/app/core/api.service";
 import { IWord } from "src/types/IWord";
 
 @Injectable({providedIn: 'root'})

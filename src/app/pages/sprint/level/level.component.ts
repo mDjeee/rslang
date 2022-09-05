@@ -1,11 +1,10 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {ApiService} from "../../../core/api.service";
+import {ApiService, baseUrl} from "../../../core/api.service";
 import {IWord} from "../../../../types/IWord";
 import {SprintService} from "../../../core/sprint.service";
 import {IDayStatistics, IUserStatistics, IUserWord, IUserWordOptions} from "../../../../types/IOptions";
 import {Subscription} from "rxjs";
-import {baseUrl} from "../../../../api/baseUrl";
 import {ThemePalette} from "@angular/material/core";
 
 @Component({
