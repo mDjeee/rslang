@@ -17,21 +17,22 @@
   }
 }
 
-@media (max-width: 779px) and (min-width: 400px){
+@media (max-width: 779px) {
   .header {
     display: flex;
-    justify-content:space-around;
+    flex-wrap: wrap;
     align-items: center;
     width: 100%;
     padding: 20px 0;
     background: #7d6be6;
+    gap: 10px;
   }
 
-  .authorization {
-    order: 0;
-  }
+  /*.authorization {*/
+  /*  order: 0;*/
+  /*}*/
 
-  .nav {
-    order: 1;
-  }
+  /*.nav {*/
+  /*  order: 1;*/
+  /*}*/
 }

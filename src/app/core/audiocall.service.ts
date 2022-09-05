@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin, Observable, Subscription } from 'rxjs';
-import { baseUrl } from 'src/api/baseUrl';
 import { answer } from 'src/types/audiocall-answer';
 import { IDayStatistics, IUserStatistics, IUserWord, IUserWordOptions } from 'src/types/IOptions';
 import { Router } from "@angular/router";
 import { IWord } from 'src/types/IWord';
-import { ApiService } from './api.service';
+import { ApiService, baseUrl } from './api.service';
 
 @Injectable({
   providedIn: 'root'

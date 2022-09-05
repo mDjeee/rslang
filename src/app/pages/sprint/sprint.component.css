@@ -5,9 +5,8 @@
   .level {
     display: flex;
     flex-direction: column;
-    font-family: Jost;
+    font-family: Jost-k;
     align-items: center;
-    font-size: 3rem;
   }
 
   .buttons_level {
@@ -16,11 +15,14 @@
   }
 
   .button_level {
-    font-family: Jost;
+    font-family: Jost-k;
     background-color: #5961F9;
     height: 4rem;
     width: 4rem;
     border-radius: 100%;
+  }
+  .title-sprint {
+     font-size: 1.5rem;
   }
 }
 
@@ -28,9 +30,12 @@
   .level {
     display: flex;
     flex-direction: column;
-    font-family: Jost;
+    font-family: Jost-k;
     align-items: center;
-    font-size: 2rem;
+  }
+
+  .title-sprint {
+    font-size: 1.5rem;
   }
 
   .buttons_level {
@@ -40,7 +45,7 @@
   }
 
   .button_level {
-    font-family: Jost;
+    font-family: Jost-k;
     background-color: #5961F9;
     height: 4rem;
     width: 4rem;

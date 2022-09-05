@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { baseUrl } from 'src/api/baseUrl';
+
 import { answer } from 'src/types/audiocall-answer';
+import {baseUrl} from "../../core/api.service";
 
 @Component({
   selector: 'app-words-table',
