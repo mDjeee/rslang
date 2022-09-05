@@ -141,8 +141,6 @@ export class BookComponent implements OnInit {
           }
         })
 
-        console.log(this.userHardWords)
-
         books.filter((item: any) => item.difficulty === navigate).forEach((word: any) => {
           this.loadUserWords(word.wordId);
         })

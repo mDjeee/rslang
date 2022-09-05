@@ -34,8 +34,6 @@ export class AuthService {
     if(loadedUser.token) {
       this.user.next(loadedUser);
     }
-
-    console.log(loadedUser);
   }
 
   logIn(email: string, password: string) {

@@ -35,11 +35,8 @@ export class AuthComponent implements OnInit, OnDestroy {
 
     if(this.isLoginMode) {
       this.authService.logIn(email, password).subscribe(resData => {
-        console.log(resData, 1);
         this.router.navigate(['/']);
       }, errorRes => {
-        console.log(errorRes);
-        console.log(errorRes.status);
         switch(errorRes.status) {
           case 404:
             this.error = errorRes.error;
@@ -60,10 +57,8 @@ export class AuthComponent implements OnInit, OnDestroy {
     }
     else {
       this.authService.signUp(name, email, password).subscribe(resData => {
-        console.log(resData);
         this.onSwitchMode();
       }, errorRes => {
-        console.log(errorRes);
         switch (errorRes.status) {
           case 417:
             this.error = errorRes.error;
@@ -80,11 +75,8 @@ export class AuthComponent implements OnInit, OnDestroy {
       });
 
       this.authService.logIn(email, password).subscribe(resData => {
-        console.log(resData, 1);
         this.router.navigate(['/']);
       }, errorRes => {
-        console.log(errorRes);
-        console.log(errorRes.status);
         switch(errorRes.status) {
           case 404:
             this.error = errorRes.error;

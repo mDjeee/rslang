@@ -41,8 +41,6 @@
       <button class="reject-btn" *ngIf="!isFinished" (click)="dontKnow(gameWords[currentWordId].word, gameWords[currentWordId].wordTranslate, gameWords[currentWordId])">Не знаю</button>
       <button class="next-btn" *ngIf="isFinished" (click)="nextWord()">Дальше</button>
     </div>
-
-    <p>{{ gameWords[currentWordId] ? gameWords[currentWordId].word : '...Loading' }}</p>
   </div>
 
   <div class="result-container" *ngIf="currentWordId > 9">
