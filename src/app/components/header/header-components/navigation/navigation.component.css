@@ -40,6 +40,7 @@
   .dropdown__wrapper {
     display: none;
     position: absolute;
+    z-index: 1;
     top: 50%;
     padding-top: 2rem;
   }
@@ -52,6 +53,11 @@
 
   .dropdown__item {
     padding: 5px .5rem;
+  }
+
+  .dropdown__item:hover {
+    background-color: #7d6be6;
+    color: #ffffff;
   }
 
   .dropdown__item_first {
