@@ -58,7 +58,6 @@ export class GameAudiocallComponent implements OnInit {
     this.imgSrc = checkWord.imgSrc;
     this.imgVisible = true;
     this.activateDiactivateItems(false, this.translateWord);
-    // if(word) return
   }
 
   selectWord(index: number) {
