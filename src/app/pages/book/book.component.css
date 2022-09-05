@@ -177,3 +177,25 @@ body {
   height: 300px;
   margin: auto;
 }
+.word-game {
+  display: flex;
+  justify-content: space-around;
+}
+.game-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.score {
+  padding: 4px;
+  margin: 0 2px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 12px;
+}
+.score-right {
+  background-color: #4cb12d;
+}
+.score-wrong {
+  background-color: #ff3d00;
+}

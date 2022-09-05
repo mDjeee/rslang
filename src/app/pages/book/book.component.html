@@ -85,6 +85,33 @@
               <p class="word-example_en" [innerHtml]="word.textExample"></p>
               <p class="word-example_ru" *ngIf="showTranslate">{{ word.textExampleTranslate }}</p>
             </div>
+
+            <div class="word-game">
+              <div class="game-result game-sprint">
+                <span class="game-result-title">Спринт</span>
+                <div class="div-score">
+                  <span class="score score-right">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.sprint.right : 0}}</span>
+                  <span class="score score-wrong">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.sprint.wrong : 0}}</span>
+                </div>
+              </div>
+
+              <div class="game-result game-audiocall">
+                <span class="game-result-title">Аудиовызов</span>
+                <div class="div-score">
+                  <span class="score score-right">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.audioCall.right : 0}}</span>
+                  <span class="score score-wrong">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.audioCall.wrong : 0}}</span>
+                </div>
+              </div>
+
+              <div class="game-result game-oasis">
+                <span class="game-result-title">Оазис</span>
+                <div class="div-score">
+                  <span class="score score-right">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.oasis.right : 0}}</span>
+                  <span class="score score-wrong">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.oasis.wrong : 0}}</span>
+                </div>
+              </div>
+
+            </div>
           </div>
 
 
@@ -187,6 +214,33 @@
             </div>
           </div>
 
+          <div class="word-game">
+            <div class="game-result game-sprint">
+              <span class="game-result-title">Спринт</span>
+              <div class="div-score">
+                <span class="score score-right">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.sprint.right : 0}}</span>
+                <span class="score score-wrong">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.sprint.wrong : 0}}</span>
+              </div>
+            </div>
+
+            <div class="game-result game-audiocall">
+              <span class="game-result-title">Аудиовызов</span>
+              <div class="div-score">
+                <span class="score score-right">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.audioCall.right : 0}}</span>
+                <span class="score score-wrong">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.audioCall.wrong : 0}}</span>
+              </div>
+            </div>
+
+            <div class="game-result game-oasis">
+              <span class="game-result-title">Оазис</span>
+              <div class="div-score">
+                <span class="score score-right">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.oasis.right : 0}}</span>
+                <span class="score score-wrong">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.oasis.wrong : 0}}</span>
+              </div>
+            </div>
+
+          </div>
+
           <div class="hard-word" *ngIf="!!user">
             <button class="add-to-word" (click)="removeFromHard(user.userId, word.id)">Восстановить</button>
           </div>
@@ -201,8 +255,6 @@
 <!-- Learned words -->
   <mat-spinner class="spiner" *ngIf="isLoadingLearnd && isDictionary"></mat-spinner>
   <div class="words-container" *ngIf="(isLearned && isDictionary) && !isLoadingLearnd">
-
-
 
     <div class="word-container" *ngFor="let word of userWords | paginate: { itemsPerPage: 10, currentPage: n }" [class]="'a' + word.group + '0'">
         <div class="word-image">
@@ -254,6 +306,33 @@
               <p class="word-example_en" [innerHtml]="word.textExample"></p>
               <p class="word-example_ru" *ngIf="showTranslate">{{ word.textExampleTranslate }}</p>
             </div>
+          </div>
+
+          <div class="word-game">
+            <div class="game-result game-sprint">
+              <span class="game-result-title">Спринт</span>
+              <div class="div-score">
+                <span class="score score-right">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.sprint.right : 0}}</span>
+                <span class="score score-wrong">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.sprint.wrong : 0}}</span>
+              </div>
+            </div>
+
+            <div class="game-result game-audiocall">
+              <span class="game-result-title">Аудиовызов</span>
+              <div class="div-score">
+                <span class="score score-right">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.audioCall.right : 0}}</span>
+                <span class="score score-wrong">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.audioCall.wrong : 0}}</span>
+              </div>
+            </div>
+
+            <div class="game-result game-oasis">
+              <span class="game-result-title">Оазис</span>
+              <div class="div-score">
+                <span class="score score-right">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.oasis.right : 0}}</span>
+                <span class="score score-wrong">{{ this.userWordsIds.includes(word.id) ? this.userHardWords[this.userWordsIds.indexOf(word.id)].optional.games.oasis.wrong : 0}}</span>
+              </div>
+            </div>
+
           </div>
 
           <div class="hard-word" *ngIf="!!user">
