@@ -1,25 +1,50 @@
-.level {
-  display: flex;
-  flex-direction: column;
-  font-family: Jost;
-  align-items: center;
-  font-size: 3rem;
-}
-
-.buttons_level {
-  display: flex;
-  gap: 20px
-}
-
-.button_level {
-  font-family: Jost;
-  background-color: #5961F9;
-  height: 4rem;
-  width: 4rem;
-  border-radius: 100%;
-}
-
 .button_level:hover {
   background-color: #EE9AE5;
 }
+@media (min-width: 780px) {
+  .level {
+    display: flex;
+    flex-direction: column;
+    font-family: Jost;
+    align-items: center;
+    font-size: 3rem;
+  }
 
+  .buttons_level {
+    display: flex;
+    gap: 20px
+  }
+
+  .button_level {
+    font-family: Jost;
+    background-color: #5961F9;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+  }
+}
+
+@media (max-width: 779px) {
+  .level {
+    display: flex;
+    flex-direction: column;
+    font-family: Jost;
+    align-items: center;
+    font-size: 2rem;
+  }
+
+  .buttons_level {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .button_level {
+    font-family: Jost;
+    background-color: #5961F9;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+  }
+
+}

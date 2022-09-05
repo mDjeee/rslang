@@ -21,7 +21,7 @@ export class ChartComponent implements OnInit {
     this.rightStat = this.chartRight;
     this.wrongStat = this.chartWrong;
     this.chart = new Chart("MyChart", {
-      type: 'pie',
+      type: 'doughnut',
       data: {
         labels: [
           'Знаю',

@@ -1,7 +1,5 @@
-
-<!--<button class="button" (click)="playSong()">🔇</button>-->
 <div class="wrapper_game" *ngIf="visibleStat; else popup">
-  <button class="button button_song" (click)="stopSong()">🔊</button>
+<!--  <button class="button button_song" (click)="stopSong()">🔊</button>-->
   <div class="image-run">
     <img alt="some" id="run-girl" src="./assets/run.jpg" />
   </div>
@@ -32,25 +30,32 @@
 </div>
 <ng-template #popup>
   <div class="statistic">
-    <mat-slide-toggle>Slide me!</mat-slide-toggle>
-    <div class="schedule">
+    <button (click)="pie()" class="button_pie"> Pie! </button>
+    <button (click)="nopie()"  class="button_pie"> Слова </button>
+    <div class="schedule" *ngIf="piestatic">
       <app-chart [chartRight]="wordsRight.length"
                  [chartWrong]="wordsWrong.length" ></app-chart>
     </div>
+    <div class="words_wrap-stat" *ngIf="!piestatic">
     <div class="right-words_wrap">
+      <p>Знаю!</p>
       <div class="right-words bb"  *ngFor="let worldE of wordsRight">
-        <button class="word-stat" (click)="playWord(worldE.audio)">🔊</button>
+        <button class="word-stat button-audio" (click)="playWord(worldE.audio)">
+          <img src="./assets/button-audio.png" width="18px"></button>
       <div class="word-stat">{{worldE.word}}  - </div>
       <div class="word-stat">{{worldE.wordTranslate}}</div>
     </div>
     </div>
     <div class="wrong-words_wrap">
+      <p>Нужно изучить</p>
       <div class="wrong-words bb"  *ngFor="let worldW of wordsWrong">
-        <button class="word-stat" (click)="playWord(worldW.audio)">🔊</button>
+        <button class="word-stat button-audio" (click)="playWord(worldW.audio)">
+          <img src="./assets/button-audio.png" width="18px"></button>
         <div class="word-stat">{{worldW.word}}  - </div>
         <div class="word-stat">{{worldW.wordTranslate}}</div>
       </div>
     </div>
+  </div>
   </div>
 </ng-template>
 <ng-template #loaderTemp>
