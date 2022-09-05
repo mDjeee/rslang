@@ -250,7 +250,6 @@ export class BookComponent implements OnInit {
   }
 
   gameFromBookSprint(route: string) {
-    this.bookService.fromBook = true;
     this.router.navigate([route + this.group]);
   }
 
