@@ -1,18 +1,17 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ApiService, baseUrl} from "../../../core/api.service";
 import {IWord} from "../../../../types/IWord";
 import {SprintService} from "../../../core/sprint.service";
 import {IDayStatistics, IUserStatistics, IUserWord, IUserWordOptions} from "../../../../types/IOptions";
 import {Subscription} from "rxjs";
-import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-level',
   templateUrl: './level.component.html',
   styleUrls: ['./level.component.css']
 })
-export class LevelComponent implements OnInit, OnChanges {
+export class LevelComponent implements OnInit {
   score: number = 0
   Score: number[] = []
   wordEN!: string
@@ -39,13 +38,14 @@ export class LevelComponent implements OnInit, OnChanges {
   private date = (new Date()).toISOString();
   private statistic!: IUserStatistics;
   private _PutUserStatistics: Subscription | undefined;
+  private _getUserWordsSubs: Subscription | undefined
+  private userWords: Object = []
+  private userWordsIds: string[] = [];
 
 
   constructor(private router: Router, private api: ApiService, private act: ActivatedRoute, private  sprintApi:SprintService) {}
 
-  public stopSong() {
-    this.audio.pause();
-  }
+
 
   public pie() {
   this.piestatic = true
@@ -68,6 +68,7 @@ export class LevelComponent implements OnInit, OnChanges {
       this.ChangeWord()
       this.loader = false
     })
+    this.sprintApi.footerView(false);
   }
 
 
@@ -194,8 +195,6 @@ export class LevelComponent implements OnInit, OnChanges {
 
 
   ngOnInit(): void {
-   // this.sprintApi.playSong();
-
       this.act.params.subscribe((paramId) => {
         this.routerId = paramId['id'];
       })
@@ -203,10 +202,7 @@ export class LevelComponent implements OnInit, OnChanges {
 
     this.randomArr();
     this.getsWords();
-    this.getUserId()
-  }
-
-  ngOnChanges() {
+    this.getUserId();
 
   }
 
@@ -218,5 +214,7 @@ export class LevelComponent implements OnInit, OnChanges {
     this.getStatistics();
     this.putStatistics()
   }
+
+
 }
 

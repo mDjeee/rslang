@@ -30,6 +30,9 @@
     display: flex;
     gap: 10px;
   }
+  .dropdown__content {
+    display: flex;
+  }
 
   .dropdown:hover .dropdown__arrow {
     display: inline-block;
@@ -52,10 +55,7 @@
 
   .dropdown__item {
     padding: 5px .5rem;
-  }
-
-  .dropdown__item_first {
-    margin-top: 10px;
+    background: #7d6be6;
   }
 
   .menu-button{

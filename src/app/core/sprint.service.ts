@@ -10,23 +10,14 @@ import {AudiocallService} from "./audiocall.service";
   providedIn: 'root'
 })
 export class SprintService {
-  seconds!:number | string
-  public subscription!: Subscription;
-  audio = new Audio();
-
+  footerVisible: boolean = true
 
 
   constructor(private api: ApiService, private router: Router, private apiAu: AudiocallService) { }
 
-  public playSong(): void {
-    this.audio.src = '../../assets/music/single.mp3';
-    this.audio.load();
-    this.audio.play();
+  public footerView(view: boolean) {
+    return  view;
   }
-
-
-
-
 
 
 }
