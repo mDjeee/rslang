@@ -20,7 +20,7 @@ const appRoutes: Routes = [
   { path: 'games/sprint/level/:id', component: LevelComponent},
   { path: 'games/oasis', component: OasisComponent, canActivate: [AuthGuard]},
   { path: 'authorization', component: AuthComponent },
-  { path: 'statistics', component: StatisticsComponent },
+  { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent },
 ]
 

@@ -6,13 +6,31 @@
   font-family: Jost-k;
 }
 
+.username {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.authorization {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.authorization:hover .authorization__button{
+  filter: invert(37%) sepia(85%) saturate(4844%) hue-rotate(359deg) brightness(100%) contrast(103%);
+}
+
+.authorization__button {
+  height: 24px;
+  filter: invert(100%);
+  transition: all 0.3s;
+}
+
 @media (min-width: 780px) {
   .authorization__button {
     background-color: transparent;
-    padding: 5px 30px;
-    border: 2px solid black;
-    border-radius: 20px;
-    font-size: 1.5rem;line-height: 100%;
+    line-height: 100%;
   }
 
   .authorization__button:hover {
