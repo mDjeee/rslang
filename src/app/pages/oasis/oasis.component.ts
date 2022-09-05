@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { baseUrl } from 'src/api/baseUrl';
 import { AudiocallService } from 'src/app/core/audiocall.service';
 import { OasisService } from 'src/app/core/oasis.service';
-import { answer } from 'src/types/audiocall-answer';
 import { IWord } from 'src/types/IWord';
+import { BookService } from '../book/book.service';
 
 @Component({
   selector: 'app-oasis',
   templateUrl: './oasis.component.html',
   styleUrls: ['./oasis.component.css']
 })
-export class OasisComponent implements OnInit {
+export class OasisComponent implements OnInit, OnDestroy {
 
   isLevels = true;
   isCorrect = false;
   isFinished = false;
   correctAnswers: string[] = [];
   wrongAnswers: string[] = [];
+
+  fromBook = this.bookService.fromBook;
 
   gameWords: IWord[] = [
     {
@@ -38,10 +40,15 @@ export class OasisComponent implements OnInit {
   ];
   currentWordId = 0;
 
-  constructor(private oasisService: OasisService, private audioCall: AudiocallService) { }
+  constructor(private oasisService: OasisService, private audioCall: AudiocallService, private bookService: BookService) { }
 
   ngOnInit(): void {
     this.audioCall.answers = [];
+  }
+
+  ngOnDestroy(): void {
+    this.oasisService.unsubscribe();
+    this.bookService.fromBook = false;
   }
 
   choseLevel(group: number) {
@@ -62,6 +69,8 @@ export class OasisComponent implements OnInit {
       audio.src = '../../assets/correct.wav';
       audio.load();
       audio.play();
+
+      this.oasisService.getUserWord(this.oasisService.userId, word.id, this.isCorrect)
 
       this.audioCall.answers.push({
         id: word.id,
@@ -99,6 +108,10 @@ export class OasisComponent implements OnInit {
     this.isCorrect = false;
     this.currentWordId++;
     (<HTMLInputElement>document.getElementById('answer-input')).value = '';
+
+    if(this.currentWordId > 9) {
+      this.audioCall.getStatistics();
+    }
   }
 
   dontKnow(answer: string, translate: string, word: IWord) {
@@ -106,6 +119,8 @@ export class OasisComponent implements OnInit {
     audio.src = '../../assets/wrong.wav';
     audio.load();
     audio.play();
+
+    this.oasisService.getUserWord(this.oasisService.userId, word.id, this.isCorrect);
 
     this.audioCall.answers.push({
       id: word.id,

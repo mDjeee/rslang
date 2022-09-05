@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="levels-container" *ngIf="isLevels && currentWordId < 10">
+  <div class="levels-container" *ngIf="(isLevels && currentWordId < 10) && !fromBook">
     <div class="levels-header">
       <h3 class="levels-title">Оазис</h3>
       <p class="levels-description">Тренировка Оазис развивает смысловое прогнозирование и формирует навык написания слов.</p>
