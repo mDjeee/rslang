@@ -102,7 +102,7 @@
   .statistic {
     display: flex;
     padding-top: 30px;
-    flex-flow: column wrap;
+    flex-direction: column;
   }
 
   .button_pie {
