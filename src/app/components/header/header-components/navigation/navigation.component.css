@@ -37,21 +37,21 @@
     transform: rotate(180deg);
   }
 
-  .dropdown__content {
+  .dropdown__wrapper {
     display: none;
     position: absolute;
     top: 50%;
-
+    padding-top: 2rem;
   }
 
-  .dropdown:hover .dropdown__content {
+  .dropdown:hover .dropdown__wrapper {
     margin-top: 5px;
     display: block;
     background: rgba(125, 107, 230, 0.12);
   }
 
   .dropdown__item {
-    padding: 5px 0;
+    padding: 5px .5rem;
   }
 
   .dropdown__item_first {

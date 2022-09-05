@@ -5,11 +5,13 @@
     <li class="navigation__item dropdown">
       <span class="dropdown__text">Игры</span>
       <span class="dropdown__arrow">V</span>
-      <ul class="dropdown__content">
-        <li class="dropdown__item dropdown__item_first"><a class="navigation__link" routerLink="/games/audiocall">Аудиовызов</a></li>
-        <li class="dropdown__item"><a class="navigation__link" routerLink="/games/sprint">Спринт</a></li>
-        <li class="dropdown__item"><a class="navigation__link" routerLink="/games/oasis">Oasis</a></li>
-      </ul>
+      <div class="dropdown__wrapper">
+        <ul class="dropdown__content">
+          <li class="dropdown__item dropdown__item_first"><a class="navigation__link" routerLink="/games/audiocall">Аудиовызов</a></li>
+          <li class="dropdown__item"><a class="navigation__link" routerLink="/games/sprint">Спринт</a></li>
+          <li class="dropdown__item"><a class="navigation__link" routerLink="/games/oasis">Oasis</a></li>
+        </ul>
+      </div>
     </li>
     <li class="navigation__item"><a class="navigation__link" routerLink="/statistics">Статистика</a></li>
   </ul>
