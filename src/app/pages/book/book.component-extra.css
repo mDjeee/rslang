@@ -170,6 +170,9 @@ p {
     flex-wrap: wrap;
     column-gap: 5px;
   }
+  .book-header {
+    flex-wrap: wrap;
+  }
   .word * {
     margin: 0;
   }

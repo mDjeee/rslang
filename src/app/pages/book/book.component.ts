@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./book.component.css', './book.component-extra.css']
 })
 export class BookComponent implements OnInit {
-
+  p: number = 1;
+  n: number = 1;
   words: IWord[] = [];
   userHardWords: any = new Set([]);
   userWords: IWord[] = [];
@@ -39,6 +40,8 @@ export class BookComponent implements OnInit {
   baseImg = baseUrl + "/";
 
   isLoading = true;
+  isLoadingHard = true;
+  isLoadingLearnd = true;
 
   showConfig = false;
   showTranslate = true;
@@ -61,6 +64,8 @@ export class BookComponent implements OnInit {
   constructor(private api: ApiService, private bookService: BookService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLoadingHard = true;
+    this.isLoadingLearnd = true;
     this.group = localStorage.getItem('group') ? Number(localStorage.getItem('group')) : 0;
     this.page = localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 0;
     if(!!this.user) {
@@ -131,6 +136,8 @@ export class BookComponent implements OnInit {
         books.filter((item: any) => item.difficulty === navigate).forEach((word: any) => {
           this.loadUserWords(word.wordId);
         })
+        this.isLoadingHard = false;
+        this.isLoadingLearnd = false;
       })
     }
   }
@@ -207,12 +214,14 @@ export class BookComponent implements OnInit {
   changeDictionaryPage(page: number) {
     this.userWords = [];
     if(page === 0) {
+      this.isLoadingHard = true;
       this.currentDictionary = 0;
       this.isHardwords = true;
       this.isLearned = false;
       this.fetchUserHardWords('difficult');
     }
     if(page === 1) {
+      this.isLoadingLearnd = true;
       this.currentDictionary = 1;
       this.isHardwords = false;
       this.isLearned = true;
@@ -254,6 +263,8 @@ export class BookComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.isLoadingHard = true;
+    this.isLoadingLearnd = true;
     if(this._Subscription) {
       this._Subscription.unsubscribe();
     }
