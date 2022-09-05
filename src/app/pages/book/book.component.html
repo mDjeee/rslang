@@ -132,7 +132,8 @@
 
   <!-- Hard words -->
 
-  <div class="words-container" *ngIf="(isHardwords && isDictionary)">
+  <mat-spinner class="spiner" *ngIf="isLoadingHard && isDictionary"></mat-spinner>
+  <div class="words-container" *ngIf="(isHardwords && isDictionary) && !isLoadingHard">
 
       <div class="word-container" *ngFor="let word of userWords | paginate: { itemsPerPage: 10, currentPage: p }" [class]="'a' + word.group + '0'">
         <div class="word-image">
@@ -198,8 +199,10 @@
 
 
 <!-- Learned words -->
+  <mat-spinner class="spiner" *ngIf="isLoadingLearnd && isDictionary"></mat-spinner>
+  <div class="words-container" *ngIf="(isLearned && isDictionary) && !isLoadingLearnd">
 
-  <div class="words-container" *ngIf="(isLearned && isDictionary)">
+
 
     <div class="word-container" *ngFor="let word of userWords | paginate: { itemsPerPage: 10, currentPage: n }" [class]="'a' + word.group + '0'">
         <div class="word-image">
