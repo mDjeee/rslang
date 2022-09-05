@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="levels-container" *ngIf="isLevels">
+  <div class="levels-container" *ngIf="isLevels && currentWordId < 10">
     <div class="levels-header">
       <h3 class="levels-title">Оазис</h3>
       <p class="levels-description">Тренировка Оазис развивает смысловое прогнозирование и формирует навык написания слов.</p>
@@ -16,5 +16,36 @@
         <li class="levels-item" (click)="choseLevel(5)">C2</li>
       </ul>
     </div>
+  </div>
+
+  <div class="game-container" *ngIf="!isLevels && currentWordId < 10">
+
+    <div class="results-counter">
+      <span class="right-counter counter">{{ correctAnswers.length }}</span>
+      <span class="wrong-counter counter">{{ wrongAnswers.length }}</span>
+    </div>
+
+    <div class="helpers">
+      <button class="helper" (click)="play(gameWords[currentWordId].audioExample)">Послушать аудио</button>
+      <button class="helper" (click)="showTranslate(gameWords[currentWordId].wordTranslate)">Перевод слова</button>
+      <button class="helper" (click)="showFirstLetter(gameWords[currentWordId].word)">Первая буква</button>
+      <button class="helper" (click)="howManyLetters(gameWords[currentWordId].word)">Сколько букв?</button>
+    </div>
+
+    <p id="example" class="example" [innerHtml]="gameWords[currentWordId] ? gameWords[currentWordId].textExample.slice(0, gameWords[currentWordId].textExample.indexOf('<b>')) + '_____' + gameWords[currentWordId].textExample.slice((gameWords[currentWordId].textExample.indexOf('</b>')) + 4) : '...Loading'"></p>
+
+    <input type="text" class="answer-input" id="answer-input" [class]="isCorrect ? 'correct' : isFinished ? 'wrong' : ''">
+
+    <div class="answer-block">
+      <button class="answer-btn" *ngIf="!isFinished" (click)="checkAnswer(gameWords[currentWordId].word, gameWords[currentWordId].wordTranslate, gameWords[currentWordId])">Ответить</button>
+      <button class="reject-btn" *ngIf="!isFinished" (click)="dontKnow(gameWords[currentWordId].word, gameWords[currentWordId].wordTranslate, gameWords[currentWordId])">Не знаю</button>
+      <button class="next-btn" *ngIf="isFinished" (click)="nextWord()">Дальше</button>
+    </div>
+
+    <p>{{ gameWords[currentWordId] ? gameWords[currentWordId].word : '...Loading' }}</p>
+  </div>
+
+  <div class="result-container" *ngIf="currentWordId > 9">
+    <app-game-result></app-game-result>
   </div>
 </div>

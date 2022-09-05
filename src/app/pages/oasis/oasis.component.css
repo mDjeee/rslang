@@ -54,3 +54,99 @@
   color: #ffffff;
   background: linear-gradient(134.65deg, #5961F9 3.4%, #EE9AE5 97.69%);
 }
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+}
+
+.helpers, .answer-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.helper {
+  font-size: 16px;
+  color: #000000;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background: #f3f4f8;
+  transition: all 0.2s ease-in-out;
+}
+
+.helper:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(134.65deg, #5961F9 3.4%, #EE9AE5 97.69%);
+}
+
+.example {
+  font-size: 24px;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.answer-input {
+  font-size: 24px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.answer-input:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
+.answer-btn, .reject-btn, .next-btn {
+  font-size: 16px;
+  color: #000000;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background: #f3f4f8;
+  transition: all 0.2s ease-in-out;
+}
+
+.answer-btn:hover, .reject-btn:hover, .next-btn:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background: #80bdff
+}
+
+.correct {
+  background-color: #4cb12d;
+  color: #ffffff;
+}
+
+.wrong {
+  background-color: #ff3d00;
+}
+
+.results-counter {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.counter {
+  padding: 10px;
+  font-size: 18px;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.right-counter {
+  background-color: #4cb12d;
+}
+
+.wrong-counter {
+  background-color: #ff3d00;
+}

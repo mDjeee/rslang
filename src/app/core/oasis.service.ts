@@ -49,8 +49,6 @@ export class OasisService implements OnInit {
       if(this.gameWords.length > 10) {
         this.gameWords = this.gameWords.slice(0, 10);
       }
-      console.log(this.gameWords)
-      console.log(group, page)
     })
   }
 
