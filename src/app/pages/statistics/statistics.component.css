@@ -157,3 +157,14 @@ input:checked + .slider:before {
   }
 }
 
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: rgba(89, 96, 218, 0.97) !important;
+  align-self: center;
+}
+
+.statistics-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

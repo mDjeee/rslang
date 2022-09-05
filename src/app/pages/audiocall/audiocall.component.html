@@ -3,6 +3,7 @@
     <app-game-title *ngIf="visible"></app-game-title>
     <app-level-selection *ngIf="levelSelectionVisible" (levelSelected) = 'levelSelected()'></app-level-selection>
   </div>
+    <mat-spinner class="spiner" *ngIf="!visible && !start"></mat-spinner>
     <app-game-audiocall *ngIf="start && !end"></app-game-audiocall>
     <app-game-result *ngIf="end"></app-game-result>
     <button class="audiocall__start-btn" disabled="BtnDisabled" *ngIf="visible" (window:keydown.enter)="onStart()" (click)="onStart()">Начать</button>

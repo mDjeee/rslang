@@ -41,3 +41,7 @@
   border-radius: 20px;
   background-color: transparent;
 }
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: rgba(89, 96, 218, 0.97) !important;
+}
