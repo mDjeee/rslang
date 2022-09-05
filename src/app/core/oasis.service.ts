@@ -84,6 +84,9 @@ export class OasisService implements OnInit {
       this.page = +`${localStorage.getItem('page')}`;
     }
     this.fetchWords(this.group, this.page);
+    if(this.fromBook) {
+      this.bookService.fromBook = false;
+    }
   }
 
   private  getChangedOptions(options: IUserWordOptions, answer: boolean) {
