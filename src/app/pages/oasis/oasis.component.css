@@ -150,3 +150,10 @@
 .wrong-counter {
   background-color: #ff3d00;
 }
+
+.oasis__conditions {
+  font-family: 'Jost-k';
+  font-size: 20px;
+  max-width: 600px;
+  text-align: center;
+}
