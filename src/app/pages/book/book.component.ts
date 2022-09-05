@@ -15,7 +15,10 @@ export class BookComponent implements OnInit {
   p: number = 1;
   n: number = 1;
   words: IWord[] = [];
-  userHardWords: any = new Set([]);
+  userHardWords: any = [];
+
+  userWordsIds: any = [];
+
   userWords: IWord[] = [];
   userHardWordsId: any = new Set([]);
   userLearnedWordsId: any = new Set([]);
@@ -112,26 +115,33 @@ export class BookComponent implements OnInit {
         this.userHardWords = books;
 
         this.userHardWordsId = new Set([]);
+        this.userWordsIds = [];
         this.userLearnedWordsId = new Set([]);
         this.userUnstudiedWordsId = new Set([]);
+
 
         this.userHardWords.forEach((item: any) => {
           if(item.difficulty === 'difficult'){
             this.userHardWordsId.add(item.wordId);
+            this.userWordsIds.push(item.wordId);
           }
         })
 
         this.userHardWords.forEach((item: any) => {
           if(item.difficulty === 'studied'){
             this.userLearnedWordsId.add(item.wordId);
+            this.userWordsIds.push(item.wordId);
           }
         })
 
         this.userHardWords.forEach((item: any) => {
           if(item.difficulty === 'unstudied'){
             this.userUnstudiedWordsId.add(item.wordId);
+            this.userWordsIds.push(item.wordId);
           }
         })
+
+        console.log(this.userHardWords)
 
         books.filter((item: any) => item.difficulty === navigate).forEach((word: any) => {
           this.loadUserWords(word.wordId);

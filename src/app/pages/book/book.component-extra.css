@@ -63,7 +63,7 @@ p {
   margin: 15px 0;
 }
 .word-description {
-  padding: 20px;
+  padding: 10px 20px;
 }
 .word {
   display: flex;
@@ -95,7 +95,7 @@ p {
   font-weight: 700;
   font-size: 1.2rem;
   color: #2c2647;
-  margin-bottom: 2px;
+  margin: 4px 0;
 }
 .word-meaning_en, .word-example_en {
   font-family: Roboto;
