@@ -50,6 +50,7 @@ export class OasisComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.audioCall.answers = [];
     this.oasisService.unsubscribe();
     this.bookService.fromBook = false;
   }
