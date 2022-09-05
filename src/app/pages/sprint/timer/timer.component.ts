@@ -12,19 +12,22 @@ export class TimerComponent implements OnInit {
   seconds!:number | string
   public subscription!: Subscription;
   constructor(private SprintApi: SprintService) {}
+
   public setFormData() {
     if (this.seconds >= 60 ) {
       this.subscription.unsubscribe();
       this.seconds = 'Время вышло';
       this.visibleStatistic.emit()
     }
-
   }
-  ngOnInit() {
+  public startTimer() {
     this.subscription = timer(0, 1000).subscribe(t => {
       this.seconds = (t)
       this.setFormData();
     });
+  }
+  ngOnInit() {
+  this.startTimer()
   }
 
 
