@@ -1,18 +1,18 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ApiService, baseUrl} from "../../../core/api.service";
 import {IWord} from "../../../../types/IWord";
 import {SprintService} from "../../../core/sprint.service";
 import {IDayStatistics, IUserStatistics, IUserWord, IUserWordOptions} from "../../../../types/IOptions";
 import {Subscription} from "rxjs";
-import {ThemePalette} from "@angular/material/core";
+import {AudiocallService} from "../../../core/audiocall.service";
 
 @Component({
   selector: 'app-level',
   templateUrl: './level.component.html',
   styleUrls: ['./level.component.css']
 })
-export class LevelComponent implements OnInit, OnChanges {
+export class LevelComponent implements OnInit, OnDestroy {
   score: number = 0
   Score: number[] = []
   wordEN!: string
@@ -38,14 +38,20 @@ export class LevelComponent implements OnInit, OnChanges {
   private userId!: string;
   private date = (new Date()).toISOString();
   private statistic!: IUserStatistics;
+
+  private _GetWordsSubscription: Subscription | undefined;
+  private _GetUserWordSubscription: Subscription | undefined;
+  private _PostUserWordSubscription: Subscription | undefined;
+  private _GetUserStatistics: Subscription | undefined;
   private _PutUserStatistics: Subscription | undefined;
+  private _AllWordsFetches: Subscription | undefined;
 
 
-  constructor(private router: Router, private api: ApiService, private act: ActivatedRoute, private  sprintApi:SprintService) {}
+  constructor(private router: Router, private api: ApiService, private act: ActivatedRoute, private  sprintApi:SprintService,
+              private audioapi: AudiocallService) {}
 
-  public stopSong() {
-    this.audio.pause();
-  }
+
+
 
   public pie() {
   this.piestatic = true
@@ -151,7 +157,27 @@ export class LevelComponent implements OnInit, OnChanges {
       }
     }
   }
-
+public  statisticSprint(){
+  return this.statistic =  {
+    learnedWords: (this.wordsRight.length) + (this.wordsWrong.length),
+    optional: {
+      stat: {
+        allStat: [{
+          date: new Date().toISOString(),
+          amountNewWordsPerDey: this.wordsRight.length,
+          correctAnswers: this.wordsRight.length,
+          games: {
+            audiocall: {correct: 0, wrong: 0, chain: 0},
+            sprint: {correct: this.wordsRight.length++, wrong: this.wordsWrong.length++, chain: this.chain},
+            oasis: {correct: 0, wrong: 0, chain: 0},
+          },
+          allWords: (this.wordsRight.length) + (this.wordsWrong.length)
+        }],
+        newWords:    ['dd'] //массиво строк
+      }
+    }
+  }
+}
  getUserId() {
     const userData = <string>window.localStorage.getItem('userData');
     const userId = JSON.parse(userData).userId;
@@ -159,25 +185,7 @@ export class LevelComponent implements OnInit, OnChanges {
   }
 
   private  putStatistics() {
-    this._PutUserStatistics = this.api.putUserStatistics(this.userId, {
-      learnedWords: (this.wordsRight.length) + (this.wordsWrong.length),
-      optional: {
-        stat: {
-          allStat: [{
-      date: new Date().toISOString(),
-      amountNewWordsPerDey: this.wordsRight.length,
-      correctAnswers: this.wordsRight.length,
-      games: {
-        audiocall: {correct: 0, wrong: 0, chain: 0},
-        sprint: {correct: this.wordsRight.length, wrong: this.wordsWrong.length, chain: this.chain},
-        oasis: {correct: 0, wrong: 0, chain: 0},
-      },
-      allWords: (this.wordsRight.length) + (this.wordsWrong.length)
-    }],
-          newWords:    ['dd'] //массиво строк
-        }
-      }
-    })
+    this._PutUserStatistics = this.api.putUserStatistics(this.userId, this.statisticSprint())
       .subscribe({
         error: error => {
           switch(error.status) {
@@ -192,24 +200,6 @@ export class LevelComponent implements OnInit, OnChanges {
       })
   }
 
-
-  ngOnInit(): void {
-   // this.sprintApi.playSong();
-
-      this.act.params.subscribe((paramId) => {
-        this.routerId = paramId['id'];
-      })
-
-
-    this.randomArr();
-    this.getsWords();
-    this.getUserId()
-  }
-
-  ngOnChanges() {
-
-  }
-
   public timeOver() {
     this.visibleStat = false;
     this.finished = true;
@@ -218,5 +208,21 @@ export class LevelComponent implements OnInit, OnChanges {
     this.getStatistics();
     this.putStatistics()
   }
+
+  ngOnInit(): void {
+      this.act.params.subscribe((paramId) => {
+        this.routerId = paramId['id'];
+      })
+    this.randomArr();
+    this.getsWords();
+    this.getUserId()
+  }
+
+
+
+  ngOnDestroy(): void {
+    this.audioapi.unSubscribe()
+  }
+
 }
 
