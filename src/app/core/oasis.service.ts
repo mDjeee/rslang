@@ -204,9 +204,7 @@ export class OasisService implements OnInit {
 
   private getChangedStatistics(statistics: IUserStatistics) {
     delete statistics.id;
-    // статистика за сегодня
     const currentDateStat = this.getCurrentDateStatistucs(statistics);
-    // newWordsAnswer - новые слова, если слова не встречаются в массиве слов
     const newWordsFromAnswer = this.getNewWords(statistics);
     const correctAnswers = this.audioCall.answers.filter(item => item.result).length;
     const wrongAnswers = this.audioCall.answers.length - correctAnswers;

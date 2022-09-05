@@ -147,17 +147,12 @@
     </mat-paginator>
   </div>
 
-  <!-- Dictionary -->
-
-
   <nav class="nav" *ngIf="isDictionary">
     <ul class="list">
       <li class="item" (click)="changeDictionaryPage(0)" [class]="currentDictionary === 0 ? 'visible' : ''">Сложные слова</li>
       <li class="item" (click)="changeDictionaryPage(1)" [class]="currentDictionary === 1 ? 'visible' : ''">Изученные</li>
     </ul>
   </nav>
-
-  <!-- Hard words -->
 
   <mat-spinner class="spiner" *ngIf="isLoadingHard && isDictionary"></mat-spinner>
   <div class="words-container" *ngIf="(isHardwords && isDictionary) && !isLoadingHard">
@@ -251,8 +246,6 @@
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 
-
-<!-- Learned words -->
   <mat-spinner class="spiner" *ngIf="isLoadingLearnd && isDictionary"></mat-spinner>
   <div class="words-container" *ngIf="(isLearned && isDictionary) && !isLoadingLearnd">
 
