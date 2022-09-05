@@ -1,0 +1,49 @@
+.game-card {
+  max-width: 250px;
+  height: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid #524983;
+  border-radius: 20px;
+  box-shadow: 0px 16.0566px 20.0707px -4.01414px rgba(75, 52, 204, 0.1), 0px 8.02828px 8.02828px -4.01414px rgba(75, 52, 204, 0.04);
+}
+
+.game-card__name {
+  font-family: 'Comfortaa';
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #272525;
+  line-height: 150%;
+  user-select: none;
+  align-self: center;
+}
+
+.game-card__learned,
+.game-card__correct,
+.game-card__chain {
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 150%;
+  color: #454747;
+  user-select: none;
+}
+
+.game-card__data {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-card__container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (max-width: 780px) {
+
+}

@@ -1,0 +1,62 @@
+<div class="wrapper_game" *ngIf="visibleStat; else popup">
+  <div class="image-run">
+    <img alt="some" id="run-girl" src="./assets/run.jpg" />
+  </div>
+  <div class="wrap-game" [appSprintBorder]="border">
+    <div class="score-time">
+    <app-timer (visibleStatistic)="timeOver()"></app-timer>
+    <p id="score" >Score: {{score}}</p>
+  </div>
+    <div class="words" *ngIf="!loader; else loaderTemp">
+      <p class="word word_en">
+        <b>{{wordEN}}</b>
+      </p>
+      <p class="word">
+        <b>{{wordRU}}</b>
+      </p>
+    </div>
+    <div class="control">
+      <button class="button button_false" [disabled]="finished"
+              (window:keydown.arrowLeft)="isWrongAnswer()"
+              (click)="isWrongAnswer()">Неправильно<br/> ←</button>
+      <button class="button button_true" [disabled]="finished"
+              (window:keydown.arrowRight)="isRightAnswer()"
+              (click)="isRightAnswer()">Правильно<br/>  →</button>
+    </div>
+  </div>
+  <div class="timer">
+  </div>
+</div>
+<ng-template #popup>
+  <div class="statistic">
+    <button (click)="pie()" class="button_pie"> Pie! </button>
+    <button (click)="nopie()"  class="button_pie"> Слова </button>
+    <div class="schedule" *ngIf="piestatic">
+      <app-chart [chartRight]="wordsRight.length"
+                 [chartWrong]="wordsWrong.length" ></app-chart>
+    </div>
+    <div class="words_wrap-stat" *ngIf="!piestatic">
+    <div class="right-words_wrap">
+      <p>Знаю!</p>
+      <div class="right-words bb"  *ngFor="let worldE of wordsRight">
+        <button class="word-stat button-audio" (click)="playWord(worldE.audio)">
+          <img src="./assets/button-audio.png" width="18px"></button>
+      <div class="word-stat">{{worldE.word}}  - </div>
+      <div class="word-stat">{{worldE.wordTranslate}}</div>
+    </div>
+    </div>
+    <div class="wrong-words_wrap">
+      <p>Нужно изучить</p>
+      <div class="wrong-words bb"  *ngFor="let worldW of wordsWrong">
+        <button class="word-stat button-audio" (click)="playWord(worldW.audio)">
+          <img src="./assets/button-audio.png" width="18px"></button>
+        <div class="word-stat">{{worldW.word}}  - </div>
+        <div class="word-stat">{{worldW.wordTranslate}}</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</ng-template>
+<ng-template #loaderTemp>
+  <mat-spinner class="spiner"></mat-spinner>
+</ng-template>

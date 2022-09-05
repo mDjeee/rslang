@@ -1,0 +1,170 @@
+.statistics {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.statistics-day,
+.statistics-all {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statistics-day__title,
+.statistics-all__title {
+  padding: 0;
+  margin: 0;
+  font-family: 'Comfortaa';
+  font-weight: bold;
+  font-size: 2rem;
+  color: #272525;
+  line-height: 150%;
+  user-select: none;
+  align-self: center;
+  text-align: center;
+}
+
+.statistics-day__data {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.statistics-day__number,
+.statistics-day__text {
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 120%;
+  color: #272525;
+  user-select: none;
+}
+
+.statistics-day__learned,
+.statistics-day__percent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+.statistics-day__games {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.statistics__separator {
+  border: 1px solid #272525;
+  width: 50%;
+}
+
+.statistics-all__toggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.toggle__text {
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 120%;
+  color: #272525;
+  user-select: none;
+  text-align: center;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 25.5px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  min-width: 60px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 19.5px;
+  width: 19.5px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(32.5px);
+  -ms-transform: translateX(32.5px);
+  transform: translateX(32.5px);
+}
+/* Rounded sliders */
+.slider.round {
+  border-radius: 25.5px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+@media (max-width: 780px) {
+  .statistics-day__games {
+    flex-direction: column;
+  }
+
+  .toggle {
+    flex-direction: column;
+  }
+
+  .switch {
+    transform: rotate(90deg);
+    margin: 1rem;
+  }
+}
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: rgba(89, 96, 218, 0.97) !important;
+  align-self: center;
+}
+
+.statistics-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

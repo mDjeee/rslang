@@ -1,0 +1,21 @@
+@font-face {
+  font-family: Jost;
+  src: url("/assets/font/Jost-Black.ttf") format("opentype");
+}
+@font-face {
+  font-family: Jost-k;
+  src: url("/assets/font/Jost-Light.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: Comfortaa;
+  src: url("/assets/font/Comfortaa/Comfortaa-VariableFont_wght.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: Manrope;
+  src: url("/assets/font/Manrope/Manrope-VariableFont_wght.ttf") format("opentype");
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

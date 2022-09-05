@@ -1,0 +1,7 @@
+.rss-logo_logo {
+  height: 50px;
+}
+
+.rss-logo_logo:hover {
+  scale: 1.1;
+}

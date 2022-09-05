@@ -1,0 +1,26 @@
+<div class="word-list__wrapper">
+  <div class="word-list__wrong">
+    <div class="word-list__title">
+      <span class="word-list__text">Ошибок</span>
+      <span class="word-list__count word-list__count_wrong">{{mistakes.length}}</span>
+    </div>
+    <div class="word-item" *ngFor="let element of mistakes">
+      <span class="word-item__audio" (click)="play(element.audio)"></span>
+      <span class="word-item__word">{{element.word}}</span>
+      <span class="word-item__seperator">-</span>
+      <span class="word-item__translate">{{element.translate}}</span>
+    </div>
+  </div>
+  <hr class="word-list__separator">
+  <div class="word-list__correct">
+    <div class="word-list__title">
+      <span class="word-list__text">Знаю</span>
+      <span class="word-list__count word-list__count_correct">{{correct.length}}</span>
+    </div>
+    <div class="word-item" *ngFor="let element of correct">
+      <span class="word-item__audio" (click)="play(element.audio)"></span>
+      <span class="word-item__word">{{element.word}}</span>
+      <span class="word-item__translate">- {{element.translate}}</span>
+    </div>
+  </div>
+</div>

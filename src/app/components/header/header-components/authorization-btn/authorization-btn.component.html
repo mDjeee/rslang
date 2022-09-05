@@ -1,0 +1,7 @@
+<a href="/authorization" class="authorization" *ngIf="!isAuthenticated">
+  <button class="authorization__button">Войти</button>
+</a>
+<a href="/authorization" class="authorization" *ngIf="isAuthenticated" (click)="onLogout()">
+  <span class="username">{{ userName }}</span>
+  <img class="authorization__button" src="../../../../../assets/logout.png">
+</a>

@@ -1,0 +1,7 @@
+<div class="wrapper">
+  <div class="top">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer *ngIf="!this.router.url.includes('game')"></app-footer>
+</div>

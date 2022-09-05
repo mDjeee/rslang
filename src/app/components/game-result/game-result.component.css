@@ -1,0 +1,36 @@
+.result {
+  min-width: 320px;
+  width: 500px;
+  height: 550px;
+  padding: 1rem;
+}
+
+#divChart {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+:host ::ng-deep .mat-tab-label .mat-tab-label-content {
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 120%;
+  color: #272525;
+  user-select: none;
+}
+
+:host ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: #9796F0;
+}
+
+@media (max-width: 780px) {
+  .result {
+    width: 320px;
+    height: auto;
+  }
+}
