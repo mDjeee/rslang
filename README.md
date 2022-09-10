@@ -4,14 +4,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Основыные технологии 
 
-TypeScript
-HTML
+TypeScript,
+HTML,
 CSS
 
 ## Дополнительные библиотеки
 
-Angular Material
-RxJs
+Angular Material,
+RxJs,
 Chart.js
 
 ## Development server
